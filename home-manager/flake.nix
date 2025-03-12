@@ -9,24 +9,24 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-        hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+		hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
-        fenix = {
-            url = "github:nix-community/fenix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+		fenix = {
+			url = "github:nix-community/fenix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = { nixpkgs, home-manager, ... }@inputs:
 		let
 			system = "x86_64-linux";
-            pkgs = import nixpkgs {
-                inherit system;
-                overlays = [
-                    inputs.hyprpanel.overlay
-                    inputs.fenix.overlays.default
-                ];
-            };
+			pkgs = import nixpkgs {
+				inherit system;
+				overlays = [
+					inputs.hyprpanel.overlay
+					inputs.fenix.overlays.default
+				];
+			};
 		in {
 			homeConfigurations."zsuper" = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;

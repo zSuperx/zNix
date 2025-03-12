@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
-        ripgrep
+	home.packages = with pkgs; [
+		ripgrep
 		htop
 		wl-clipboard
-        tree
-        jq
-        playerctl
-        socat
-        yazi
+		tree
+		jq
+		playerctl
+		socat
+		yazi
 		wofi
-    ];
+	];
 }
