@@ -1,29 +1,29 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
+	home.packages = with pkgs; [
 		# C
 		libclang
-	    gcc
+		gcc
 		gnumake
 		valgrind
 		gdb
 
 		# RUST
 		(fenix.complete.withComponents [
-              "cargo"
-              "clippy"
-              "rust-src"
-              "rustc"
-              "rustfmt"
-        ])
-        rust-analyzer
+			"cargo"
+			"clippy"
+			"rust-src"
+			"rustc"
+			"rustfmt"
+		])
+		rust-analyzer
 
 		# LUA
 		lua-language-server
-	
-        # Python
-        pyright
-        uv
-    ];
+
+		# Python
+		pyright
+		uv
+	];
 }
