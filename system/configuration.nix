@@ -2,9 +2,9 @@
 
 {
 	imports = [ 
-        # Include the results of the hardware scan.	
-        ./hardware-configuration.nix 
-    ];
+		# Include the results of the hardware scan.	
+		./hardware-configuration.nix 
+	];
 
 	# Bootloader.
 	boot.loader.systemd-boot.enable = true;
@@ -99,7 +99,7 @@
 	networking.firewall.allowedUDPPorts = [ ];
 	networking.firewall.enable = true;
 	
-    # ADVANCED
+	# ADVANCED
 	nixpkgs.config.allowUnfree = true;
 	programs.nix-ld.enable = true;
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];	
