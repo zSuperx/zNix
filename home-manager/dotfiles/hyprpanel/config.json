@@ -1,0 +1,14 @@
+{
+  "bar.customModules.updates.pollingInterval": 1440000,
+  "theme.font.size": "0.8rem",
+  "notifications.position": "top right",
+  "menus.dashboard.controls.enabled": true,
+  "menus.dashboard.powermenu.avatar.image": "/home/zsuper/Pictures/backgrounds/dbz/gokublack1.jpg",
+  "menus.media.displayTime": false,
+  "menus.dashboard.shortcuts.left.shortcut4.command": "wofi --allow-images --gtk-dark --insensitive --show drun",
+  "theme.bar.menus.menu.notifications.height": "40em",
+  "theme.notification.scaling": 100,
+  "scalingPriority": "hyprland",
+  "theme.osd.scaling": 100,
+  "theme.bar.buttons.dashboard.icon": "#f9e2af"
+}
