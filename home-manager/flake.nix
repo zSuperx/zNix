@@ -9,7 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel.url = "github:piyushkumbhare/HyprPanel";
+    # hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     fenix = {
       url = "github:nix-community/fenix";

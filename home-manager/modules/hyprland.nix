@@ -30,6 +30,8 @@
       bar.workspaces.numbered_active_indicator = "highlight";
       bar.notifications.show_total = true;
 
+      notifications.ignore = ["spotify"];
+
       theme.font.size = "0.9rem";
       theme.bar.buttons.style = "wave";
 
