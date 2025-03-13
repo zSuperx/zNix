@@ -20,7 +20,7 @@
     override = {
       theme.bar.buttons.dashboard.icon = "#81A1CA";
       menus.clock.time.hideSeconds = true;
-      menus.dashboard.powermenu.avatar.image = "$HOME/Pictures/jue-viole-grace.png";
+      menus.dashboard.powermenu.avatar.image = "~/Pictures/jue-viole-grace.png";
     };
 
     settings = {
