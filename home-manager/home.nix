@@ -82,13 +82,13 @@
 	programs.direnv.enable = true;
 
 	home.file = {
-		".config/nvim/init.lua".source = ./dotfiles/nvim/init.lua;
-		".config/nvim/lua".source = ./dotfiles/nvim/lua;
+		".config/nvim/init.lua".source = ../nvim/init.lua;
+		".config/nvim/lua".source = ../nvim/lua;
 
-		".config/hypr".source = ./dotfiles/hypr;
-		".config/hyprpanel".source = ./dotfiles/hyprpanel;
+		".config/hypr".source = ../hypr;
+		".config/hyprpanel".source = ../hyprpanel;
 
-        ".config/wofi".source = ./dotfiles/wofi;
+        ".config/wofi".source = ../wofi;
 	};
 
 	home.sessionVariables = {
