@@ -7,6 +7,7 @@
     ./packages/dev-tools.nix
     ./packages/utils.nix
     ./packages/apps.nix
+    ./modules/hyprland.nix
   ];
 
   home.username = "zsuper";
@@ -19,13 +20,6 @@
         "JetBrainsMono"
       ];
     })
-
-    # HYPRLAND
-    pkgs.hyprpanel
-    pkgs.hyprpaper
-    pkgs.hypridle
-    pkgs.hyprshot
-    pkgs.hyprlock
   ];
 
   programs.kitty = {
@@ -91,7 +85,6 @@
     ".config/nvim/lua".source = ../nvim/lua;
 
     ".config/hypr".source = ../hypr;
-    ".config/hyprpanel".source = ../hyprpanel;
 
     ".config/wofi".source = ../wofi;
   };
