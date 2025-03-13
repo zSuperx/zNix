@@ -19,6 +19,7 @@ git clone git@github.com:piyushkumbhare/dotfiles.git
 
 ### System
 
+Granted you have flake support enabled in NixOS, you can just run the standard rebuild command but with the flake argument:
 ```
 sudo nixos-rebuild switch --flake ./dotfiles/system
 ```
