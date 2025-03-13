@@ -1,5 +1,7 @@
 # Dotfiles
 
+This repository contains the dot and nix files that build into my system. Instructions on how to reproduce and credits are below.
+
 I'm pretty new to both Nix and the idea of dotfiles, so if you have any suggestions, feel free to let me know!
 
 ## Directory Structure
