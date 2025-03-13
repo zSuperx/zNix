@@ -80,7 +80,10 @@
     options = ["--cmd cd"];
   };
 
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   home.file = {
     ".config/nvim/init.lua".source = ../nvim/init.lua;

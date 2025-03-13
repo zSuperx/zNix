@@ -80,8 +80,17 @@ vim.api.nvim_create_autocmd("BufWrite", {
     end,
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.nix",
+    callback = function ()
+        vim.opt_local.tabstop = 2;
+        vim.opt_local.shiftwidth = 2;
+    end
+})
+
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 -- ALT backspace for deleting words in insert mode
 vim.api.nvim_set_keymap('i', '<M-BS>', '<C-o>db', { noremap = true })
