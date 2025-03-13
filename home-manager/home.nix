@@ -66,9 +66,11 @@
     };
 
     # Disable Fish greeting & add ~/bin to path
+    # Also disable direnv logging, it's so damn noisy
     shellInit = ''
       set fish_greeting
       set PATH "$HOME/bin:$PATH"
+      export DIRENV_LOG_FORMAT=
     '';
   };
 

@@ -28,6 +28,7 @@
       bar.workspaces.showApplicationIcons = true;
       bar.workspaces.showWsIcons = true;
       bar.workspaces.numbered_active_indicator = "highlight";
+      bar.notifications.show_total = true;
 
       theme.font.size = "0.9rem";
       theme.bar.buttons.style = "wave";
