@@ -1,5 +1,7 @@
 # Dotfiles
 
+This repository contains the dot and nix files that build into my system. Instructions on how to reproduce and credits are below.
+
 I'm pretty new to both Nix and the idea of dotfiles, so if you have any suggestions, feel free to let me know!
 
 ## Directory Structure
@@ -17,6 +19,7 @@ git clone git@github.com:piyushkumbhare/dotfiles.git
 
 ### System
 
+Granted you have flake support enabled in NixOS, you can just run the standard rebuild command but with the flake argument:
 ```
 sudo nixos-rebuild switch --flake ./dotfiles/system
 ```
@@ -27,3 +30,11 @@ To build the home-manager configuration, first make sure you have [home-manager]
 ```
 home-manager switch --flake ./dotfiles/home-manager
 ```
+
+## Credits
+
+I am not a creative person lol. Here are the links I took some configs from:
+
+wofi - https://github.com/7KIR7/dots/tree/main
+
+hyprpanel - https://github.com/Jas-SinghFSU/HyprPanel
