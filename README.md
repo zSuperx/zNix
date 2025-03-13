@@ -33,4 +33,5 @@ home-manager switch --flake ./dotfiles/home-manager
 I am not a creative person lol. Here are the links I took some configs from:
 
 wofi - https://github.com/7KIR7/dots/tree/main
+
 hyprpanel - https://github.com/Jas-SinghFSU/HyprPanel
