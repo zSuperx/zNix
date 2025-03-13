@@ -73,6 +73,13 @@ vim.api.nvim_create_autocmd("BufWrite", {
     end,
 })
 
+vim.api.nvim_create_autocmd("BufWrite", {
+    pattern = "*.nix",
+    callback = function ()
+        vim.cmd("%!alejandra -qq");
+    end,
+})
+
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
