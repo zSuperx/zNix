@@ -19,15 +19,14 @@
 
     override = {
       theme.bar.buttons.dashboard.icon = "#81A1CA";
+      menus.clock.time.hideSeconds = true;
+      menus.dashboard.powermenu.avatar.image = "$HOME/Pictures/jue-viole-grace.png";
     };
 
     settings = {
-      menus.clock.time.hideSeconds = true;
-      menus.dashboard.powermenu.avatar.image = "$HOME/Pictures/jue-viole-grace.png";
-
       bar.launcher.icon = "";
       bar.workspaces.showApplicationIcons = true;
-      bar.workspaces.show_icons = true;
+      bar.workspaces.showWsIcons = true;
       bar.workspaces.numbered_active_indicator = "highlight";
 
       theme.font.size = "0.9rem";
