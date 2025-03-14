@@ -13,6 +13,8 @@ return {
     end,
   },
 
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {

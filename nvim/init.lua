@@ -41,7 +41,7 @@ end)
 local nvim_lsp = require('lspconfig')
 
 nvim_lsp.clangd.setup({
-    on_attach = function(client, bufnr)
+    on_attach = function(_, _)
     end,
     flags = {
         debounce_text_changes = 150,
@@ -49,7 +49,7 @@ nvim_lsp.clangd.setup({
 })
 
 nvim_lsp.rust_analyzer.setup({
-    on_attach = function(client, bufnr)
+    on_attach = function(_, _)
     end,
     flags = {
         debounce_text_changes = 150,
@@ -57,7 +57,7 @@ nvim_lsp.rust_analyzer.setup({
 })
 
 nvim_lsp.pyright.setup({
-    on_attach = function(client, bufnr)
+    on_attach = function(_, _)
     end,
     flags = {
         debounce_text_changes = 150,
@@ -66,6 +66,7 @@ nvim_lsp.pyright.setup({
 
 -- MY STUFF --
 
+-- Run cargo fmt on save
 vim.api.nvim_create_autocmd("BufWrite", {
     pattern = "*.rs",
     callback = function ()
@@ -73,13 +74,18 @@ vim.api.nvim_create_autocmd("BufWrite", {
     end,
 })
 
+-- Autoformat Nix code on save
 vim.api.nvim_create_autocmd("BufWrite", {
     pattern = "*.nix",
     callback = function ()
+        local current_window = vim.api.nvim_get_current_win();
+        local pos = vim.api.nvim_win_get_cursor(current_window);
         vim.cmd("%!alejandra -qq");
+        vim.api.nvim_win_set_cursor(current_window, pos);
     end,
 })
 
+-- Nix standard seems to be tab = 2x space
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*.nix",
     callback = function ()
@@ -88,12 +94,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
 })
 
+-- I like tab = 4x space
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
--- ALT backspace for deleting words in insert mode
-vim.api.nvim_set_keymap('i', '<M-BS>', '<C-o>db', { noremap = true })
-
 -- Ctrl . to open lsp diagnostic
 vim.api.nvim_set_keymap('n', '<C-.>', ":lua vim.lsp.buf.code_action()<CR>", { noremap = true })
+
+-- Apply neovim theme
+vim.cmd.colorscheme("catppuccin")
