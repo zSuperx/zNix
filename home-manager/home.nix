@@ -3,88 +3,21 @@
   pkgs,
   ...
 }: {
+  # This file contains very basic attributes and fields.
+  # Specific configuration/package installation can be found in the following .nix files...
   imports = [
-    ./packages/dev-tools.nix
-    ./packages/utils.nix
-    ./packages/apps.nix
-    ./modules/hyprland.nix
+    ./packages/dev-tools.nix # Lanugages + LSPs
+    ./packages/utils.nix # UNIX Utilities
+    ./packages/apps.nix # Standalone application
+
+    ./modules/hyprland.nix # Hyprland & its numerous tools
+    ./modules/terminal.nix # Terminal config
   ];
 
   home.username = "zsuper";
   home.homeDirectory = "/home/zsuper";
-  home.packages = [
-    # TERMINAL CONFIG
-    pkgs.fishPlugins.tide # Fish prompt plugin
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-      ];
-    })
-  ];
 
-  programs.kitty = {
-    enable = true;
-    settings = {
-      font_family = "JetBrainsMono Nerd Font Mono";
-      bold_font = "JetBrainsMono Nerd Font Mono Extra Bold";
-      bold_italic_font = "JetBrainsMono Nerd Font Mono Extra Bold Italic";
-
-      shell = "fish";
-      background_opacity = "0.9";
-      cursor_trail = "1";
-      font_size = "15.0";
-    };
-    themeFile = "Catppuccin-Macchiato";
-  };
-
-  programs.fish = {
-    enable = true;
-    plugins = [
-      {
-        name = "tide";
-        src = pkgs.fishPlugins.tide.src;
-      }
-    ];
-    shellAliases = {
-      l = "ls -lah";
-
-      grep = "grep --color";
-      egrep = "egrep --color";
-
-      # Clipboard
-      wlc = "wl-copy";
-      wlp = "wl-paste";
-
-      # "It's all nvim?"
-      nv = "nvim";
-      vi = "nvim";
-      vim = "nvim";
-      # "Always has been..."
-
-      # Git aliases
-      gs = "git status";
-    };
-
-    # Disable Fish greeting & add ~/bin to path
-    # Also disable direnv logging, it's so damn noisy
-    shellInit = ''
-      set fish_greeting
-      set PATH "$HOME/bin:$PATH"
-      export DIRENV_LOG_FORMAT=
-    '';
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    options = ["--cmd cd"];
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
+  # Manages dotfiles by symlinking at build time
   home.file = {
     ".config/nvim/init.lua".source = ../nvim/init.lua;
     ".config/nvim/lua".source = ../nvim/lua;
