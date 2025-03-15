@@ -5,14 +5,15 @@ This repository contains the dot and nix files that build into my system. Instru
 I'm pretty new to both Nix and the idea of dotfiles, so if you have any suggestions, feel free to let me know!
 
 ## Previews
+
+#### Hyprlock (based on Catppuccin)
 ![Hyprlock (based on Catppuccin)](./assets/hyprlock.png)
-Hyprlock (based on Catppuccin)
 
+#### Hyprland tiled with Fish terminals
 ![Hyprland tiled Fish terminals](./assets/hyprland-tiling.png)
-Hyprland tiled with Fish terminals
 
+#### Hyprpanel
 ![Hyprpanel](./assets/hyprpanel.png)
-Hyprpanel
 
 ## Directory Structure
 
