@@ -1,5 +1,5 @@
 * {
-  font-family: JetBrainsMono;
+  font-family: "JetBrainsMono Nerd Font";
   color: #e5e9f0;
   background: transparent;
 }
@@ -9,7 +9,7 @@
   margin: auto;
   padding: 10px;
   border-radius: 20px;
-  border: 5px solid #b072d1;
+  border: 5px solid #FC3301;
 }
 
 #input {
