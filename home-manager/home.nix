@@ -21,10 +21,7 @@
   home.file = {
     ".config/nvim/init.lua".source = ../nvim/init.lua;
     ".config/nvim/lua".source = ../nvim/lua;
-
     ".config/hypr".source = ../hypr;
-    ".config/hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink ../hypr/hyprlock.conf;
-
     ".config/wofi".source = ../wofi;
   };
 
