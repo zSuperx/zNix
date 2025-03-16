@@ -28,6 +28,7 @@
       bar.workspaces.showWsIcons = true;
       bar.workspaces.numbered_active_indicator = "highlight";
       bar.notifications.show_total = true;
+      bar.media.rightClick = "playerctl --player=spotify metadata xesam:url | wl-copy";
 
       notifications.ignore = ["spotify"];
 
