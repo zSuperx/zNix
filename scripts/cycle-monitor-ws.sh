@@ -11,12 +11,11 @@ else
     echo "Invalid argument: $1"
     exit 1
 fi
-        
-    
 
 active=$(hyprctl activewindow -j)
-if [ "$active" = "Invalid" ];
+if [ "$active" = "{}" ];
 then
+    echo No active window found
     hyprctl dispatch workspace m+1
     exit 1
 fi
