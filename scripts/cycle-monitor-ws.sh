@@ -13,10 +13,12 @@ else
 fi
 
 active=$(hyprctl activewindow -j)
-if [ "$active" = "{}" ];
-then
-    echo No active window found
-    hyprctl dispatch workspace m+1
+if [ "$active" = "{}" ]; then
+    if [ "$op" = "+" ]; then
+        hyprctl dispatch workspace m+1
+    else
+        hyprctl dispatch workspace m-1
+    fi
     exit 1
 fi
 
