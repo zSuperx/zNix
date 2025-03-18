@@ -102,5 +102,7 @@ vim.opt.expandtab = true
 -- Ctrl . to open lsp diagnostic
 vim.api.nvim_set_keymap('n', '<C-.>', ":lua vim.lsp.buf.code_action()<CR>", { noremap = true })
 
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
 -- Apply neovim theme
 vim.cmd.colorscheme("catppuccin")
