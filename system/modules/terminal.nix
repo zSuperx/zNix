@@ -8,11 +8,13 @@
     pkgs.fishPlugins.tide
 
     # Nerd Font
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-      ];
-    })
+    # (pkgs.nerdfonts.override {
+    #   fonts = [
+    #     "JetBrainsMono"
+    #   ];
+    # })
+
+    pkgs.nerd-fonts.jetbrains-mono
   ];
 
   programs.kitty = {
@@ -22,7 +24,7 @@
       bold_font = "JetBrainsMono Nerd Font Mono Extra Bold";
       bold_italic_font = "JetBrainsMono Nerd Font Mono Extra Bold Italic";
       shell = "fish";
-      background_opacity = "0.9";
+      background_opacity = "0.7";
       cursor_trail = "1";
       font_size = "15.0";
     };
@@ -41,16 +43,14 @@
       l = "ls -lah";
       grep = "grep --color";
       egrep = "egrep --color";
-      # Clipboard
       wlc = "wl-copy";
       wlp = "wl-paste";
-      # "It's all nvim?"
       nv = "nvim";
       vi = "nvim";
       vim = "nvim";
-      # "Always has been..."
       gs = "git status";
       gc = "git commit -m";
+      ga = "git add";
     };
 
     # Disable Fish greeting & add ~/bin to path

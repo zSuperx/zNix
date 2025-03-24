@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -73,9 +74,15 @@
 
   virtualisation.docker.enable = true;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
   programs.firefox.enable = true;
   programs.fish.enable = true;
+  programs.steam.enable = true;
 
   # GLOBAL SYSTEM PACKAGES
   environment.systemPackages = with pkgs; [
@@ -105,7 +112,17 @@
   # ADVANCED
   nixpkgs.config.allowUnfree = true;
   programs.nix-ld.enable = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+  };
 
   system.stateVersion = "24.11"; # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 }

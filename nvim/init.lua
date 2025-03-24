@@ -104,5 +104,14 @@ vim.api.nvim_set_keymap('n', '<C-.>', ":lua vim.lsp.buf.code_action()<CR>", { no
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
+-- Add wrapping for (), {}, [], and <>
+vim.keymap.set('v', '(', 'c()<Esc>Pbve', { noremap = true })
+vim.keymap.set('v', '{', 'c{}<Esc>Pbve', { noremap = true })
+vim.keymap.set('v', '[', 'c[]<Esc>Pbve', { noremap = true })
+vim.keymap.set('v', ',', 'c<lt>><Esc>Pbve', { noremap = true })
+
+-- Remap % to ), which moves cursor to matching () [], {}
+vim.keymap.set('n', ')', '%', { noremap = true })
+
 -- Apply neovim theme
 vim.cmd.colorscheme("catppuccin")
