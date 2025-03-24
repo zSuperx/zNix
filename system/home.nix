@@ -23,6 +23,7 @@
     ".config/nvim/lua".source = ../nvim/lua;
     ".config/hypr".source = ../hypr;
     ".config/wofi".source = ../wofi;
+    ".config/yazi".source = ../yazi;
   };
 
   home.sessionVariables = {
