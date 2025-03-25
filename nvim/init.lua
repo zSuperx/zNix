@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
@@ -69,7 +70,7 @@ nvim_lsp.pyright.setup({
 -- Run cargo fmt on save
 vim.api.nvim_create_autocmd("BufWrite", {
     pattern = "*.rs",
-    callback = function ()
+    callback = function()
         vim.lsp.buf.format();
     end,
 })
@@ -77,7 +78,7 @@ vim.api.nvim_create_autocmd("BufWrite", {
 -- Autoformat Nix code on save
 vim.api.nvim_create_autocmd("BufWrite", {
     pattern = "*.nix",
-    callback = function ()
+    callback = function()
         local current_window = vim.api.nvim_get_current_win();
         local pos = vim.api.nvim_win_get_cursor(current_window);
         vim.cmd("%!alejandra -qq");
@@ -88,7 +89,7 @@ vim.api.nvim_create_autocmd("BufWrite", {
 -- Nix standard seems to be tab = 2x space
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*.nix",
-    callback = function ()
+    callback = function()
         vim.opt_local.tabstop = 2;
         vim.opt_local.shiftwidth = 2;
     end

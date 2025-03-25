@@ -16,6 +16,11 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -23,6 +28,7 @@
     nixpkgs,
     home-manager,
     hyprland,
+    nvf,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -32,15 +38,9 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
-          ./hardware-configuration.nix
 
           home-manager.nixosModules.home-manager
           {
-            nixpkgs.overlays = [
-              inputs.hyprpanel.overlay
-              inputs.fenix.overlays.default
-            ];
-
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;

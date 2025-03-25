@@ -23,12 +23,16 @@
     };
 
     settings = {
-      bar.launcher.icon = "";
-      bar.workspaces.showApplicationIcons = true;
-      bar.workspaces.showWsIcons = true;
-      bar.workspaces.numbered_active_indicator = "highlight";
-      bar.notifications.show_total = true;
-      bar.media.rightClick = "playerctl --player=spotify metadata xesam:url | wl-copy";
+      bar = {
+        launcher.icon = "";
+        workspaces = {
+          showApplicationIcons = true;
+          showWsIcons = true;
+          numbered_active_indicator = "highlight";
+        };
+        notifications.show_total = true;
+        media.rightClick = "playerctl --player=spotify metadata xesam:url | wl-copy";
+      };
 
       notifications.ignore = ["spotify"];
 
