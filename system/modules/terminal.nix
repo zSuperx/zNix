@@ -1,4 +1,19 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  myAliases = {
+    l = "ls -lah";
+    grep = "grep --color";
+    egrep = "egrep --color";
+    wlc = "wl-copy";
+    wlp = "wl-paste";
+    nv = "nvim";
+    vi = "nvim";
+    vim = "nvim";
+    gs = "git status";
+    gc = "git commit -m";
+    ga = "git add";
+    clera = "clear";
+  };
+in {
   home.packages = [
     # Fish prompt plugin
     pkgs.fishPlugins.tide
@@ -35,19 +50,7 @@
           inherit (pkgs.fishPlugins.tide) src;
         }
       ];
-      shellAliases = {
-        l = "ls -lah";
-        grep = "grep --color";
-        egrep = "egrep --color";
-        wlc = "wl-copy";
-        wlp = "wl-paste";
-        nv = "nvim";
-        vi = "nvim";
-        vim = "nvim";
-        gs = "git status";
-        gc = "git commit -m";
-        ga = "git add";
-      };
+      shellAliases = myAliases;
 
       # Disable Fish greeting & add ~/bin to path
       # Also disable direnv logging, it's so damn noisy

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nvf = {
     enable = true;
     settings = {
@@ -12,13 +12,17 @@
         };
 
         options = {
+          # Default tab size = 4
           shiftwidth = 4;
           tabstop = 4;
           expandtab = true;
+          # Sync clipboard with system (wl-copy)
+          clipboard = "unnamedplus";
         };
 
         autocmds = [
           {
+            # Sets the tab size to 2 in .nix files
             enable = true;
             event = ["BufEnter"];
             pattern = ["*.nix"];
@@ -27,16 +31,10 @@
         ];
         keymaps = [
           {
-            key = "<C-n>";
-            mode = "n";
-            silent = true;
-            action = ":Neotree toggle<CR>";
-          }
-          {
             key = ";";
             mode = "n";
             noremap = true;
-            action = ":";
+            action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>";
           }
           {
             key = "<Esc>";
@@ -143,13 +141,26 @@
         snippets.luasnip.enable = true;
 
         filetree = {
-          neo-tree = {
+          nvimTree = {
             enable = true;
+            mappings.toggle = "<C-n>";
+            setupOpts = {
+              diagnostics.enable = true;
+              diagnostics.show_on_dirs = true;
+              view.width = {
+                min = 30;
+                max = -1;
+                padding = 1;
+              };
+            };
           };
         };
 
         tabline = {
-          nvimBufferline.enable = true;
+          nvimBufferline = {
+            enable = true;
+            setupOpts.options.sort_by = "insert_at_end";
+          };
         };
 
         treesitter.context.enable = true;
@@ -217,12 +228,14 @@
           fastaction.enable = true;
         };
 
-        session = {
-          nvim-session-manager.enable = true;
-        };
-
         comments = {
-          comment-nvim.enable = true;
+          comment-nvim = {
+            enable = true;
+            mappings = {
+              toggleSelectedBlock = " /";
+              toggleCurrentLine = " /";
+            };
+          };
         };
       };
     };

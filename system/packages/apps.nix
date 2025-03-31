@@ -4,5 +4,6 @@
     spotify
     vscode
     prismlauncher
+    obsidian
   ];
 }

@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   # This file contains very basic attributes and fields.
   # Specific configuration/package installation can be found in the following .nix files...
   imports = [
