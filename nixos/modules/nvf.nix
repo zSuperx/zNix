@@ -31,12 +31,28 @@ _: {
         ];
         keymaps = [
           {
+            # Makes ; behave like : and opens the Ex-command line
             key = ";";
             mode = "n";
             noremap = true;
             action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>";
           }
           {
+            # <Esc> disables search highlights if they are currently being shown
+            key = "<Esc>";
+            mode = "n";
+            noremap = true;
+            action = ":if v:hlsearch | noh | endif<CR>";
+          }
+          {
+            # Ctrl + C copies the file contents to the clipboard
+            key = "<C-c>";
+            mode = "n";
+            noremap = true;
+            action = ":%y+<CR>";
+          }
+          {
+            # While in Terminal Insert mode, <Esc> can be used to switch to Terminal Normal mode
             key = "<Esc>";
             mode = "t";
             noremap = true;
@@ -61,6 +77,13 @@ _: {
             noremap = true;
             action = ":lua vim.lsp.buf.code_action()<CR>";
           }
+          {
+            key = "<C-[>";
+            mode = "n";
+            silent = true;
+            noremap = true;
+            action = "<C-t>";
+          }
         ];
 
         lsp = {
@@ -71,7 +94,6 @@ _: {
           trouble.enable = true;
           lspSignature.enable = true;
           otter-nvim.enable = true;
-          lsplines.enable = true;
           nvim-docs-view.enable = true;
         };
 
@@ -100,7 +122,13 @@ _: {
           clang.enable = true;
           css.enable = true;
           html.enable = true;
-          python.enable = true;
+          python = {
+            enable = true;
+            format = {
+              enable = true;
+              type = "black";
+            };
+          };
           rust = {
             enable = true;
             crates.enable = true;
@@ -204,7 +232,7 @@ _: {
 
         terminal = {
           toggleterm = {
-            enable = true;
+            enable = false;
             lazygit.enable = true;
           };
         };

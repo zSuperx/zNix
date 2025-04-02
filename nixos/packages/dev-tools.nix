@@ -22,6 +22,7 @@
 
     # Python
     pyright
+    python312
 
     # Nix formatter
     alejandra

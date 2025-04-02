@@ -1,4 +1,10 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: let
+  homelink = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/${path}";
+in {
   # This file contains very basic attributes and fields.
   # Specific configuration/package installation can be found in the following .nix files...
   imports = [
@@ -6,7 +12,7 @@
 
     ./packages/dev-tools.nix # Lanugages + LSPs
     ./packages/utils.nix # UNIX Utilities
-    ./packages/apps.nix # Standalone application
+    ./packages/apps.nix # Standalone applications
 
     ./modules/hyprland.nix # Hyprland & its numerous tools
     ./modules/terminal.nix # Terminal config
@@ -17,12 +23,15 @@
     homeDirectory = "/home/zsuper";
 
     # Manages dotfiles by symlinking at build time
+    # The `homelink` function creates uses mkOutOfStoreSymlink so files can be hot relaoded.
     file = {
-      ".config/nvim/init.lua".source = ../nvim/init.lua;
-      ".config/nvim/lua".source = ../nvim/lua;
-      ".config/hypr".source = ../hypr;
-      ".config/wofi".source = ../wofi;
-      ".config/yazi".source = ../yazi;
+      # These files for Neovim are now stale, as I use NVF to declaratively install Neovim.
+      ".config/nvim/init.lua".source = homelink "dotfiles/nvim/init.lua";
+      ".config/nvim/lua".source = homelink "dotfiles/nvim/lua";
+
+      ".config/hypr".source = homelink "dotfiles/hypr";
+      ".config/wofi".source = homelink "dotfiles/wofi";
+      ".config/yazi".source = homelink "dotfiles/yazi";
     };
 
     sessionVariables = {
