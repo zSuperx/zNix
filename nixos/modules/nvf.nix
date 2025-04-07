@@ -84,6 +84,20 @@ _: {
             noremap = true;
             action = "<C-t>";
           }
+          {
+            key = "<C-j>";
+            mode = "n";
+            silent = true;
+            noremap = true;
+            action = ":m +1<CR>";
+          }
+          {
+            key = "<C-k>";
+            mode = "n";
+            silent = true;
+            noremap = true;
+            action = ":m -2<CR>";
+          }
         ];
 
         lsp = {

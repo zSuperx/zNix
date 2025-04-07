@@ -2,4 +2,5 @@
 prepend_keymap = [
     { on = ";", run = "shell --interactive --block", desc = "Run shell in yazi and block until done" },
     { on = ":", run = "shell --interactive --orphan", desc = "Run shell and orphan" },
+    { on = "<C-d>", run = "shell --interactive --block fish", desc = "Open terminal" },
 ]
