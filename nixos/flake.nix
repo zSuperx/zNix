@@ -43,6 +43,7 @@
               extraSpecialArgs = {
                 inherit inputs;
               };
+              backupFileExtension = "backup";
             };
           }
         ];

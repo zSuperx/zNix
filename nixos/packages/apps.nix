@@ -5,5 +5,7 @@
     vscode
     prismlauncher
     obsidian
+    heroic
+    mpv
   ];
 }

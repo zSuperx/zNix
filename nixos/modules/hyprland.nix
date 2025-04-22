@@ -5,7 +5,6 @@
 }: {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
   home.packages = [
-    # HYPRLAND
     pkgs.hyprpaper
     pkgs.hypridle
     pkgs.hyprshot
@@ -18,8 +17,12 @@
     overwrite.enable = true;
 
     override = {
-      theme.bar.buttons.dashboard.icon = "#81A1CA";
       menus.dashboard.powermenu.avatar.image = "~/.face.icon";
+      theme = {
+        bar.buttons.dashboard.icon = "#81A1CA";
+        bar.buttons.style = "wave";
+        font.size = "0.9rem";
+      };
     };
 
     settings = {
@@ -35,9 +38,6 @@
       };
 
       notifications.ignore = ["spotify"];
-
-      theme.font.size = "0.9rem";
-      theme.bar.buttons.style = "wave";
 
       scalingPriority = "hyprland";
     };

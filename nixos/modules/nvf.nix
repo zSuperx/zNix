@@ -98,13 +98,36 @@ _: {
             noremap = true;
             action = ":m -2<CR>";
           }
+          {
+            key = "<S-j>";
+            mode = "n";
+            silent = true;
+            noremap = true;
+            action = ":Lspsaga show_line_diagnostics<CR>";
+          }
+          {
+            key = "<S-k>";
+            mode = "n";
+            silent = true;
+            noremap = true;
+            action = ":Lspsaga hover_doc<CR>";
+          }
+          {
+            key = "<F2>";
+            mode = "n";
+            silent = true;
+            noremap = true;
+            action = ":Lspsaga rename<CR>";
+          }
         ];
+
+        lineNumberMode = "number";
 
         lsp = {
           formatOnSave = true;
           lspkind.enable = false;
           lightbulb.enable = true;
-          lspsaga.enable = false;
+          lspsaga.enable = true;
           trouble.enable = true;
           lspSignature.enable = true;
           otter-nvim.enable = true;
@@ -136,6 +159,7 @@ _: {
           clang.enable = true;
           css.enable = true;
           html.enable = true;
+          ts.enable = true;
           python = {
             enable = true;
             format = {
@@ -147,6 +171,11 @@ _: {
             enable = true;
             crates.enable = true;
           };
+        };
+
+        diagnostics.config = {
+          virtual_text = true;
+          virtual_lines = true;
         };
 
         visuals = {
@@ -174,7 +203,7 @@ _: {
           enable = true;
           name = "catppuccin";
           style = "mocha";
-          transparent = false;
+          transparent = true;
         };
 
         autopairs.nvim-autopairs.enable = true;
@@ -201,7 +230,10 @@ _: {
         tabline = {
           nvimBufferline = {
             enable = true;
-            setupOpts.options.sort_by = "insert_at_end";
+            setupOpts = {
+              options.sort_by = "insert_at_end";
+              options.indicator.style = "underline";
+            };
           };
         };
 
