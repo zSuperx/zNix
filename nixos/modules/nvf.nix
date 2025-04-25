@@ -99,25 +99,11 @@ _: {
             action = ":m -2<CR>";
           }
           {
-            key = "<S-j>";
-            mode = "n";
-            silent = true;
-            noremap = true;
-            action = ":Lspsaga show_line_diagnostics<CR>";
-          }
-          {
-            key = "<S-k>";
-            mode = "n";
-            silent = true;
-            noremap = true;
-            action = ":Lspsaga hover_doc<CR>";
-          }
-          {
             key = "<F2>";
             mode = "n";
             silent = true;
             noremap = true;
-            action = ":Lspsaga rename<CR>";
+            action = ":lua vim.lsp.buf.rename()<CR>";
           }
         ];
 
@@ -126,8 +112,7 @@ _: {
         lsp = {
           formatOnSave = true;
           lspkind.enable = false;
-          lightbulb.enable = true;
-          lspsaga.enable = true;
+          lightbulb.enable = false;
           trouble.enable = true;
           lspSignature.enable = true;
           otter-nvim.enable = true;

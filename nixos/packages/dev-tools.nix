@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    # This file will only add languages. LSPs will be managed by Neovim
+
     # C
     libclang
     gcc
@@ -17,14 +19,7 @@
     ])
     rust-analyzer
 
-    # LUA
-    lua-language-server
-
     # Python
-    pyright
     python312
-
-    # Nix formatter
-    alejandra
   ];
 }
