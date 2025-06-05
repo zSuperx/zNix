@@ -3,12 +3,20 @@
   pkgs,
   ...
 }: {
-  imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
-  home.packages = [
-    pkgs.hyprpaper
-    pkgs.hypridle
-    pkgs.hyprshot
-    pkgs.hyprlock
+  imports = [
+    inputs.hyprpanel.homeManagerModules.hyprpanel
+  ];
+
+  # Packages I need specifically for the Hyprland ecosystem
+  home.packages = with pkgs; [
+    hyprpaper
+    hypridle
+    hyprshot
+    hyprlock
+
+    # Tools to help interact with Wayland backend
+    socat
+    wl-clipboard
   ];
 
   programs.hyprpanel = {

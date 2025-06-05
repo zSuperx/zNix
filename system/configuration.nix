@@ -12,6 +12,11 @@
   nixpkgs.overlays = [
     inputs.hyprpanel.overlay
     inputs.fenix.overlays.default
+    (_: prev: {
+      brightnessctl = prev.writeShellScriptBin "brightnessctl" ''
+        exec ${prev.brightnessctl}/bin/brightnessctl --class=backlight "$@"
+      '';
+    })
   ];
 
   # Bootloader.
@@ -89,7 +94,7 @@
   users.users.zsuper = {
     isNormalUser = true;
     description = "Piyush Kumbhare";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "video" "audio"];
     shell = pkgs.fish;
   };
 

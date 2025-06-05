@@ -1,0 +1,49 @@
+{
+  inputs,
+  config,
+  ...
+}: let
+  # Helper function
+  homelink = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/${path}";
+in {
+  imports = [
+    inputs.nvf.homeManagerModules.default
+
+    # Hyprland
+    ./hypr/hypr.nix
+
+    # Development
+    ./programs/languages.nix
+    ./programs/terminal.nix
+    ./programs/utils.nix
+
+    # Apps
+    ./programs/apps.nix
+    ./programs/games.nix
+  ];
+  home = {
+    username = "zsuper";
+    homeDirectory = "/home/zsuper";
+
+    # Manage dotfiles by symlinking at build time
+    file = {
+      ".config/hypr".source = homelink "dotfiles/hypr";
+      ".config/wofi".source = homelink "dotfiles/wofi";
+      ".config/yazi".source = homelink "dotfiles/yazi";
+    };
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+
+    stateVersion = "24.11";
+  };
+
+  # Neovim
+  programs.nvf = {
+    enable = true;
+    settings = import ./editor/nvim-settings.nix;
+  };
+
+  programs.home-manager.enable = true; # Don't change this probably
+}

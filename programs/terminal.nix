@@ -15,16 +15,8 @@
   };
 in {
   home.packages = [
-    # Fish prompt plugin
     pkgs.fishPlugins.tide
-
-    # Nerd Font
-    # (pkgs.nerdfonts.override {
-    #   fonts = [
-    #     "JetBrainsMono"
-    #   ];
-    # })
-
+    pkgs.neofetch
     pkgs.nerd-fonts.jetbrains-mono
   ];
   programs = {
@@ -37,7 +29,7 @@ in {
         shell = "fish";
         background_opacity = "0.9";
         cursor_trail = "1";
-        font_size = "15.0";
+        font_size = "13.0";
       };
       themeFile = "Catppuccin-Macchiato";
     };

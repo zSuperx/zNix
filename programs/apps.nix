@@ -1,11 +1,13 @@
 {pkgs, ...}: {
+  # General purpose applications
   home.packages = with pkgs; [
     vesktop
     spotify
-    vscode
-    prismlauncher
     obsidian
-    heroic
     mpv
+
+    playerctl
+    wofi
+    wf-recorder
   ];
 }

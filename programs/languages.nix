@@ -1,7 +1,6 @@
 {pkgs, ...}: {
+  # Language utilities (most LSPs are provided by NVF)
   home.packages = with pkgs; [
-    # This file will only add languages. LSPs will be managed by Neovim
-
     # C
     libclang
     gcc
