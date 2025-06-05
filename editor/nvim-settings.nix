@@ -43,7 +43,7 @@ _: {
 
     lsp = {
       enable = true;
-      formatOnSave = false;
+      formatOnSave = true;
       lspkind.enable = false;
       lightbulb.enable = false;
       trouble.enable = true;
@@ -58,7 +58,7 @@ _: {
         ui.enable = true;
       };
     };
-    
+
     fzf-lua.enable = true;
 
     # This section does not include a comprehensive list of available language modules.
@@ -70,7 +70,10 @@ _: {
 
       # Languages that will be supported in default and maximal configurations.
       nix.enable = true;
-      markdown.enable = true;
+      markdown = {
+        enable = true;
+        extensions.markview-nvim.enable = true;
+      };
 
       # Languages that are enabled in the maximal configuration.
       lua.enable = true;
