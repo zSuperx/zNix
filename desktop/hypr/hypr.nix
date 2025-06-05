@@ -8,16 +8,16 @@
   ];
 
   # Packages I need specifically for the Hyprland ecosystem
-  home.packages = with pkgs; [
-    hyprpaper
-    hypridle
-    hyprshot
-    hyprlock
-
-    # Tools to help interact with Wayland backend
-    socat
-    wl-clipboard
-  ];
+  home.packages = with pkgs;
+    [
+      hyprpaper
+      hypridle
+      hyprshot
+      hyprlock
+    ]
+    ++ import ../common.nix {
+      inherit pkgs;
+    };
 
   programs.hyprpanel = {
     enable = true;

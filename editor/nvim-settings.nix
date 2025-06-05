@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   config.vim = {
     viAlias = true;
     vimAlias = true;
@@ -28,15 +28,63 @@ _: {
     ];
     keymaps = [
       # Makes ; behave like : and opens the Ex-command line
-      { key = ";"; mode = "n"; noremap = true; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
-      { key = "<Esc>"; mode = "n"; noremap = true; action = ":if v:hlsearch | noh | endif<CR>"; }
-      { key = "<C-c>"; mode = "n"; noremap = true; action = ":%y+<CR>"; }
-      { key = "<Esc>"; mode = "t"; noremap = true; action = "<C-\\><C-n>"; }
-      { key = "<Tab>"; mode = "n"; silent = true; action = ":bnext<CR>"; }
-      { key = "<S-Tab>"; mode = "n"; silent = true; action = ":bprev<CR>"; }
-      { key = "<C-[>"; mode = "n"; silent = true; noremap = true; action = ":po<CR>"; }
-      { key = "<C-j>"; mode = "n"; silent = true; noremap = true; action = ":m +1<CR>"; }
-      { key = "<C-k>"; mode = "n"; silent = true; noremap = true; action = ":m -2<CR>"; }
+      {
+        key = ";";
+        mode = "n";
+        noremap = true;
+        action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>";
+      }
+      {
+        key = "<Esc>";
+        mode = "n";
+        noremap = true;
+        action = ":if v:hlsearch | noh | endif<CR>";
+      }
+      {
+        key = "<C-c>";
+        mode = "n";
+        noremap = true;
+        action = ":%y+<CR>";
+      }
+      {
+        key = "<Esc>";
+        mode = "t";
+        noremap = true;
+        action = "<C-\\><C-n>";
+      }
+      {
+        key = "<Tab>";
+        mode = "n";
+        silent = true;
+        action = ":bnext<CR>";
+      }
+      {
+        key = "<S-Tab>";
+        mode = "n";
+        silent = true;
+        action = ":bprev<CR>";
+      }
+      {
+        key = "<C-[>";
+        mode = "n";
+        silent = true;
+        noremap = true;
+        action = ":po<CR>";
+      }
+      {
+        key = "<C-j>";
+        mode = "n";
+        silent = true;
+        noremap = true;
+        action = ":m +1<CR>";
+      }
+      {
+        key = "<C-k>";
+        mode = "n";
+        silent = true;
+        noremap = true;
+        action = ":m -2<CR>";
+      }
     ];
 
     lineNumberMode = "number";
@@ -237,6 +285,12 @@ _: {
           toggleCurrentLine = " /";
         };
       };
+    };
+    extraPlugins."guess-indent" = {
+      package = pkgs.vimPlugins.guess-indent-nvim;
+      setup = ''
+        require("guess-indent").setup()
+      '';
     };
   };
 }

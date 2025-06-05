@@ -10,16 +10,16 @@ in {
     inputs.nvf.homeManagerModules.default
 
     # Hyprland
-    ./hypr/hypr.nix
+    ./desktop/hypr/hypr.nix
 
     # Development
-    ./programs/languages.nix
-    ./programs/terminal.nix
-    ./programs/utils.nix
+    ./apps/languages.nix
+    ./apps/terminal.nix
+    ./apps/utils.nix
 
     # Apps
-    ./programs/apps.nix
-    ./programs/games.nix
+    ./apps/general.nix
+    ./apps/games.nix
   ];
   home = {
     username = "zsuper";

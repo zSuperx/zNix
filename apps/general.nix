@@ -5,9 +5,5 @@
     spotify
     obsidian
     mpv
-
-    playerctl
-    wofi
-    wf-recorder
   ];
 }

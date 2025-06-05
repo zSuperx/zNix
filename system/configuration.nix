@@ -62,16 +62,16 @@
       # Enable the X11 windowing system.
       enable = true;
 
-      # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-
       # Configure keymap in X11
       xkb = {
         layout = "us";
         variant = "";
       };
     };
+
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -81,13 +81,12 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    pulseaudio.enable = false;
 
     # Enable the OpenSSH daemon.
     openssh.enable = true;
   };
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -116,16 +115,11 @@
   environment.systemPackages = with pkgs; [
     # TERMINAL
     kitty
+    vim
 
     # TOOLS
-    neovim
     wget
     git
-
-    # HARDWARE/TELEMETRY
-    swaynotificationcenter
-    brightnessctl
-    networkmanagerapplet
   ];
 
   fonts.fontDir.enable = true;
