@@ -51,7 +51,7 @@ NixOS. To generate it manually,
 Most other directories at the root level are the config folders for applications
 I use (like Hyprland, Yazi, etc). These are symlinked to their correct locations
 (typically in `~/.config/...`) by Home Manager (see
-[`home.nix`](https://github.com/piyushkumbhare/dotfiles/blob/master/home.nix#L21))
+[`home.nix`](https://github.com/zSuperx/dotfiles/blob/master/home.nix#L29))
 
 For this repository, a function called `homelink` is defined which makes a call
 to `config.lib.file.mkOutOfStoreSymlink`. While impure, this allows config files
