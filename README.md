@@ -7,25 +7,37 @@ preferences. Instructions on how to reproduce my configuration are below.
 
 ## Previews
 
-#### Hyprlock (based on Catppuccin)
-
+<details>
+<summary>Hyprlock (based on Catppuccin)</summary>
+  
 ![Hyprlock (based on Catppuccin)](./assets/preview/hyprlock.png)
+</details>
 
-#### Hyprland tiling
-
+<details>
+<summary>Hyprland tiling</summary>
+  
 ![Hyprland tiled Fish terminals](./assets/preview/hyprland-tiling.png)
+</details>
 
-#### Hyprpanel
-
+<details>
+<summary>Hyprpanel</summary>
+  
 ![Hyprpanel](./assets/preview/hyprpanel.png)
+</details>
 
-#### Wofi
-
+<details>
+<summary>Wofi</summary>
+  
 ![Wofi](./assets/preview/wofi.png)
+</details>
 
-#### Yazi
+<details>
+  <summary>Yazi</summary>
+  
+  ![Yazi](./assets/preview/yazi.png)  
+</details>
 
-![Yazi](./assets/preview/yazi.png)
+
 
 ## Directory Structure
 
