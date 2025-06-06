@@ -27,7 +27,8 @@ in {
 
     # Manage dotfiles by symlinking at build time
     file = {
-      ".config/hypr".source = homelink "dotfiles/hypr";
+      ".config/direnv/direnv.toml".source = homelink "dotfiles/direnv/direnv.toml";
+      ".config/hypr".source = homelink "dotfiles/desktop/hypr";
       ".config/wofi".source = homelink "dotfiles/wofi";
       ".config/yazi".source = homelink "dotfiles/yazi";
     };
