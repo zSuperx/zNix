@@ -5,6 +5,11 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprland.url = "github:hyprwm/Hyprland";
 
@@ -54,6 +59,7 @@
             specialArgs = {inherit inputs;};
             modules = [
               ./system/configuration.nix
+              inputs.stylix.nixosModules.stylix
 
               home-manager.nixosModules.home-manager
               {

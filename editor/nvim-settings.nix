@@ -26,6 +26,7 @@
         command = ":lua vim.opt_local.tabstop=2; vim.opt_local.shiftwidth=2";
       }
     ];
+
     keymaps = [
       # Makes ; behave like : and opens the Ex-command line
       {
@@ -117,7 +118,10 @@
       enableExtraDiagnostics = true;
 
       # Languages that will be supported in default and maximal configurations.
-      nix.enable = true;
+      nix = {
+        enable = true;
+        lsp.enable = true;
+      };
       markdown = {
         enable = true;
         extensions.markview-nvim.enable = true;
@@ -140,6 +144,7 @@
       rust = {
         enable = true;
         crates.enable = true;
+        # lsp.enable = true;
       };
     };
 
@@ -180,6 +185,9 @@
 
     autocomplete.nvim-cmp = {
       enable = true;
+      sourcePlugins = [
+        "cmp-path"
+      ];
     };
     snippets.luasnip.enable = true;
 

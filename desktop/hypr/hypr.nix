@@ -2,7 +2,9 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  common = import ../common.nix {inherit inputs pkgs;};
+in {
   imports = [
     inputs.hyprpanel.homeManagerModules.hyprpanel
   ];
@@ -15,9 +17,7 @@
       hyprshot
       hyprlock
     ]
-    ++ import ../common.nix {
-      inherit pkgs;
-    };
+    ++ common.commonPackages;
 
   programs.hyprpanel = {
     enable = true;

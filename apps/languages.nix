@@ -1,5 +1,6 @@
 {pkgs, ...}: {
-  # Language utilities (most LSPs are provided by NVF)
+  # Language utilities
+  # All LSPs are provided by NVF since they are only used in IDE environments
   home.packages = with pkgs; [
     # C
     libclang

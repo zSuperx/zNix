@@ -87,7 +87,6 @@
     openssh.enable = true;
   };
 
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
