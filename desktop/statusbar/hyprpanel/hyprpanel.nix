@@ -1,26 +1,6 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: let
-  common = import ../common.nix {inherit inputs pkgs;};
-in {
-  imports = [
-    inputs.hyprpanel.homeManagerModules.hyprpanel
-  ];
-
-  # Packages I need specifically for the Hyprland ecosystem
-  home.packages = with pkgs;
-    [
-      hyprpaper
-      hypridle
-      hyprshot
-      hyprlock
-    ]
-    ++ common.commonPackages;
-
+_: {
   programs.hyprpanel = {
-    enable = true;
+    enable = false;
     hyprland.enable = true;
     overwrite.enable = true;
 

@@ -11,12 +11,13 @@
     gs = "git status";
     gc = "git commit -m";
     ga = "git add";
-    clera = "clear";
+    clera = "clear"; # Yes, I'm that bad at typing
+    ww = "wonderwall";
   };
 in {
   home.packages = [
     pkgs.fishPlugins.tide
-    pkgs.neofetch
+    pkgs.nitch
     pkgs.nerd-fonts.jetbrains-mono
   ];
   programs = {
@@ -48,6 +49,7 @@ in {
       shellInit = ''
         set fish_greeting
         set PATH "$HOME/bin:$PATH"
+        nitch
       '';
     };
 

@@ -8,9 +8,10 @@
 in {
   imports = [
     inputs.nvf.homeManagerModules.default
+    inputs.gBar.homeManagerModules.x86_64-linux.default
 
     # Hyprland
-    ./desktop/hyprland/hypr.nix
+    ./desktop/hyprland.nix
 
     # Development
     ./apps/languages.nix
@@ -42,6 +43,8 @@ in {
 
     stateVersion = "24.11";
   };
+
+  stylix.enable = true;
 
   programs.home-manager.enable = true; # Don't change this probably
 }

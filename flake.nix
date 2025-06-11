@@ -13,6 +13,8 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprland.url = "github:hyprwm/Hyprland";
 
+    gBar.url = "github:scorpion-26/gBar";
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +30,7 @@
     flake-parts,
     nixpkgs,
     home-manager,
+    stylix,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -56,10 +59,10 @@
       flake = {
         nixosConfigurations = {
           nixos = nixpkgs.lib.nixosSystem {
-            specialArgs = {inherit inputs;};
+            # specialArgs = {inherit inputs;};
             modules = [
               ./system/configuration.nix
-              inputs.stylix.nixosModules.stylix
+              stylix.nixosModules.stylix
 
               home-manager.nixosModules.home-manager
               {
