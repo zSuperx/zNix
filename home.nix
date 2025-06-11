@@ -20,6 +20,9 @@ in {
     # Apps
     ./apps/general.nix
     ./apps/games.nix
+
+    # Editor
+    ./editor/nvf.nix
   ];
   home = {
     username = "zsuper";
@@ -38,12 +41,6 @@ in {
     };
 
     stateVersion = "24.11";
-  };
-
-  # Neovim
-  programs.nvf = {
-    enable = true;
-    settings = import ./editor/nvim-settings.nix;
   };
 
   programs.home-manager.enable = true; # Don't change this probably
