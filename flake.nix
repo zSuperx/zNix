@@ -59,7 +59,7 @@
       flake = {
         nixosConfigurations = {
           nixos = nixpkgs.lib.nixosSystem {
-            # specialArgs = {inherit inputs;};
+            specialArgs = {inherit inputs;};
             modules = [
               ./system/configuration.nix
               stylix.nixosModules.stylix

@@ -170,16 +170,18 @@
     statusline = {
       lualine = {
         enable = true;
-        theme = "catppuccin";
+        # theme = "catppuccin";
       };
     };
 
-    theme = {
+    /*
+       theme = {
       enable = true;
       name = "catppuccin";
       style = "mocha";
       transparent = true;
     };
+    */
 
     autopairs.nvim-autopairs.enable = true;
 

@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   config,
   ...
 }: let
@@ -43,8 +44,6 @@ in {
 
     stateVersion = "24.11";
   };
-
-  stylix.enable = true;
 
   programs.home-manager.enable = true; # Don't change this probably
 }
