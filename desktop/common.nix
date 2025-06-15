@@ -1,9 +1,10 @@
 {pkgs, ...}: {
   # Use stylix to style window managers, terminals, fonts, font colors, etc.
   stylix = {
-    enable = true;
+    enable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    targets.vesktop.enable = true;
+    opacity.terminal = 0.9;
+    polarity = "dark";
   };
 
   # Common tools to help with a Wayland environment

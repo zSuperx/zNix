@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   config,
   ...
 }: let
@@ -43,6 +42,13 @@ in {
     };
 
     stateVersion = "24.11";
+  };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/zsuper/dotfiles";
   };
 
   programs.home-manager.enable = true; # Don't change this probably

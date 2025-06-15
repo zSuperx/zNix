@@ -28,7 +28,6 @@ in {
         bold_font = "JetBrainsMono Nerd Font Mono Extra Bold";
         bold_italic_font = "JetBrainsMono Nerd Font Mono Extra Bold Italic";
         shell = "fish";
-        background_opacity = pkgs.lib.mkForce "0.9";
         cursor_trail = "1";
         font_size = "13.0";
       };

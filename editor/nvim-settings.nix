@@ -153,6 +153,17 @@
       virtual_lines = true;
     };
 
+    highlight = {
+      Visual = {
+        bg = "NvimDarkGrey4";
+        bold = true;
+      };
+      Comment = {
+        bg = "#313244";
+        fg = "#6d8086";
+      };
+    };
+
     visuals = {
       nvim-scrollbar.enable = true;
       nvim-web-devicons.enable = true;
@@ -162,26 +173,13 @@
 
       highlight-undo.enable = true;
       indent-blankline.enable = true;
-
-      # Fun
-      cellular-automaton.enable = false;
     };
 
     statusline = {
       lualine = {
         enable = true;
-        # theme = "catppuccin";
       };
     };
-
-    /*
-       theme = {
-      enable = true;
-      name = "catppuccin";
-      style = "mocha";
-      transparent = true;
-    };
-    */
 
     autopairs.nvim-autopairs.enable = true;
 
@@ -271,7 +269,12 @@
     ui = {
       borders.enable = true;
       noice.enable = true;
-      colorizer.enable = true;
+      colorizer = {
+        enable = true;
+        setupOpts.fileTypes = {
+          "*" = {};
+        };
+      };
       modes-nvim.enable = false; # the theme looks terrible with catppuccin
       illuminate.enable = true;
       smartcolumn = {

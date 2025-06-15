@@ -5,8 +5,8 @@
 }: {
   imports = [
     inputs.hyprpanel.homeManagerModules.hyprpanel
-    ./statusbar/hyprpanel/hyprpanel.nix
-    ./statusbar/gBar/gBar.nix
+    ./statusbar
+
     ./common.nix
   ];
 

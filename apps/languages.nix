@@ -17,7 +17,6 @@
       "rustc"
       "rustfmt"
     ])
-    rust-analyzer
 
     # Python
     python312
