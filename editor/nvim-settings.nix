@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   config.vim = {
     viAlias = true;
     vimAlias = true;
@@ -21,8 +22,8 @@
       {
         # Sets the tab size to 2 in .nix files
         enable = true;
-        event = ["BufEnter"];
-        pattern = ["*.nix"];
+        event = [ "BufEnter" ];
+        pattern = [ "*.nix" ];
         command = ":lua vim.opt_local.tabstop=2; vim.opt_local.shiftwidth=2";
       }
     ];
@@ -124,6 +125,7 @@
       };
       markdown = {
         enable = true;
+        format.type = "prettierd";
         extensions.markview-nvim.enable = true;
       };
 
@@ -272,7 +274,7 @@
       colorizer = {
         enable = true;
         setupOpts.fileTypes = {
-          "*" = {};
+          "*" = { };
         };
       };
       modes-nvim.enable = false; # the theme looks terrible with catppuccin
@@ -284,7 +286,10 @@
           nix = "110";
           ruby = "120";
           java = "130";
-          go = ["90" "130"];
+          go = [
+            "90"
+            "130"
+          ];
         };
       };
       fastaction.enable = true;

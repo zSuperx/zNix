@@ -1,9 +1,15 @@
 {
-  description = "System flake";
+  description = "My system flake";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    /*
+      home-manager = {
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+    */
 
     stylix = {
       url = "github:danth/stylix";
@@ -26,59 +32,45 @@
     };
   };
 
-  outputs = inputs @ {
-    flake-parts,
-    nixpkgs,
-    home-manager,
-    stylix,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [
-        # To import a flake module
-        # 1. Add foo to inputs
-        # 2. Add foo as a parameter to the outputs function
-        # 3. Add here: foo.flakeModule
-      ];
-      systems = ["x86_64-linux"];
-      perSystem = {
-        config,
-        self',
-        inputs',
-        pkgs,
-        system,
-        ...
-      }: {
-        packages.neovim =
-          (inputs.nvf.lib.neovimConfiguration {
-            inherit pkgs;
-            modules = [./editor/nvim-settings.nix];
-          })
-          .neovim;
-      };
-      flake = {
-        nixosConfigurations = {
-          nixos = nixpkgs.lib.nixosSystem {
-            specialArgs = {inherit inputs;};
-            modules = [
-              ./system/configuration.nix
-              stylix.nixosModules.stylix
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      stylix,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./system/configuration.nix
+            stylix.nixosModules.stylix
 
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.zsuper = import ./home.nix;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                  };
-                  backupFileExtension = "backup";
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.zsuper = import ./home.nix;
+                extraSpecialArgs = {
+                  inherit inputs;
                 };
-              }
-            ];
-          };
+                backupFileExtension = "backup";
+              };
+            }
+          ];
         };
       };
+
+      packages.${system}.neovim =
+        (inputs.nvf.lib.neovimConfiguration {
+          inherit pkgs;
+          modules = [ ./editor/nvim-settings.nix ];
+        }).neovim;
     };
 }

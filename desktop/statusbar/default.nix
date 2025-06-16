@@ -53,7 +53,5 @@ _: {
         scalingPriority = "hyprland";
       };
     };
-
-    waybar.enable = true;
   };
 }

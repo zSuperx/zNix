@@ -1,11 +1,14 @@
 {
   inputs,
+  pkgs,
   config,
   ...
-}: let
+}:
+let
   # Helper function
   homelink = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/${path}";
-in {
+in
+{
   imports = [
     inputs.nvf.homeManagerModules.default
     inputs.gBar.homeManagerModules.x86_64-linux.default
@@ -25,6 +28,7 @@ in {
     # Editor
     ./editor/nvf.nix
   ];
+
   home = {
     username = "zsuper";
     homeDirectory = "/home/zsuper";
@@ -42,13 +46,6 @@ in {
     };
 
     stateVersion = "24.11";
-  };
-
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/zsuper/dotfiles";
   };
 
   programs.home-manager.enable = true; # Don't change this probably
