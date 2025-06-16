@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   myAliases = {
     l = "ls -lah";
     grep = "grep --color";
@@ -14,7 +15,8 @@
     clera = "clear"; # Yes, I'm that bad at typing
     ww = "wonderwall";
   };
-in {
+in
+{
   home.packages = [
     pkgs.fishPlugins.tide
     pkgs.nitch
@@ -31,7 +33,6 @@ in {
         cursor_trail = "1";
         font_size = "13.0";
       };
-      themeFile = "Catppuccin-Macchiato";
     };
 
     fish = {
@@ -55,7 +56,7 @@ in {
     zoxide = {
       enable = true;
       enableBashIntegration = true;
-      options = ["--cmd cd"];
+      options = [ "--cmd cd" ];
     };
 
     # cd into a directory will activate its flake.nix (if found + allowed)

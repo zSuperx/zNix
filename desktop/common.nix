@@ -1,11 +1,10 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
   # Use stylix to style window managers, terminals, fonts, font colors, etc.
 
   stylix = {
-    # enable = true;
-    image = "${config.home.homeDirectory}/Pictures/blitty.jpg";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     opacity.terminal = 0.9;
     polarity = "dark";
   };
