@@ -3,6 +3,8 @@
     viAlias = true;
     vimAlias = true;
 
+    extraLuaFiles = [ ./extra-setup.lua ];
+
     options = {
       # Default tab size = 4
       shiftwidth = 4;
