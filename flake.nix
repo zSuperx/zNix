@@ -1,6 +1,15 @@
 {
   description = "My system flake";
 
+  nixConfig.extra-substituters = [
+    "https://hyprland.cachix.org"
+    "https://niri.cachix.org"
+  ];
+  nixConfig.extra-trusted-public-keys = [
+    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+  ];
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -17,7 +26,7 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprland.url = "github:hyprwm/Hyprland";
 
-    niri.url = "github:sodiboo/niri-flake";
+    niri-flake.url = "github:sodiboo/niri-flake";
 
     gBar.url = "github:scorpion-26/gBar";
 
@@ -40,16 +49,22 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [inputs.niri-flake.overlays.niri];
+      config.allowUnfree = true;
+    };
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          {nixpkgs.pkgs = pkgs;}
+
           ./system/configuration.nix
           inputs.stylix.nixosModules.stylix
-
           home-manager.nixosModules.home-manager
+
           {
             home-manager = {
               useGlobalPkgs = true;

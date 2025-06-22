@@ -44,7 +44,6 @@ if wezterm.gui then
 		{
 			key = "/",
 			action = act.Multiple({
-				act.PopKeyTable,
 				act.CopyMode("ClearSelectionMode"),
 				act.CopyMode("EditPattern"),
 			}),
@@ -54,11 +53,6 @@ if wezterm.gui then
 			action = act.Multiple({
 				act.CopyMode("ClearPattern"),
 				act.CopyMode("ClearSelectionMode"),
-				act.ActivateKeyTable({
-					name = "copy_mode",
-					one_shot = false,
-					prevent_fallback = true,
-				}),
 			}),
 		},
 		{

@@ -6,10 +6,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ({inputs, ...}: {
-      imports = [inputs.niri.nixosModules.niri];
-      niri-flake.cache.enable = false;
-    })
+    inputs.niri-flake.nixosModules.niri
   ];
 
   # Overlays
@@ -33,17 +30,15 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri;
+    package = pkgs.niri-unstable;
   };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  systemd.services.fprintd = {
-    wantedBy = ["multi-user.target"];
-    serviceConfig.Type = "simple";
-  };
+  services.fprintd.enable = true;
+
   networking = {
     hostName = "nixos"; # Define your hostname.
     # wireless.enable = true; # Enables wireless support via wpa_supplicant.
@@ -152,19 +147,11 @@
   fonts.fontDir.enable = true;
 
   # ADVANCED
-  nixpkgs.config.allowUnfree = true;
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    substituters = [
-      "https://hyprland.cachix.org"
-    ];
-    trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   hardware = {
     graphics = {
       enable = true;
