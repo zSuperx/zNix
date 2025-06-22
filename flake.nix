@@ -17,6 +17,8 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprland.url = "github:hyprwm/Hyprland";
 
+    niri.url = "github:sodiboo/niri-flake";
+
     gBar.url = "github:scorpion-26/gBar";
 
     fenix = {
@@ -28,47 +30,45 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zjstatus.url = "github:dj95/zjstatus";
   };
 
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      stylix,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in
-    {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./system/configuration.nix
-            stylix.nixosModules.stylix
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
+  in {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./system/configuration.nix
+          inputs.stylix.nixosModules.stylix
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.zsuper = import ./home.nix;
-                extraSpecialArgs = {
-                  inherit inputs;
-                };
-                backupFileExtension = "backup";
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.zsuper = import ./home.nix;
+              extraSpecialArgs = {
+                inherit inputs;
               };
-            }
-          ];
-        };
+              backupFileExtension = "backup";
+            };
+          }
+        ];
       };
-
-      packages.${system}.neovim =
-        (inputs.nvf.lib.neovimConfiguration {
-          inherit pkgs;
-          modules = [ ./editor/nvim-settings.nix ];
-        }).neovim;
     };
+
+    packages.${system}.neovim =
+      (inputs.nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [./editor/nvim-settings.nix];
+      }).neovim;
+  };
 }

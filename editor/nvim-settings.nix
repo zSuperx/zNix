@@ -1,13 +1,7 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   config.vim = {
     viAlias = true;
     vimAlias = true;
-    debugMode = {
-      enable = false;
-      level = 16;
-      logFile = "/tmp/nvim.log";
-    };
 
     options = {
       # Default tab size = 4
@@ -22,85 +16,37 @@
       {
         # Sets the tab size to 2 in .nix files
         enable = true;
-        event = [ "BufEnter" ];
-        pattern = [ "*.nix" ];
+        event = ["BufEnter"];
+        pattern = ["*.nix"];
         command = ":lua vim.opt_local.tabstop=2; vim.opt_local.shiftwidth=2";
       }
     ];
 
     keymaps = [
       # Makes ; behave like : and opens the Ex-command line
-      {
-        key = ";";
-        mode = "n";
-        noremap = true;
-        action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>";
-      }
-      {
-        key = "<Esc>";
-        mode = "n";
-        noremap = true;
-        action = ":if v:hlsearch | noh | endif<CR>";
-      }
-      {
-        key = "<C-c>";
-        mode = "n";
-        noremap = true;
-        action = ":%y+<CR>";
-      }
-      {
-        key = "<Esc>";
-        mode = "t";
-        noremap = true;
-        action = "<C-\\><C-n>";
-      }
-      {
-        key = "<Tab>";
-        mode = "n";
-        silent = true;
-        action = ":bnext<CR>";
-      }
-      {
-        key = "<S-Tab>";
-        mode = "n";
-        silent = true;
-        action = ":bprev<CR>";
-      }
-      {
-        key = "<C-[>";
-        mode = "n";
-        silent = true;
-        noremap = true;
-        action = ":po<CR>";
-      }
-      {
-        key = "<C-j>";
-        mode = "n";
-        silent = true;
-        noremap = true;
-        action = ":m +1<CR>";
-      }
-      {
-        key = "<C-k>";
-        mode = "n";
-        silent = true;
-        noremap = true;
-        action = ":m -2<CR>";
-      }
+      { key = ";"; mode = "n"; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
+      { key = "<Esc>"; mode = "n"; action = ":if v:hlsearch | noh | endif<CR>"; }
+      { key = "<C-c>"; mode = "n"; action = ":%y+<CR>"; }
+      { key = "<Esc>"; mode = "t"; action = "<C-\\><C-n>"; }
+      { key = "<Tab>"; mode = "n"; silent = true; action = ":bnext<CR>"; }
+      { key = "<S-Tab>"; mode = "n"; silent = true; action = ":bprev<CR>"; }
+      { key = "<C-[>"; mode = "n"; silent = true; action = ":po<CR>"; }
+      { key = "<C-j>"; mode = "n"; silent = true; action = ":m +1<CR>"; }
+      { key = "<C-k>"; mode = "n"; silent = true; action = ":m -2<CR>"; }
     ];
 
     lineNumberMode = "number";
 
     lsp = {
       enable = true;
-      formatOnSave = true;
-      lspkind.enable = false;
-      lightbulb.enable = false;
+      formatOnSave = false;
       trouble.enable = true;
       lspSignature.enable = true;
       otter-nvim.enable = true;
       nvim-docs-view.enable = true;
     };
+
+    projects.project-nvim.enable = true;
 
     debugger = {
       nvim-dap = {
@@ -146,24 +92,13 @@
       rust = {
         enable = true;
         crates.enable = true;
-        # lsp.enable = true;
+        lsp.enable = true;
       };
     };
 
     diagnostics.config = {
       virtual_text = true;
       virtual_lines = true;
-    };
-
-    highlight = {
-      Visual = {
-        bg = "NvimDarkGrey4";
-        bold = true;
-      };
-      Comment = {
-        bg = "#313244";
-        fg = "#6d8086";
-      };
     };
 
     visuals = {
@@ -175,6 +110,17 @@
 
       highlight-undo.enable = true;
       indent-blankline.enable = true;
+    };
+
+    highlight = {
+      Normal = {
+        ctermbg = "NONE";
+        bg = "NONE";
+      };
+
+      Visual = {
+        bg = "NvimDarkGrey4";
+      };
     };
 
     statusline = {
@@ -191,23 +137,8 @@
         "cmp-path"
       ];
     };
-    snippets.luasnip.enable = true;
 
-    filetree = {
-      nvimTree = {
-        enable = false;
-        mappings.toggle = "<C-n>";
-        setupOpts = {
-          diagnostics.enable = true;
-          diagnostics.show_on_dirs = true;
-          view.width = {
-            min = 30;
-            max = -1;
-            padding = 1;
-          };
-        };
-      };
-    };
+    snippets.luasnip.enable = true;
 
     tabline = {
       nvimBufferline = {
@@ -219,8 +150,6 @@
       };
     };
 
-    treesitter.context.enable = false;
-
     binds = {
       whichKey.enable = true;
       cheatsheet.enable = true;
@@ -231,42 +160,20 @@
     git = {
       enable = true;
       gitsigns.enable = true;
-      gitsigns.codeActions.enable = false; # throws an annoying debug message
     };
 
-    minimap = {
-      minimap-vim.enable = false;
-      codewindow.enable = true; # lighter, faster, and uses lua for configuration
-    };
+    minimap.codewindow.enable = true; # lighter, faster, and uses lua for configuration
 
-    dashboard = {
-      dashboard-nvim.enable = false;
-      alpha.enable = true;
-    };
-
-    notify = {
-      nvim-notify.enable = false;
-    };
-
-    projects = {
-      project-nvim.enable = false;
-    };
+    dashboard.alpha.enable = true;
 
     utility = {
       multicursors.enable = true;
       yazi-nvim.enable = true;
     };
 
-    notes = {
-      todo-comments.enable = true;
-    };
+    notes.todo-comments.enable = true;
 
-    terminal = {
-      toggleterm = {
-        enable = true;
-        lazygit.enable = true;
-      };
-    };
+    theme.transparent = true;
 
     ui = {
       borders.enable = true;
@@ -274,10 +181,9 @@
       colorizer = {
         enable = true;
         setupOpts.fileTypes = {
-          "*" = { };
+          "*" = {};
         };
       };
-      modes-nvim.enable = false; # the theme looks terrible with catppuccin
       illuminate.enable = true;
       smartcolumn = {
         enable = true;

@@ -1,7 +1,7 @@
 _: {
   programs = {
     gBar = {
-      enable = true;
+      enable = false;
       config = {
         Location = "T";
         EnableSNI = true;
@@ -23,7 +23,7 @@ _: {
     };
 
     hyprpanel = {
-      enable = false;
+      enable = true;
       hyprland.enable = true;
       overwrite.enable = true;
 

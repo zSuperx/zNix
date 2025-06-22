@@ -1,40 +1,37 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   myAliases = {
-    l = "ls -lah";
-    grep = "grep --color";
-    egrep = "egrep --color";
+    # Remaps to modern versions
+    ls = "eza";
+    l = "eza -alh";
+    grep = "rg --color";
+    cat = "bat";
+
+    # Useful shorthands
     wlc = "wl-copy";
     wlp = "wl-paste";
-    nv = "nvim";
-    vi = "nvim";
-    vim = "nvim";
     gs = "git status";
     gc = "git commit -m";
     ga = "git add";
-    clera = "clear"; # Yes, I'm that bad at typing
     ww = "wonderwall";
+    nv = "nvim";
+
+    clera = "clear"; # Yes, I'm that bad at typing
+
+    # Actual shortcuts
+    y = "cd $(yazi --cwd-file=/dev/stdout)";
   };
-in
-{
+in {
+  imports = [
+    ./wezterm.nix
+  ];
+
   home.packages = [
     pkgs.fishPlugins.tide
     pkgs.nitch
     pkgs.nerd-fonts.jetbrains-mono
   ];
-  programs = {
-    kitty = {
-      enable = true;
-      settings = {
-        font_family = "JetBrainsMono Nerd Font Mono";
-        bold_font = "JetBrainsMono Nerd Font Mono Extra Bold";
-        bold_italic_font = "JetBrainsMono Nerd Font Mono Extra Bold Italic";
-        shell = "fish";
-        cursor_trail = "1";
-        font_size = "13.0";
-      };
-    };
 
+  programs = {
     fish = {
       enable = true;
       plugins = [
@@ -46,20 +43,18 @@ in
       shellAliases = myAliases;
 
       # Disable Fish greeting & add ~/bin to path
-      shellInit = ''
+      interactiveShellInit = ''
         set fish_greeting
         set PATH "$HOME/bin:$PATH"
-        nitch
       '';
     };
 
     zoxide = {
       enable = true;
       enableBashIntegration = true;
-      options = [ "--cmd cd" ];
+      options = ["--cmd cd"];
     };
 
-    # cd into a directory will activate its flake.nix (if found + allowed)
     direnv = {
       enable = true;
       nix-direnv.enable = true;

@@ -6,6 +6,10 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ({inputs, ...}: {
+      imports = [inputs.niri.nixosModules.niri];
+      niri-flake.cache.enable = false;
+    })
   ];
 
   # Overlays
@@ -13,6 +17,24 @@
     inputs.hyprpanel.overlay
     inputs.fenix.overlays.default
   ];
+
+  stylix = {
+    enable = true;
+    autoEnable = false;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    opacity.terminal = 0.9;
+    fonts.sizes.terminal = 11;
+    fonts.monospace = {
+      name = "JetBrainsMono Nerd Font";
+      package = pkgs.nerd-fonts.jetbrains-mono;
+    };
+    polarity = "dark";
+  };
+
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -53,6 +75,8 @@
     LC_TIME = "en_US.UTF-8";
   };
   services = {
+    tailscale.enable = true;
+
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
@@ -88,7 +112,13 @@
   users.users.zsuper = {
     isNormalUser = true;
     description = "Piyush Kumbhare";
-    extraGroups = ["networkmanager" "wheel" "docker" "video" "audio"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "video"
+      "audio"
+    ];
     shell = pkgs.fish;
   };
 
@@ -98,7 +128,8 @@
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     firefox.enable = true;
     fish.enable = true;
@@ -111,6 +142,7 @@
     # TERMINAL
     kitty
     vim
+    cachix
 
     # TOOLS
     wget
@@ -122,9 +154,16 @@
   # ADVANCED
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    substituters = [
+      "https://hyprland.cachix.org"
+    ];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
   };
   hardware = {
     graphics = {

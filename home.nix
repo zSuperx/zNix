@@ -1,31 +1,16 @@
 {
   inputs,
-  pkgs,
   config,
   ...
-}:
-let
+}: let
   # Helper function
   homelink = path: config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/${path}";
-in
-{
+in {
   imports = [
     inputs.nvf.homeManagerModules.default
     inputs.gBar.homeManagerModules.x86_64-linux.default
-
-    # Hyprland
+    ./apps
     ./desktop/hyprland.nix
-
-    # Development
-    ./apps/languages.nix
-    ./apps/terminal.nix
-    ./apps/utils.nix
-
-    # Apps
-    ./apps/general.nix
-    ./apps/games.nix
-
-    # Editor
     ./editor/nvf.nix
   ];
 
@@ -39,6 +24,7 @@ in
       ".config/hypr".source = homelink "dotfiles/desktop/hyprland";
       ".config/wofi".source = homelink "dotfiles/wofi";
       ".config/yazi".source = homelink "dotfiles/yazi";
+      ".config/zellij/config".source = homelink "dotfiles/zellij/config";
     };
 
     sessionVariables = {
@@ -46,6 +32,13 @@ in
     };
 
     stateVersion = "24.11";
+  };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "${config.home.homeDirectory}/dotfiles";
   };
 
   programs.home-manager.enable = true; # Don't change this probably
