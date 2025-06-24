@@ -6,43 +6,42 @@
     home-manager,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [inputs.niri-flake.overlays.niri];
-      config.allowUnfree = true;
-    };
-  in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+    mkSystem = {
+      pkgs,
+      system,
+      hostname,
+    }:
+      pkgs.lib.nixosSystem {
+        inherit system;
         specialArgs = {inherit inputs;};
         modules = [
-          {nixpkgs.pkgs = pkgs;}
+          {networking.hostName = hostname;}
+          (./. + "/hosts/${hostname}/hardware-configuration.nix")
 
-          ./system/configuration.nix
-          inputs.stylix.nixosModules.stylix
+          ./modules/system/configuration.nix
           home-manager.nixosModules.home-manager
-
           {
             home-manager = {
               useGlobalPkgs = true;
-              useUserPackages = true;
-              users.zsuper = import ./home.nix;
-              extraSpecialArgs = {
-                inherit inputs;
-              };
-              backupFileExtension = "backup";
+              useUserPkgs = true;
+              users.zsuper = ./. + "/hosts/${hostname}/user.nix";
+              extraSpecialArgs = {inherit inputs;};
             };
+
+            nixpkgs.overlays = [
+              ./overlays
+            ];
           }
         ];
       };
+  in {
+    nixosConfigurations = {
+      storm = mkSystem {
+        pkgs = inputs.nixpkgs;
+        system = "x86_64-linux";
+        hostname = "storm";
+      };
     };
-
-    packages.${system}.neovim =
-      (inputs.nvf.lib.neovimConfiguration {
-        inherit pkgs;
-        modules = [./editor/nvim-settings.nix];
-      }).neovim;
   };
 
   nixConfig.extra-substituters = [
