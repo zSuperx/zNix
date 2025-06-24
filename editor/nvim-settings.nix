@@ -108,6 +108,7 @@
     };
 
     telescope.enable = true;
+    terminal.toggleterm.enable = true;
 
     # VISUAL STUFFS
 
