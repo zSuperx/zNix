@@ -16,3 +16,4 @@ vim.api.nvim_create_user_command("Fw",
         nargs = 0,
         desc = "Format file using built-in formatter",
     })
+

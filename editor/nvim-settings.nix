@@ -3,38 +3,25 @@
     viAlias = true;
     vimAlias = true;
 
-    extraLuaFiles = [ ./extra-setup.lua ];
+    extraLuaFiles = [./extra-setup.lua];
 
     options = {
-      # Default tab size = 4
       shiftwidth = 4;
       tabstop = 4;
       expandtab = true;
-      # Sync clipboard with system (wl-copy)
       clipboard = "unnamedplus";
     };
 
-    autocmds = [
-      {
-        # Sets the tab size to 2 in .nix files
-        enable = true;
-        event = ["BufEnter"];
-        pattern = ["*.nix"];
-        command = ":lua vim.opt_local.tabstop=2; vim.opt_local.shiftwidth=2";
-      }
-    ];
-
     keymaps = [
-      # Makes ; behave like : and opens the Ex-command line
-      { key = ";"; mode = "n"; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
+      { key = ";"; mode = ["n" "v"]; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
       { key = "<Esc>"; mode = "n"; action = ":if v:hlsearch | noh | endif<CR>"; }
       { key = "<C-c>"; mode = "n"; action = ":%y+<CR>"; }
       { key = "<Esc>"; mode = "t"; action = "<C-\\><C-n>"; }
-      { key = "<Tab>"; mode = "n"; silent = true; action = ":bnext<CR>"; }
-      { key = "<S-Tab>"; mode = "n"; silent = true; action = ":bprev<CR>"; }
-      { key = "<C-[>"; mode = "n"; silent = true; action = ":po<CR>"; }
-      { key = "<C-j>"; mode = "n"; silent = true; action = ":m +1<CR>"; }
-      { key = "<C-k>"; mode = "n"; silent = true; action = ":m -2<CR>"; }
+      { key = "<Tab>"; mode = "n"; action = ":bnext<CR>"; }
+      { key = "<S-Tab>"; mode = "n"; action = ":bprev<CR>"; }
+      { key = "<C-[>"; mode = "n"; action = ":po<CR>"; }
+      { key = "<C-j>"; mode = "n"; action = ":m +1<CR>"; }
+      { key = "<C-k>"; mode = "n"; action = ":m -2<CR>"; }
     ];
 
     lineNumberMode = "number";
@@ -59,14 +46,11 @@
 
     fzf-lua.enable = true;
 
-    # This section does not include a comprehensive list of available language modules.
-    # To list all available language module options, please visit the nvf manual.
     languages = {
       enableFormat = true;
       enableTreesitter = true;
       enableExtraDiagnostics = true;
 
-      # Languages that will be supported in default and maximal configurations.
       nix = {
         enable = true;
         lsp.enable = true;
@@ -103,34 +87,6 @@
       virtual_lines = true;
     };
 
-    visuals = {
-      nvim-scrollbar.enable = true;
-      nvim-web-devicons.enable = true;
-      nvim-cursorline.enable = true;
-      cinnamon-nvim.enable = true;
-      fidget-nvim.enable = true;
-
-      highlight-undo.enable = true;
-      indent-blankline.enable = true;
-    };
-
-    highlight = {
-      Normal = {
-        ctermbg = "NONE";
-        bg = "NONE";
-      };
-
-      Visual = {
-        bg = "NvimDarkGrey4";
-      };
-    };
-
-    statusline = {
-      lualine = {
-        enable = true;
-      };
-    };
-
     autopairs.nvim-autopairs.enable = true;
 
     autocomplete.nvim-cmp = {
@@ -139,7 +95,6 @@
         "cmp-path"
       ];
     };
-
     snippets.luasnip.enable = true;
 
     tabline = {
@@ -152,31 +107,48 @@
       };
     };
 
-    binds = {
-      whichKey.enable = true;
-      cheatsheet.enable = true;
-    };
-
     telescope.enable = true;
 
-    git = {
-      enable = true;
-      gitsigns.enable = true;
-    };
-
-    minimap.codewindow.enable = true; # lighter, faster, and uses lua for configuration
-
-    dashboard.alpha.enable = true;
+    # VISUAL STUFFS
 
     utility = {
       multicursors.enable = true;
       yazi-nvim.enable = true;
     };
+    binds = {
+      whichKey.enable = true;
+      cheatsheet.enable = true;
+    };
 
+    visuals = {
+      nvim-scrollbar.enable = true;
+      nvim-web-devicons.enable = true;
+      nvim-cursorline.enable = true;
+      cinnamon-nvim.enable = true;
+      fidget-nvim.enable = true;
+
+      highlight-undo.enable = true;
+      indent-blankline.enable = true;
+    };
+    highlight = {
+      Normal = {
+        ctermbg = "NONE";
+        bg = "NONE";
+      };
+
+      Visual = {
+        bg = "NvimDarkGrey4";
+      };
+    };
+    statusline = {
+      lualine = {
+        enable = true;
+      };
+    };
+    minimap.codewindow.enable = true; # lighter, faster, and uses lua for configuration
+    dashboard.alpha.enable = true;
     notes.todo-comments.enable = true;
-
     theme.transparent = true;
-
     ui = {
       borders.enable = true;
       noice.enable = true;
@@ -212,11 +184,21 @@
         };
       };
     };
-    extraPlugins."guess-indent" = {
-      package = pkgs.vimPlugins.guess-indent-nvim;
-      setup = ''
-        require("guess-indent").setup()
-      '';
+
+    extraPlugins = {
+      "guess-indent" = {
+        package = pkgs.vimPlugins.guess-indent-nvim;
+        setup = ''
+          require("guess-indent").setup()
+        '';
+      };
+
+      "neogit" = {
+        package = pkgs.vimPlugins.neogit;
+        setup = ''
+          require("neogit").setup()
+        '';
+      };
     };
   };
 }
