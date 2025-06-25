@@ -18,7 +18,8 @@
           {networking.hostName = hostname;}
           (./. + "/hosts/${hostname}/hardware-configuration.nix")
 
-          ./modules/system/configuration.nix
+          ./system/configuration.nix
+          ./overlays
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -27,10 +28,6 @@
               users.zsuper = ./. + "/hosts/${hostname}/user.nix";
               extraSpecialArgs = {inherit inputs;};
             };
-
-            nixpkgs.overlays = [
-              ./overlays
-            ];
           }
         ];
       };

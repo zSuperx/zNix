@@ -20,11 +20,7 @@ in {
 
     # Manage dotfiles by symlinking at build time
     file = {
-      ".config/direnv/direnv.toml".source = homelink "dotfiles/direnv/direnv.toml";
       ".config/hypr".source = homelink "dotfiles/desktop/hyprland";
-      ".config/wofi".source = homelink "dotfiles/wofi";
-      ".config/yazi".source = homelink "dotfiles/yazi";
-      ".config/zellij/config".source = homelink "dotfiles/zellij/config";
     };
 
     sessionVariables = {

@@ -96,3 +96,4 @@ inspiration from:
 - [wofi](https://github.com/7KIR7/dots/tree/main)
 - [hyprpanel](https://github.com/Jas-SinghFSU/HyprPanel)
 - [hyprlock](https://github.com/catppuccin/hyprlock)
+- [notusknot's dotfiles](https://github.com/notusknot/dotfiles-nix)

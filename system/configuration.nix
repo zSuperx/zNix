@@ -3,18 +3,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    inputs.niri-flake.nixosModules.niri
-  ];
-
-  # Overlays
-  nixpkgs.overlays = [
-    inputs.hyprpanel.overlay
-    inputs.fenix.overlays.default
-  ];
-
   stylix = {
     enable = true;
     autoEnable = false;
@@ -26,11 +14,6 @@
       package = pkgs.nerd-fonts.jetbrains-mono;
     };
     polarity = "dark";
-  };
-
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
   };
 
   # Bootloader.
