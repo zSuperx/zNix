@@ -14,11 +14,9 @@
     };
   in {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      nixos = pkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          {nixpkgs.pkgs = pkgs;}
-
           ./system/configuration.nix
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
