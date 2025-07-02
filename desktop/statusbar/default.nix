@@ -24,19 +24,13 @@ _: {
 
     hyprpanel = {
       enable = true;
-      hyprland.enable = true;
-      overwrite.enable = true;
-
-      override = {
+      settings = {
         menus.dashboard.powermenu.avatar.image = "~/.face.icon";
         theme = {
           bar.buttons.dashboard.icon = "#81A1CA";
           bar.buttons.style = "wave";
           font.size = "0.9rem";
         };
-      };
-
-      settings = {
         bar = {
           launcher.icon = "";
           workspaces = {

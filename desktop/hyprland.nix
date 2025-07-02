@@ -1,10 +1,8 @@
 {
-  inputs,
   pkgs,
   ...
 }: {
   imports = [
-    inputs.hyprpanel.homeManagerModules.hyprpanel
     ./statusbar
 
     ./common.nix

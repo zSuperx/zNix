@@ -10,7 +10,6 @@
     pkgs = import nixpkgs {
       inherit system;
       overlays = [inputs.niri-flake.overlays.niri];
-      config.allowUnfree = true;
     };
   in {
     nixosConfigurations = {
@@ -65,7 +64,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprland.url = "github:hyprwm/Hyprland";
 
     niri-flake.url = "github:sodiboo/niri-flake";

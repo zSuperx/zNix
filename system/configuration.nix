@@ -11,7 +11,6 @@
 
   # Overlays
   nixpkgs.overlays = [
-    inputs.hyprpanel.overlay
     inputs.fenix.overlays.default
   ];
 
@@ -30,7 +29,7 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = pkgs.niri;
   };
 
   # Bootloader.
@@ -159,5 +158,6 @@
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.11"; # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 }
