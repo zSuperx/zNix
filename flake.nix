@@ -1,58 +1,50 @@
 {
-  description = "My system flake";
+  description = "Nixos configuration";
 
-  outputs = {
-    nixpkgs,
-    home-manager,
+  outputs = inputs @ {
+    self,
+    flake-parts,
     ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [inputs.niri-flake.overlays.niri];
-    };
-  in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./system/configuration.nix
-          inputs.stylix.nixosModules.stylix
-          home-manager.nixosModules.home-manager
-
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.zsuper = import ./home.nix;
-              extraSpecialArgs = {
-                inherit inputs;
-              };
-              backupFileExtension = "backup";
-            };
-          }
-        ];
+  }:
+    flake-parts.lib.mkFlake {inherit inputs self;} {
+      systems = ["x86_64-linux"];
+      imports = [
+        inputs.unify.flakeModule
+        (inputs.import-tree [
+          ./hosts
+          ./modules
+          ./profiles
+        ])
+      ];
+      perSystem = {pkgs, ...}: {
+        packages.hello = pkgs.hello;
       };
+
+      flake.projectRoot = builtins.toString ./.;
     };
 
-    packages.${system}.neovim =
-      (inputs.nvf.lib.neovimConfiguration {
-        inherit pkgs;
-        modules = [./editor/nvim-settings.nix];
-      }).neovim;
+  nixConfig = {
+    extra-substituters = [
+      "https://hyprland.cachix.org"
+      "https://niri.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    ];
   };
 
-  nixConfig.extra-substituters = [
-    "https://hyprland.cachix.org"
-    "https://niri.cachix.org"
-  ];
-  nixConfig.extra-trusted-public-keys = [
-    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-  ];
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    import-tree.url = "github:vic/import-tree";
+    unify = {
+      url = "git+https://codeberg.org/zSuperx/unify";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
