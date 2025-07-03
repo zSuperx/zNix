@@ -3,7 +3,7 @@
     home = {pkgs, ...}: {
       programs.direnv = {
         enable = true;
-        nix-direnv = true;
+        nix-direnv.enable = true;
       };
 
       home.file.".config/direnv/direnv.toml".source =

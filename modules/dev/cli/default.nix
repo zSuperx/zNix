@@ -1,13 +1,5 @@
 {self, ...}: {
   unify.modules.cli = {
-    home = {pkgs, ...}: {
-      imports = with self.modules.home; [
-        yazi
-        zoxide
-        nh
-      ];
-    };
-
     nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         jq
@@ -19,5 +11,12 @@
         dust
       ];
     };
+
+    home.imports = with self.modules.home; [
+      yazi
+      nh
+      direnv
+      zoxide
+    ];
   };
 }
