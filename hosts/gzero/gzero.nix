@@ -52,10 +52,7 @@ in {
     }: {
       home = {
         inherit stateVersion;
-        sessionPath = ["$HOME/.local/bin"];
-        sessionVariables = {
-          EDITOR = lib.mkIf config.programs.nvf.enable "nvim";
-        };
+        sessionPath = ["$HOME/bin"];
       };
       programs.home-manager.enable = true;
     };

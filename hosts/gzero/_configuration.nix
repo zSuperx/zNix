@@ -22,7 +22,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -34,23 +33,9 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
   services = {
     tailscale.enable = true;
-
-    xserver = {
-      # Enable the X11 windowing system.
-      enable = true;
-
-      # Configure keymap in X11
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-    };
-
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
 
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -67,7 +52,6 @@
   };
 
   programs.nix-ld.enable = true;
-  programs.firefox.enable = true;
 
   security.rtkit.enable = true;
 

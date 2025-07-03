@@ -16,15 +16,8 @@
           ./profiles
         ])
       ];
-      perSystem = {pkgs, ...}: {
-        packages.hello = pkgs.hello;
-      };
 
       flake.lib = {
-        # Captures the flake's out-of-store directory, which
-        # can then be used for impure functions like symlinking
-        projectRoot = "/home/zsuper/dotfiles";
-
         # Imports both Home and NixOS modules from self
         importBoth = modules: {
           home.imports = map (elem: self.modules.home.${elem}) modules;

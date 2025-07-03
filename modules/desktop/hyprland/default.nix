@@ -11,7 +11,7 @@
     }: {
       home.file = {
         ".config/hypr".source =
-          config.lib.file.mkOutOfStoreSymlink "${self.lib.projectRoot}/symlinks/hypr";
+          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/symlinks/hypr";
       };
     };
 
