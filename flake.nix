@@ -18,6 +18,7 @@
       ];
 
       flake.lib = {
+        projectRoot = "/home/zsuper/dotfiles/";
         # Imports both Home and NixOS modules from self
         importBoth = modules: {
           home.imports = map (elem: self.modules.home.${elem}) modules;
@@ -61,7 +62,7 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    niri-flake.url = "github:sodiboo/niri-flake";
+    niri.url = "github:sodiboo/niri-flake";
 
     gBar.url = "github:scorpion-26/gBar";
 

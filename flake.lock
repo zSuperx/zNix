@@ -752,7 +752,7 @@
         "type": "github"
       }
     },
-    "niri-flake": {
+    "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
         "niri-unstable": "niri-unstable",
@@ -1015,7 +1015,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "import-tree": "import-tree",
-        "niri-flake": "niri-flake",
+        "niri": "niri",
         "nixpkgs": "nixpkgs_4",
         "nvf": "nvf",
         "stylix": "stylix",

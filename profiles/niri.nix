@@ -1,15 +1,5 @@
 {self, ...}: {
-  unify.modules.profile-niri = {
-    home = {pkgs, ...}: {
-      imports = with self.modules.home; [
-
-      ];
-    };
-
-    nixos = {pkgs, ...}: {
-      imports = with self.modules.nixos; [
-
-      ];
-    };
-  };
+  unify.modules.profile-niri = self.lib.importBoth [
+    "niri"
+  ];
 }

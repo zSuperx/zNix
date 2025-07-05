@@ -21,7 +21,7 @@
           prompt = "";
           image_size = 20;
           display_generic = false;
-          location = "center";
+          location = "top";
           key_expand = "Tab";
           insensitive = true;
           matching = "fuzzy";

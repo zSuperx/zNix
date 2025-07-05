@@ -1,6 +1,6 @@
 {
-  inputs,
   self,
+  inputs,
   ...
 }: {
   unify.modules.hyprland = {
@@ -10,8 +10,7 @@
       ...
     }: {
       home.file = {
-        ".config/hypr".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/symlinks/hypr";
+        ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${self.lib.projectRoot}/symlinks/hypr";
       };
     };
 

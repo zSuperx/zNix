@@ -9,6 +9,9 @@ in {
       profile-dev
       profile-hyprland
       profile-gaming
+      profile-niri
+      wayland-utils
+      gBar
     ];
 
     users.${username}.modules = modules;

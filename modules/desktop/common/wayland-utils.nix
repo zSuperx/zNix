@@ -20,6 +20,8 @@
         networkmanagerapplet
         playerctl
         pavucontrol
+        xwayland-satellite
+        swww
       ];
     };
   };

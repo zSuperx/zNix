@@ -9,5 +9,8 @@
 
       programs.firefox.enable = true;
     };
+    home = {
+      stylix.targets.firefox.enable = true;
+    };
   };
 }
