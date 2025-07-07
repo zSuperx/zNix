@@ -5,6 +5,10 @@
         inputs.gBar.homeManagerModules.x86_64-linux.default
       ];
 
+      home.packages =  with pkgs; [
+        pamixer
+      ];
+
       programs.gBar = {
         enable = true;
         config = {

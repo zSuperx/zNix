@@ -6,5 +6,6 @@
     "kitty"
     "wezterm"
     "languages"
+    "tmux"
   ];
 }

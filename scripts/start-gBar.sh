@@ -1,1 +1,3 @@
-hyprctl monitors -j | jq '.[] | .name' | xargs -I{} sh -c 'gBar bar "$1" &>/dev/null &' _ {}
+nohup gBar bar 0 &>/dev/null &
+nohup gBar bar 1 &>/dev/null &
+

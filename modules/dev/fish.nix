@@ -1,24 +1,17 @@
-{
+{self, ...}: {
   unify.modules.fish = {
     home = {pkgs, ...}: {
-      home.packages = with pkgs; [
-        fishPlugins.tide
+      imports = with self.modules.home; [
+        starship
       ];
-
       programs.fish = {
         enable = true;
-        plugins = [
-          {
-            name = "tide";
-            inherit (pkgs.fishPlugins.tide) src;
-          }
-        ];
 
         shellAliases = {
           # Remaps to modern versions
           ls = "eza";
           l = "eza -alh";
-          grep = "rg --color";
+          grep = "rg --color=auto";
           cat = "bat";
 
           # Useful shorthands

@@ -12,6 +12,15 @@
       clipboard = "unnamedplus";
     };
 
+    autocmds = [
+      {
+        enable = true;
+        event = ["BufEnter"];
+        pattern = ["*.nix"];
+        command = ":lua vim.opt_local.tabstop=2; vim.opt_local.shiftwidth=2";
+      }
+    ];
+    
     keymaps = [
       { key = ";"; mode = ["n" "v"]; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
       { key = "<Esc>"; mode = "n"; action = ":if v:hlsearch | noh | endif<CR>"; }
@@ -132,11 +141,6 @@
       indent-blankline.enable = true;
     };
     highlight = {
-      Normal = {
-        ctermbg = "NONE";
-        bg = "NONE";
-      };
-
       Visual = {
         bg = "NvimDarkGrey4";
       };

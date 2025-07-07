@@ -19,7 +19,6 @@
         brightnessctl
         networkmanagerapplet
         playerctl
-        pavucontrol
         xwayland-satellite
         swww
       ];
