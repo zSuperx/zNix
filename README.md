@@ -159,17 +159,23 @@ boot, but in case you want to regenerate it, check out the command
 
 ## Building
 
-Granted you have [flake support enabled](https://nixos.wiki/wiki/flakes)
+First clone the repo:
+
+```console
+git clone
+```
+
+Then, granted you have [flake support enabled](https://nixos.wiki/wiki/flakes)
 in NixOS, you can rebuild using the standard rebuild command:
 
 ```console
-sudo nixos-rebuild switch --flake github:zSuperx/dotfiles#<hostname>
+sudo nixos-rebuild switch --flake ./dotfiles#<hostname>
 ```
 
 or with Nix Helper:
 
 ```console
-nh os switch github:zSuperx/dotfiles -H <hostname>
+nh os switch ./dotfiles -H <hostname>
 ```
 
 ## Credits
