@@ -162,7 +162,7 @@ boot, but in case you want to regenerate it, check out the command
 First clone the repo:
 
 ```console
-git clone
+git clone git@github.com:zSuperx/dotfiles.git
 ```
 
 Then, granted you have [flake support enabled](https://nixos.wiki/wiki/flakes)
