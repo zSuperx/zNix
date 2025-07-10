@@ -22,7 +22,8 @@
     ];
     
     keymaps = [
-      { key = ";"; mode = ["n" "v"]; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
+      { key = ";"; mode = ["n"]; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
+      { key = ";"; mode = ["v"]; action = ":lua vim.api.nvim_feedkeys(':', 'v', true)<CR>"; }
       { key = "<Esc>"; mode = "n"; action = ":if v:hlsearch | noh | endif<CR>"; }
       { key = "<C-c>"; mode = "n"; action = ":%y+<CR>"; }
       { key = "<Esc>"; mode = "t"; action = "<C-\\><C-n>"; }
@@ -140,16 +141,23 @@
       highlight-undo.enable = true;
       indent-blankline.enable = true;
     };
+
     highlight = {
       Visual = {
         bg = "NvimDarkGrey4";
       };
+
+      TSComment = {
+        fg = "#f9e2af";
+      };
     };
+    
     statusline = {
       lualine = {
         enable = true;
       };
     };
+
     minimap.codewindow.enable = true; # lighter, faster, and uses lua for configuration
     dashboard.alpha.enable = true;
     notes.todo-comments.enable = true;

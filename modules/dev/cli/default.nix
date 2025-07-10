@@ -9,6 +9,7 @@
         ripgrep
         bat
         dust
+        fd
       ];
     };
 
