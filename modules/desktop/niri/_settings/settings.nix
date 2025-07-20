@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs.niri.settings = {
     input.touchpad.natural-scroll = false;
 
@@ -19,6 +19,10 @@
       center-focused-column = "never";
 
       default-column-width = {proportion = 0.5;};
+      focus-ring = {
+        width = 4;
+        active.color = config.lib.stylix.colors.base08; 
+      };
     };
 
     spawn-at-startup = [

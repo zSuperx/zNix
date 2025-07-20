@@ -35,6 +35,7 @@
   };
 
   services = {
+    upower.enable = true;
     tailscale.enable = true;
 
     # Enable CUPS to print documents.

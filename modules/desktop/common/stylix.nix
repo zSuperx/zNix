@@ -22,6 +22,8 @@
         };
         polarity = "dark";
       };
+
+      console.font = "JetBrainsMono Nerd Font";
     };
   };
 }
