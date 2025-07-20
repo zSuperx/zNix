@@ -6,12 +6,10 @@
         nix-direnv.enable = true;
       };
 
-      home.file.".config/direnv/direnv.toml".source =
-        builtins.toFile "direnv.toml"
-        ''
-          [global]
-          log_filter = "^$"
-        '';
+      home.file.".config/direnv/direnv.toml".text = ''
+        [global]
+        log_filter = "^$"
+      '';
     };
   };
 }

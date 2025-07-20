@@ -1,2 +1,5 @@
 [gcloud]
 disabled = true
+
+[os]
+disabled = false

@@ -15,6 +15,20 @@
           bind -T copy-mode-vi i send-keys -X cancel
           bind -T copy-mode-vi a send-keys -X cancel
 
+          bind -n M-h select-pane -L
+          bind -n M-j select-pane -D
+          bind -n M-k select-pane -U
+          bind -n M-l select-pane -R
+
+          bind -n M-H resize-pane -L 5
+          bind -n M-J resize-pane -D 5
+          bind -n M-K resize-pane -U 5
+          bind -n M-L resize-pane -R 5
+
+          # Alt+n to smart-split and create a new pane
+          bind -n M-n split-window -h
+          bind -n M-N split-window -v
+
           # Options to make tmux more pleasant
           set -g mouse on
           set -g default-terminal "tmux-256color"

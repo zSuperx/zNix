@@ -12,6 +12,7 @@ in {
       profile-niri
       wayland-utils
       gBar
+      # gnome
     ];
 
     users.${username}.modules = modules;
@@ -43,6 +44,7 @@ in {
         inherit stateVersion;
       };
       home-manager = {
+        backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
       };

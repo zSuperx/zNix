@@ -12,8 +12,8 @@
 
       stylix = {
         enable = true;
-        autoEnable = false;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+        autoEnable = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
         opacity.terminal = 0.9;
         fonts.sizes.terminal = 11;
         fonts.monospace = {

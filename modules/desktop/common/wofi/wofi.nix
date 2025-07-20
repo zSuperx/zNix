@@ -1,6 +1,8 @@
 {
   unify.modules.wofi = {
     home = {pkgs, ...}: {
+      stylix.targets.wofi.enable = false;
+
       programs.wofi = {
         enable = true;
         style = ./wofi-style.css;

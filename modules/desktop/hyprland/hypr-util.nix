@@ -2,7 +2,7 @@
   unify.modules.hypr-util = {
     home = {pkgs, ...}: {
       programs.hyprpanel = {
-        enable = true;
+        enable = false;
 
         settings = {
           menus.dashboard.powermenu.avatar.image = "~/.face.icon";

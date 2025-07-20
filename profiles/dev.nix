@@ -7,5 +7,6 @@
     "wezterm"
     "languages"
     "tmux"
+    "zellij"
   ];
 }

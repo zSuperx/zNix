@@ -36,6 +36,8 @@
 
     lineNumberMode = "number";
 
+    git.gitsigns.enable = true;
+
     lsp = {
       enable = true;
       formatOnSave = false;
@@ -150,6 +152,10 @@
       TSComment = {
         fg = "#f9e2af";
       };
+
+      Comment = {
+        fg = "#f9e2af";
+      };
     };
     
     statusline = {
@@ -167,8 +173,17 @@
       noice.enable = true;
       colorizer = {
         enable = true;
-        setupOpts.fileTypes = {
-          "*" = {};
+        setupOpts.filetypes."*" = {
+          RGB = true;
+          RRGGBB = true;
+          names = false;
+          RRGGBBAA = true;
+          AARRGGBB = true;
+          rgb_fn = true;
+          hsl_fn = true;
+          css_fn = true;
+          css = true;
+          sass = true;
         };
       };
       illuminate.enable = true;
@@ -199,6 +214,17 @@
     };
 
     extraPlugins = {
+      transparent = {
+        package = pkgs.vimPlugins.transparent-nvim;
+        setup = ''
+        require("transparent").setup({
+          extra_groups = {
+            "NormalFloat"
+          },
+        })
+        '';
+      };
+
       "guess-indent" = {
         package = pkgs.vimPlugins.guess-indent-nvim;
         setup = ''

@@ -82,12 +82,6 @@ gestures {
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-
-    default-column-width { proportion 0.5; }
-}
-
-window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
 
     open-floating true

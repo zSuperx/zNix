@@ -4,8 +4,9 @@
       programs.kitty = {
         enable = true;
         settings = {
-          shell = lib.mkIf config.programs.fish.enable "fish";
+          shell = if config.programs.fish.enable then "fish" else "bash";
           cursor_trail = "1";
+          themeFile = "Catppuccin-Mocha";
         };
       };
 

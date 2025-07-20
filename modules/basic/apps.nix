@@ -6,11 +6,20 @@
         mpv
         obsidian
       ];
-
-      programs.firefox.enable = true;
     };
+
     home = {
-      stylix.targets.firefox.enable = true;
+      programs.firefox = {
+        enable = true;
+      };
+      stylix.targets.firefox = {
+        enable = false;
+        colorTheme.enable = true;
+        profileNames = [
+          "main"
+          "work"
+        ];
+      };
     };
   };
 }
