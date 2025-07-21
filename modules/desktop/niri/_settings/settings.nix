@@ -1,6 +1,12 @@
 {config, ...}: {
   programs.niri.settings = {
-    input.touchpad.natural-scroll = false;
+    input = {
+      touchpad.natural-scroll = false;
+      focus-follows-mouse = {
+        enable = true;
+        max-scroll-amount = "0%";
+      };
+    };
 
     outputs."eDP-1" = {
       position = {
@@ -21,7 +27,7 @@
       default-column-width = {proportion = 0.5;};
       focus-ring = {
         width = 4;
-        active.color = config.lib.stylix.colors.base08; 
+        active.color = config.lib.stylix.colors.base08;
       };
     };
 
@@ -32,6 +38,7 @@
 
     environment = {
       DISPLAY = ":0";
+      NIXOS_OZONE_WL = "1";
     };
 
     screenshot-path = null;

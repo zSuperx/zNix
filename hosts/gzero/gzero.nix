@@ -1,9 +1,17 @@
-{config, ...}: let
+{
+  self,
+  config,
+  ...
+}: let
   username = "zsuper";
   hostname = "gzero";
   stateVersion = "25.05";
 in {
   unify.hosts.nixos.${hostname} = rec {
+    args = {
+      inherit username hostname;
+    };
+
     modules = with config.unify.modules; [
       profile-basic
       profile-dev
@@ -12,7 +20,6 @@ in {
       profile-niri
       wayland-utils
       gBar
-      # gnome
     ];
 
     users.${username}.modules = modules;
@@ -51,10 +58,6 @@ in {
     };
 
     home = {
-      lib,
-      config,
-      ...
-    }: {
       home = {
         inherit stateVersion;
         sessionPath = ["$HOME/bin"];

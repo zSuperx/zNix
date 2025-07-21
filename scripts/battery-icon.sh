@@ -1,24 +1,22 @@
-BATTERY_DATA=$(upower -e | grep --line-buffered BAT | xargs upower -i)
+battery_info=$(upower -e | grep --line-buffered BAT | head -n 1 | xargs upower -i)
 
-STATUS=$(echo "$BATTERY_DATA" | grep state | awk '{ print $2 }')
+percent=$(echo "$battery_info" | grep percentage | awk '{ print $2 }' | sed 's/%//g')
+status=$(echo "$battery_info" | grep state | awk '{ print $2 }')
 
-PERCENTAGE_STRING=$(echo "$BATTERY_DATA" | grep percentage | awk '{ print $2 }')
-PERCENTAGE="${PERCENTAGE_STRING%\%}"
-
-if [ $STATUS = "charging" ]; then
-    ICON="󰂄"
-elif [[ $PERCENTAGE -ge 99 ]]; then
-    ICON="󰁹"
-elif [[ $PERCENTAGE -ge 80 ]]; then
-    ICON="󰂁"
-elif [[ $PERCENTAGE -ge 50 ]]; then
-    ICON="󰁿"
-elif [[ $PERCENTAGE -ge 20 ]]; then
-    ICON="󰁼"
+if [[ "$status" == "charging" ]]; then
+  icon="󰂄"
+elif (( percent >= 90 )); then
+  icon="󰁹"
+elif (( percent >= 70 )); then
+  icon="󰂁"
+elif (( percent >= 50 )); then
+  icon="󰂀"
+elif (( percent >= 30 )); then
+  icon="󰁾"
+elif (( percent >= 15 )); then
+  icon="󰁻"
 else
-    ICON="󰁺"
+  icon="!!!"
 fi
 
-echo $ICON $PERCENTAGE%
-
-
+echo "$icon"

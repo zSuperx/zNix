@@ -19,6 +19,7 @@
 
       flake.lib = {
         projectRoot = "/home/zsuper/dotfiles/";
+
         # Imports both Home and NixOS modules from self
         importBoth = modules: {
           home.imports = map (elem: self.modules.home.${elem}) modules;
