@@ -3,6 +3,7 @@
     home = {
       pkgs,
       config,
+      lib,
       ...
     }: {
       programs.tmux = {
@@ -30,8 +31,19 @@
           bind -n M-L resize-pane -R 5
 
           # Alt+n to smart-split and create a new pane
-          bind -n M-n split-window -h
-          bind -n M-N split-window -v
+          # bind -n M-n split-window -h
+          # bind -n M-N split-window -v
+
+          bind -n M-n run-shell '${lib.replaceStrings ["\n"] [" \\\n"] ''
+            WIDTH=$(($(tmux display -p "#{pane_width}") / 2 - 10));
+            HEIGHT=$(tmux display -p "#{pane_height}");
+
+            if [ "$WIDTH" -gt "$HEIGHT" ]; then
+                tmux split-window -h;
+            else
+                tmux split-window -v;
+            fi
+          ''}'
 
           # Options to make tmux more pleasant
           set -g mouse on
@@ -54,60 +66,87 @@
           }
           {
             plugin = catppuccin;
-            extraConfig = with config.lib.stylix.colors.withHashtag; ''
-              set -g @catppuccin_flavor "mocha"
-              set -g @catppuccin_window_status_style "slanted"
+            extraConfig = let
+              get-battery-percentage = "upower -e | grep --line-buffered BAT | xargs upower -i | grep percentage | awk '{ print $2 }' | sed 's/%//g'";
 
-              # Make the status line pretty and add some modules
-              set -g status-right-length 100
-              set -g status-left-length 100
-              set -g status-left ""
-              set -g status-right "#{E:@catppuccin_status_application}"
-              set -agF status-right "#{E:@catppuccin_status_cpu}"
-              set -ag status-right "#{E:@catppuccin_status_session}"
-              set -ag status-right "#{E:@catppuccin_status_date_time}"
+              get-battery-icon = pkgs.writeShellScript "get-battery-icon" ''
+                percent=$(upower -e | grep --line-buffered BAT | xargs upower -i | grep percentage | awk '{ print $2 }' | sed 's/%//g')
+                status=$(upower -e | grep --line-buffered BAT | xargs upower -i | grep state | awk '{ print $2 }')
 
-              set -ag status-right "#[bg=#{@thm_flamingo},fg=#{@thm_surface_0}]#[reverse]#[noreverse]"
-              set -ag status-right "#[bg=#{@thm_flamingo},fg=#{@thm_crust}]󰂄 "
-              set -ag status-right "#[fg=#{@thm_fg},bg=#{@thm_surface_0}] #(upower -e | grep --line-buffered BAT | xargs upower -i | grep percentage | awk '{ print $2 }') "
+                charging=""
+                if [[ "$status" == "charging" ]]; then
+                    charging="⚡"
+                elif (( percent >= 90 )); then
+                    icon="󰂄"
+                elif (( percent >= 70 )); then
+                    icon="󰂁"
+                elif (( percent >= 50 )); then
+                    icon="󰂀"
+                elif (( percent >= 30 )); then
+                    icon="󰁾"
+                elif (( percent >= 15 )); then
+                    icon="󰁻"
+                else
+                    icon="!!!"
+                fi
 
-              # Stylix Theme
+                echo "$charging$icon"
+              '';
+            in
+              with config.lib.stylix.colors.withHashtag; ''
+                set -g @catppuccin_flavor "mocha"
+                set -g @catppuccin_window_status_style "slanted"
 
-              set -ogq @thm_bg "${base01}"
-              set -ogq @thm_fg "${base05}"
+                # Make the status line pretty and add some modules
+                set -g status-right-length 100
+                set -g status-left-length 100
+                set -g status-left ""
+                set -g status-right "#{E:@catppuccin_status_application}"
+                set -agF status-right "#{E:@catppuccin_status_cpu}"
+                set -ag status-right "#{E:@catppuccin_status_session}"
+                set -ag status-right "#{E:@catppuccin_status_date_time}"
 
-              # Colors
-              set -ogq @thm_rosewater "${base06}"
-              set -ogq @thm_flamingo "${base0F}"
-              set -ogq @thm_pink "${base0F}"
-              set -ogq @thm_mauve "${base0E}"
-              set -ogq @thm_red "${base08}"
-              set -ogq @thm_maroon "${base08}"
-              set -ogq @thm_peach "${base09}"
-              set -ogq @thm_yellow "${base0A}"
-              set -ogq @thm_green "${base0B}"
-              set -ogq @thm_teal "${base0C}"
-              set -ogq @thm_sky "${base0C}"
-              set -ogq @thm_sapphire "${base0D}"
-              set -ogq @thm_blue "${base0D}"
-              set -ogq @thm_lavender "${base07}"
+                set -ag status-right "#[bg=#{@thm_yellow},fg=#{@thm_surface_0}]#[reverse]#[noreverse]"
+                set -ag status-right "#[bg=#{@thm_yellow},fg=#{@thm_crust}]#(${get-battery-icon}) "
+                set -ag status-right "#[fg=#{@thm_fg},bg=#{@thm_surface_0}] #(${get-battery-percentage}) "
 
-              # Surfaces and overlays
-              set -ogq @thm_subtext_0 "#bac2de"
-              set -ogq @thm_subtext_1 "#a6adc8"
+                # Stylix Theme
 
-              set -ogq @thm_overlay_0 "#6c7086"
-              set -ogq @thm_overlay_1 "#7f849c"
-              set -ogq @thm_overlay_2 "#9399b2"
+                set -ogq @thm_bg "${base01}"
+                set -ogq @thm_fg "${base05}"
 
-              set -ogq @thm_surface_0 "${base02}"
-              set -ogq @thm_surface_1 "${base03}"
-              set -ogq @thm_surface_2 "${base04}"
+                # Colors
+                set -ogq @thm_rosewater "${base06}"
+                set -ogq @thm_flamingo "${base0F}"
+                set -ogq @thm_pink "${base0F}"
+                set -ogq @thm_mauve "${base0E}"
+                set -ogq @thm_red "${base08}"
+                set -ogq @thm_maroon "${base08}"
+                set -ogq @thm_peach "${base09}"
+                set -ogq @thm_yellow "${base0A}"
+                set -ogq @thm_green "${base0B}"
+                set -ogq @thm_teal "${base0C}"
+                set -ogq @thm_sky "${base0C}"
+                set -ogq @thm_sapphire "${base0D}"
+                set -ogq @thm_blue "${base0D}"
+                set -ogq @thm_lavender "${base07}"
 
-              set -ogq @thm_mantle "${base01}"
-              set -ogq @thm_crust "#11111b"
+                # Surfaces and overlays
+                set -ogq @thm_subtext_0 "#bac2de"
+                set -ogq @thm_subtext_1 "#a6adc8"
 
-            '';
+                set -ogq @thm_overlay_0 "#6c7086"
+                set -ogq @thm_overlay_1 "#7f849c"
+                set -ogq @thm_overlay_2 "#9399b2"
+
+                set -ogq @thm_surface_0 "${base02}"
+                set -ogq @thm_surface_1 "${base03}"
+                set -ogq @thm_surface_2 "${base04}"
+
+                set -ogq @thm_mantle "${base01}"
+                set -ogq @thm_crust "#11111b"
+
+              '';
           }
         ];
       };

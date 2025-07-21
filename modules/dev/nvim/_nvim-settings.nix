@@ -32,6 +32,8 @@
       { key = "<C-[>"; mode = "n"; action = ":po<CR>"; }
       { key = "<C-j>"; mode = "n"; action = ":m +1<CR>"; }
       { key = "<C-k>"; mode = "n"; action = ":m -2<CR>"; }
+      { key = ">"; mode = "v"; action = ">gv"; }
+      { key = "<"; mode = "v"; action = "<gv"; }
     ];
 
     lineNumberMode = "number";
@@ -176,7 +178,6 @@
         setupOpts.filetypes."*" = {
           RGB = true;
           RRGGBB = true;
-          names = false;
           RRGGBBAA = true;
           AARRGGBB = true;
           rgb_fn = true;
