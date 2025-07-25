@@ -1,5 +1,6 @@
 {
   self,
+  inputs,
   config,
   ...
 }: let
@@ -20,6 +21,7 @@ in {
       profile-niri
       wayland-utils
       gBar
+      gnome
     ];
 
     users.${username}.modules = modules;

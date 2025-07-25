@@ -1,0 +1,112 @@
+{
+    "layer": "top", 
+    "height": 35, 
+    "spacing": 4, 
+
+    "modules-left": [
+        "clock",
+        "network",
+        "bluetooth"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "custom/power"
+    ],
+
+    "clock": {
+        "format": "[ <span font_desc = \"Maple Mono Bold 11.2 \">{:%R %p}</span> ]",
+        "tooltip-format": "<big>{:%d %A }</big>\n<tt><span font_desc=\"Maple Mono Bold \">{calendar}</span></tt>",
+        "format-alt":"[ <span font_desc =\"Maple Mono Bold 11.2 \">{:%d %m %Y}</span> ]"
+    },
+
+    "backlight": {
+        "scroll-step": 5,
+        "format": "  {icon} {percent}%",
+        "format-icons": ["[ ░░░░░░░░░░ ]","[ ▓░░░░░░░░░ ]","[ ▓▓░░░░░░░░ ]","[ ▓▓▓░░░░░░░ ]","[ ▓▓▓▓░░░░░░ ]","[ ▓▓▓▓▓░░░░░ ]","[ ▓▓▓▓▓▓░░░░ ]","[ ▓▓▓▓▓▓▓░░░ ]", "[ ▓▓▓▓▓▓▓▓░░ ]", "[ ▓▓▓▓▓▓▓▓▓░ ]", "[ ▓▓▓▓▓▓▓▓▓▓ ]"]
+    },
+
+    "battery": {
+        "states": {
+            "good": 80,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": " {icon} {capacity}%",
+        "format-full": " {icon} {capacity}%",
+        "format-charging": " {icon} {capacity}%󱐋",
+        "format-plugged": " {icon} {capacity}%󱐋",
+        "format-alt": " {time} {icon}", 
+        "format-warning": " {icon} {capacity}%",
+        "format-critical":"  [ ░░░░░░░░░░ ] {capacity}%",
+
+        "format-icons": [" [ ░░░░░░░░░░ ]","󰁺 [ ▓░░░░░░░░░ ]","󰁻 [ ▓▓░░░░░░░░ ]","󰁼 [ ▓▓▓░░░░░░░ ]","󰁽 [ ▓▓▓▓░░░░░░ ]","󰁾 [ ▓▓▓▓▓░░░░░ ]","󰁿 [ ▓▓▓▓▓▓░░░░ ]","󰂀 [ ▓▓▓▓▓▓▓░░░ ]", "󰂁 [ ▓▓▓▓▓▓▓▓░░ ]", "󰂂 [ ▓▓▓▓▓▓▓▓▓░ ]", "󰁹 [ ▓▓▓▓▓▓▓▓▓▓ ]"]
+    },
+
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    }, 
+
+    "network": {
+
+        "format-wifi": " [    {icon}    ]",
+        "format-ethernet": " [    모    ]",
+        "tooltip-format": "{icon} {essid}",
+        "format-linked": "[ {ifname} (No IP) 모 ] ",
+        "format-disabled":" [    󰤭     ]",
+        "format-disconnected":" [    󰤩     ]",
+        "format-icons": ["󰤟 ","󰤢 ","󰤥 ","󰤨 "],
+        "on-click":"~/.config/waybar/scripts/toggle_wifi.sh",
+        "on-click-right":"nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format": "[ <span font_size=\"13pt\"> 󰂯 </span>  ]",
+        "format-connected": "[  <span font_size=\"13pt\"> 󰂱 </span>  ]",
+        "format-on": "[  <span font_size=\"13pt\"> 󰂯 </span>  ]",
+        "format-off": "[  <span font_size =\"13pt\"> 󰂲 </span>  ]",
+        "on-click": "~/.config/waybar/scripts/toggle_bluetooth.sh",
+        "on-click-right": "blueman-manager",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n{device_enumerate}"
+    },
+
+    "pulseaudio": {
+        "states":{
+            "warning": 5,
+            "critical":0
+        },
+        "scroll-step": 5, 
+        "format": " {icon} {volume}% ",
+
+        "format-critical":"  󰖁 [ ░░░░░░░░░░ ] {volume}% ",
+        "format-bluetooth":" {icon} {volume}%",
+        "format-bluetooth-critical":" 󰖁 [ ░░░░░░░░░░ ] {volume}% ",
+        "format-bluetooth-muted":" 󰖁 [ ░░░░░░░░░░ ] {volume}% ",
+        "format-muted":  " 󰖁 [ ░░░░░░░░░░ ] {volume}% ",
+        "format-icons": {
+            "default": [" [ ░░░░░░░░░░ ]"," [ ▓░░░░░░░░░ ]"," [ ▓▓░░░░░░░░ ]"," [ ▓▓▓░░░░░░░ ]"," [ ▓▓▓▓░░░░░░ ]"," [ ▓▓▓▓▓░░░░░ ]"," [ ▓▓▓▓▓▓░░░░ ]"," [ ▓▓▓▓▓▓▓░░░ ]", " [ ▓▓▓▓▓▓▓▓░░ ]", " [ ▓▓▓▓▓▓▓▓▓░ ]"," [ ▓▓▓▓▓▓▓▓▓▓ ]"]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format" : "[   ⏻   ] ",
+        "tooltip": false,
+        "on-click":"~/.config/waybar/scripts/power_menu.sh"
+    }
+}

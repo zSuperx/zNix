@@ -5,6 +5,7 @@
         spotify
         mpv
         obsidian
+        nautilus
       ];
     };
 
@@ -13,12 +14,8 @@
         enable = true;
       };
       stylix.targets.firefox = {
-        enable = false;
+        enable = true;
         colorTheme.enable = true;
-        profileNames = [
-          "main"
-          "work"
-        ];
       };
     };
   };

@@ -4,7 +4,9 @@
       inputs.stylix.nixosModules.stylix
     ];
   };
-  unify.modules.stylix = {
+  unify.modules.stylix = let
+    theme-name = "gruvbox-dark-hard";
+  in {
     nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         nerd-fonts.jetbrains-mono
@@ -13,7 +15,7 @@
       stylix = {
         enable = true;
         autoEnable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme-name}.yaml";
         opacity.terminal = 0.9;
         fonts.sizes.terminal = 11;
         fonts.monospace = {

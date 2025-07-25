@@ -3,6 +3,7 @@
   # i.e. Mouse scroll wheel, Brightness, Audio buttons
 
   programs.niri.settings.binds = {
+    # Audio buttons
     "XF86AudioRaiseVolume" = {
       allow-when-locked = true;
       action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
@@ -20,6 +21,7 @@
       action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
     };
 
+    # Brightness buttons
     "XF86MonBrightnessUp" = {
       allow-when-locked = true;
       action.spawn = ["brightnessctl" "--class=backlight" "set" "+10%"];
@@ -29,6 +31,7 @@
       action.spawn = ["brightnessctl" "--class=backlight" "set" "10%-"];
     };
 
+    # Scroll wheel
     "Mod+WheelScrollDown" = {
       cooldown-ms = 150;
       action.focus-workspace-down = {};
@@ -56,6 +59,10 @@
     "Mod+Ctrl+Shift+WheelScrollDown".action.move-column-right = {};
     "Mod+Ctrl+Shift+WheelScrollUp".action.move-column-left = {};
 
-    "Mod+Shift+P".action.power-off-monitors = {};
+    # Lock the screen and/or power off monitors
+    "Super+Alt+L".action.spawn = ["hyprlock"];
+    "Super+Alt+Ctrl+L" = {
+      action.spawn = ["sh" "-c" "hyprlock & niri msg action power-off-monitors"];
+    };
   };
 }

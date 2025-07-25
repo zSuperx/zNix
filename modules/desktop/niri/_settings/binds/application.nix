@@ -11,10 +11,6 @@
       action.spawn = ["kitty" "yazi"];
       # hotkey-overlay-title = "File Manager: kitty";
     };
-    "Super+Alt+L" = {
-      action.spawn = ["hyprlock"];
-      # hotkey-overlay-title = "Lock the Screen: hyprlock";
-    };
     "Mod+R" = {
       action.spawn = ["bash" "-c" "pgrep wofi || wofi"];
       # hotkey-overlay-title = "Run an Application: wofi";

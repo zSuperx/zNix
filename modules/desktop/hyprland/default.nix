@@ -10,6 +10,8 @@
       lib,
       ...
     }: {
+      stylix.targets.hyprland.enable = true;
+
       wayland.windowManager.hyprland = let
         inherit (pkgs.stdenv.hostPlatform) system;
         cycle-monitor-script = "${self}/scripts/cycle-monitor-ws.sh";

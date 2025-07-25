@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{isMaximal ? true, pkgs, lib, ...}: {
   config.vim = {
     viAlias = true;
     vimAlias = true;
@@ -20,27 +20,75 @@
         command = ":lua vim.opt_local.tabstop=2; vim.opt_local.shiftwidth=2";
       }
     ];
-    
+
     keymaps = [
-      { key = ";"; mode = ["n"]; action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>"; }
-      { key = ";"; mode = ["v"]; action = ":lua vim.api.nvim_feedkeys(':', 'v', true)<CR>"; }
-      { key = "<Esc>"; mode = "n"; action = ":if v:hlsearch | noh | endif<CR>"; }
-      { key = "<C-c>"; mode = "n"; action = ":%y+<CR>"; }
-      { key = "<Esc>"; mode = "t"; action = "<C-\\><C-n>"; }
-      { key = "<Tab>"; mode = "n"; action = ":bnext<CR>"; }
-      { key = "<S-Tab>"; mode = "n"; action = ":bprev<CR>"; }
-      { key = "<C-[>"; mode = "n"; action = ":po<CR>"; }
-      { key = "<C-j>"; mode = "n"; action = ":m +1<CR>"; }
-      { key = "<C-k>"; mode = "n"; action = ":m -2<CR>"; }
-      { key = ">"; mode = "v"; action = ">gv"; }
-      { key = "<"; mode = "v"; action = "<gv"; }
+      {
+        key = ";";
+        mode = ["n"];
+        action = ":lua vim.api.nvim_feedkeys(':', 'n', true)<CR>";
+      }
+      {
+        key = ";";
+        mode = ["v"];
+        action = ":lua vim.api.nvim_feedkeys(':', 'v', true)<CR>";
+      }
+      {
+        key = "<Esc>";
+        mode = "n";
+        action = ":if v:hlsearch | noh | endif<CR>";
+      }
+      {
+        key = "<C-c>";
+        mode = "n";
+        action = ":%y+<CR>";
+      }
+      {
+        key = "<Esc>";
+        mode = "t";
+        action = "<C-\\><C-n>";
+      }
+      {
+        key = "<Tab>";
+        mode = "n";
+        action = ":bnext<CR>";
+      }
+      {
+        key = "<S-Tab>";
+        mode = "n";
+        action = ":bprev<CR>";
+      }
+      {
+        key = "<C-[>";
+        mode = "n";
+        action = ":po<CR>";
+      }
+      {
+        key = "<C-j>";
+        mode = "n";
+        action = ":m +1<CR>";
+      }
+      {
+        key = "<C-k>";
+        mode = "n";
+        action = ":m -2<CR>";
+      }
+      {
+        key = ">";
+        mode = "v";
+        action = ">gv";
+      }
+      {
+        key = "<";
+        mode = "v";
+        action = "<gv";
+      }
     ];
 
     lineNumberMode = "number";
 
     git.gitsigns.enable = true;
 
-    lsp = {
+    lsp = lib.mkIf isMaximal {
       enable = true;
       formatOnSave = false;
       trouble.enable = true;
@@ -60,7 +108,7 @@
 
     fzf-lua.enable = true;
 
-    languages = {
+    languages = lib.mkIf isMaximal {
       enableFormat = true;
       enableTreesitter = true;
       enableExtraDiagnostics = true;
@@ -159,7 +207,7 @@
         fg = "#f9e2af";
       };
     };
-    
+
     statusline = {
       lualine = {
         enable = true;
@@ -215,14 +263,14 @@
     };
 
     extraPlugins = {
-      transparent = {
+      "transparent" = lib.mkIf isMaximal {
         package = pkgs.vimPlugins.transparent-nvim;
         setup = ''
-        require("transparent").setup({
-          extra_groups = {
-            "NormalFloat"
-          },
-        })
+          require("transparent").setup({
+            extra_groups = {
+              "NormalFloat"
+            },
+          })
         '';
       };
 
@@ -233,7 +281,7 @@
         '';
       };
 
-      "neogit" = {
+      "neogit" = lib.mkIf isMaximal {
         package = pkgs.vimPlugins.neogit;
         setup = ''
           require("neogit").setup()

@@ -19,6 +19,9 @@
         customPaneNavigationAndResize = true;
 
         extraConfig = ''
+
+          bind * set-option -w synchronize-panes
+
           bind -T copy-mode-vi v send -X begin-selection
           bind -T copy-mode-vi y send-keys -X copy-pipe "pbcopy"
           bind -T copy-mode-vi i send-keys -X cancel
@@ -69,14 +72,21 @@
               set -g status-right-length 100
               set -g status-left-length 100
               set -g status-left ""
-              set -g status-right "#{E:@catppuccin_status_application}"
+
+              set -g status-right ""
+              set -ag status-right "#{E:@catppuccin_status_application}"
+
+              set -ag status-right '#{?pane_synchronized,#[bg=#{@thm_green}],#[bg=#{@thm_red}]}#[fg#{@thm_mantle}]#[reverse]#[noreverse]'
+              set -ag status-right '#{?pane_synchronized,#[bg=#{@thm_green}],#[bg=#{@thm_red}]}#[fg#{@thm_crust}]  '
+              set -ag status-right "#[fg=#{@thm_fg},bg=#{@thm_surface_0}] sync "
+
               set -agF status-right "#{E:@catppuccin_status_cpu}"
               set -ag status-right "#{E:@catppuccin_status_session}"
               set -ag status-right "#{E:@catppuccin_status_date_time}"
 
               set -ag status-right "#[bg=#{@thm_yellow},fg=#{@thm_surface_0}]#[reverse]#[noreverse]"
               set -ag status-right "#[bg=#{@thm_yellow},fg=#{@thm_crust}]#(${get-battery-icon}) "
-              set -ag status-right "#[fg=#{@thm_fg},bg=#{@thm_surface_0}] #(${get-battery-capacity}) "
+              set -ag status-right "#[fg=#{@thm_fg},bg=#{@thm_surface_0}] #(${get-battery-capacity})% "
 
               # Stylix Theme
 
