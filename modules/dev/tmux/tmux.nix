@@ -1,4 +1,8 @@
-{self, inputs, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   unify.modules.tmux = {
     home = {
       pkgs,
@@ -15,6 +19,7 @@
         keyMode = "vi";
         newSession = true;
         shortcut = "g";
+        sensibleOnTop = true;
 
         customPaneNavigationAndResize = true;
 
@@ -49,7 +54,6 @@
         '';
 
         plugins = with pkgs.tmuxPlugins; [
-          tmux-which-key
           tmux-fzf
           sensible
           resurrect

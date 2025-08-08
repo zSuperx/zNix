@@ -17,7 +17,7 @@
         ])
       ];
 
-      stylix.targets.niri.enable = false;
+      stylix.targets.niri.enable = true;
     };
 
     nixos = {pkgs, ...}: {

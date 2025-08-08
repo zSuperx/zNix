@@ -1,14 +1,10 @@
 {
   unify.modules.gnome = {
     nixos = {pkgs, ...}: {
-      stylix = {
-        targets = {
-          gnome.enable = false;
-          gtk.enable = false;
-          gnome-text-editor.enable = false;
-          gtksourceview.enable = false;
-        };
-      };
+      environment.systemPackages = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+
       services = {
         # Enable the GNOME Desktop Environment.
         displayManager.gdm.enable = true;

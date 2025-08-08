@@ -69,7 +69,13 @@
 
         open-floating = true;
       }
+      {
+        matches = [
+          {is-focused = false;}
+        ];
 
+        opacity = 0.7;
+      }
       {
         geometry-corner-radius = {
           bottom-left = 12.0;

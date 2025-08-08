@@ -12,7 +12,7 @@
           ls = "eza";
           l = "eza -alh";
           grep = "rg --color=auto";
-          cat = "bat";
+          cat = "bat --paging=never";
 
           # Useful shorthands
           wlc = "wl-copy";

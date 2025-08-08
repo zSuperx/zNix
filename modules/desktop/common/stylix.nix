@@ -5,7 +5,8 @@
     ];
   };
   unify.modules.stylix = let
-    theme-name = "gruvbox-dark-hard";
+    # theme-name = "gruvbox-dark-hard";
+    theme-name = "nord";
   in {
     nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
