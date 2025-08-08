@@ -165,6 +165,12 @@ First clone the repo:
 git clone git@github.com:zSuperx/dotfiles.git
 ```
 
+Then run the following commands to overwrite my `_hardware-configuration.nix` with yours:
+
+```console
+nixos-generate-config --show-hardware-config > ./dotfiles/hosts/<hostname>/_hardware-configuration.nix
+```
+
 Then, granted you have [flake support enabled](https://nixos.wiki/wiki/flakes)
 in NixOS, you can rebuild using the standard rebuild command:
 
