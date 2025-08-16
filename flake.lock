@@ -943,6 +943,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1754725699,
+        "narHash": "sha256-iAcj9T/Y+3DBy2J0N+yF9XQQQ8IEb5swLFzs23CdP88=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "85dbfc7aaf52ecb755f87e577ddbe6dbbdbc1054",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -1028,11 +1044,11 @@
         "nvf": "nvf_2"
       },
       "locked": {
-        "lastModified": 1754619763,
-        "narHash": "sha256-V0vagHrRV41QcOIuVuyPy1lpL6t9/9UsTF5k05BpCRE=",
+        "lastModified": 1755331857,
+        "narHash": "sha256-YBVc7iqRwmHEUJfoQDMn737KxuGahtHy6m5Ava9sQSA=",
         "owner": "zSuperx",
         "repo": "nvim",
-        "rev": "1458da0ee62bb686c4d687a2445ea93fb397f340",
+        "rev": "cfec18ed7999dcaeec7b71e87bfc14363b890f19",
         "type": "github"
       },
       "original": {
@@ -1064,6 +1080,27 @@
         "type": "github"
       }
     },
+    "programsdb": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1755308844,
+        "narHash": "sha256-DxZGI5f2oTxFmM4+A184yV+g2HnR5spO8UvCq7gn7mc=",
+        "owner": "wamserma",
+        "repo": "flake-programs-sqlite",
+        "rev": "62a0eefa23ed3dfd08f8b56db4eaa316104722f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wamserma",
+        "repo": "flake-programs-sqlite",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fenix": "fenix",
@@ -1076,6 +1113,8 @@
         "nixpkgs": "nixpkgs_4",
         "nvf": "nvf",
         "nvim-personal": "nvim-personal",
+        "programsdb": "programsdb",
+        "spicetify": "spicetify",
         "stylix": "stylix",
         "unify": "unify"
       }
@@ -1097,6 +1136,25 @@
         "type": "github"
       }
     },
+    "spicetify": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5",
+        "systems": "systems_5"
+      },
+      "locked": {
+        "lastModified": 1754801101,
+        "narHash": "sha256-oxWjZ/SfhCvHFNePZcUu+LcE5j4xxuIt/yaoaSvMZk0=",
+        "owner": "Gerg-L",
+        "repo": "spicetify-nix",
+        "rev": "fcbfc21572518c68317df992929b28df9a1d8468",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gerg-L",
+        "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
     "stylix": {
       "inputs": {
         "base16": "base16",
@@ -1110,7 +1168,7 @@
           "nixpkgs"
         ],
         "nur": "nur",
-        "systems": "systems_5",
+        "systems": "systems_6",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
@@ -1192,6 +1250,21 @@
       }
     },
     "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_6": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -1309,6 +1382,21 @@
       "original": {
         "type": "git",
         "url": "https://codeberg.org/zSuperx/unify"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1678901627,
+        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     },
     "xdph": {

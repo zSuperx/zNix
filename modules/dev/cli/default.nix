@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   unify.modules.cli = {
     nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
@@ -10,9 +14,17 @@
         bat
         dust
         fd
-      ];
-    };
+        gotop
 
+        # Networking
+        nmap
+        traceroute
+        dig
+        busybox
+      ];
+      programs.command-not-found.enable = true;
+      programs.command-not-found.dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+    };
     home.imports = with self.modules.home; [
       yazi
       nh

@@ -74,6 +74,10 @@
           {is-focused = false;}
         ];
 
+        excludes = [
+          {title = ".*(Hulu|YouTube|Netflix).*";}
+        ];
+        
         opacity = 0.7;
       }
       {

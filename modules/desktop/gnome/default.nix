@@ -1,7 +1,7 @@
 {
   unify.modules.gnome = {
     nixos = {pkgs, ...}: {
-      environment.systemPackages = [
+      xdg.portal.extraPortals = [
         pkgs.xdg-desktop-portal-gtk
       ];
 

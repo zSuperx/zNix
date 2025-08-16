@@ -18,8 +18,6 @@
       ];
 
       flake.lib = {
-        projectRoot = "/home/zsuper/dotfiles/";
-
         # Imports both Home and NixOS modules from self
         importBoth = modules: {
           home.imports = map (elem: self.modules.home.${elem}) modules;
@@ -58,7 +56,7 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -66,10 +64,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    programsdb = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify.url = "github:Gerg-L/spicetify-nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
 

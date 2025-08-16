@@ -2,12 +2,22 @@
   # Workspace-related keybinds
   # Contains most of Niri's base config
 
+  programs.niri.settings.layout.preset-column-widths = [
+    { proportion = 1.0 / 2.0;} # 1/2
+    { proportion = 2.0 / 3.0;} # 2/3
+    { proportion = 3.0 / 3.0;} # Fullscreen
+  ];
+
   programs.niri.settings.binds = {
     "Mod+Shift+Slash".action.show-hotkey-overlay = {};
 
     "Mod+O" = {
       action.toggle-overview = {};
       repeat = false;
+    };
+
+    "Mod+R" = {
+      action.switch-preset-column-width = {};
     };
 
     "Mod+Q".action.close-window = {};

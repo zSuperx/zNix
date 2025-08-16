@@ -50,7 +50,6 @@
 
           # Options to make tmux more pleasant
           set -g mouse on
-          set -g default-terminal "tmux-256color"
         '';
 
         plugins = with pkgs.tmuxPlugins; [
