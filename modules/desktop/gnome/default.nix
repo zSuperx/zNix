@@ -1,10 +1,6 @@
 {
   unify.modules.gnome = {
     nixos = {pkgs, ...}: {
-      xdg.portal.extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
-
       services = {
         # Enable the GNOME Desktop Environment.
         displayManager.gdm.enable = true;

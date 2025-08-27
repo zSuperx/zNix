@@ -14,9 +14,7 @@
       programs.nvf = {
         enable = true;
         defaultEditor = true;
-        settings = inputs.nvim-personal.configuration.${system} {
-          isMaximal = true;
-        };
+        settings = inputs.nvim-personal.configuration.${system}.default;
       };
 
       stylix.targets.nvf.enable = true;

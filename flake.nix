@@ -48,7 +48,8 @@
     };
 
     nvim-personal = {
-      url = "github:zSuperx/nvim";
+      # url = "github:zSuperx/nvim";
+      url = "/home/zsuper/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

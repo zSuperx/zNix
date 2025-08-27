@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  hostname,
   ...
 }: {
   # Bootloader.
@@ -11,6 +12,7 @@
 
   networking = {
     # Enable networking
+    hostName = hostname;
     networkmanager.enable = true;
     firewall = {
       allowedTCPPorts = [22];

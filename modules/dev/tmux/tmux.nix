@@ -14,10 +14,14 @@
         smart-split-script = "${self}/scripts/tmux-smart-split.sh";
         get-battery-capacity = "${self}/scripts/battery-capacity.sh";
         get-battery-icon = "${self}/scripts/battery-icon.sh";
+        rename-session = pkgs.writeShellScriptBin "rename-session.sh" ''
+          tmux send-keys Enter
+          tmux choose-session
+          tmux command-prompt -p "New session name:" -I "#{session_name}" "rename-session '%%'"
+        '';
       in {
         enable = true;
         keyMode = "vi";
-        newSession = true;
         shortcut = "g";
         sensibleOnTop = true;
 
@@ -32,6 +36,8 @@
           bind -T copy-mode-vi i send-keys -X cancel
           bind -T copy-mode-vi a send-keys -X cancel
 
+          bind -n M-f resize-pane -Z
+
           bind -n M-h select-pane -L
           bind -n M-j select-pane -D
           bind -n M-k select-pane -U
@@ -42,29 +48,28 @@
           bind -n M-K resize-pane -U 5
           bind -n M-L resize-pane -R 5
 
-          # Alt+n to smart-split and create a new pane
-          # bind -n M-n split-window -h
-          # bind -n M-N split-window -v
-
           bind -n M-n run-shell ${smart-split-script}
+
+          # bind-key -T root n if-shell -F '#{==:#{pane_mode},tree-mode}' \
+          #     'new-session' \
+          #     'send-keys n'
+
+          # bind-key -T root d if-shell -F '#{==:#{pane_mode},tree-mode}' \
+          #     'send-keys x' \
+          #     'send-keys d'
+
+          # bind-key -T root r if-shell -F '#{==:#{pane_mode},tree-mode}' \
+          #     'run-shell ${lib.getExe rename-session}' \
+          #     'send-keys r'
 
           # Options to make tmux more pleasant
           set -g mouse on
+
+          bind R source ~/.config/tmux/tmux.conf
         '';
 
         plugins = with pkgs.tmuxPlugins; [
-          tmux-fzf
           sensible
-          resurrect
-          cpu
-          battery
-          {
-            plugin = tmux-sessionx;
-            extraConfig = ''
-              unbind o
-              set -g @sessionx-bind 'o'
-            '';
-          }
           {
             plugin = catppuccin;
             extraConfig = with config.lib.stylix.colors.withHashtag; ''
@@ -83,7 +88,6 @@
               set -ag status-right '#{?pane_synchronized,#[bg=#{@thm_green}],#[bg=#{@thm_red}]}#[fg#{@thm_crust}]  '
               set -ag status-right "#[fg=#{@thm_fg},bg=#{@thm_surface_0}] sync "
 
-              set -agF status-right "#{E:@catppuccin_status_cpu}"
               set -ag status-right "#{E:@catppuccin_status_session}"
               set -ag status-right "#{E:@catppuccin_status_date_time}"
 

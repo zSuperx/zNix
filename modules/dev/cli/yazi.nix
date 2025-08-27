@@ -8,27 +8,22 @@
             {
               on = ";";
               run = "shell --interactive --block";
-              desc = "Run shell in yazi and block until done";
+              desc = "Run and block";
             }
             {
               on = ":";
               run = "shell --interactive --orphan";
-              desc = "Run shell and orphan";
-            }
-            {
-              on = "<C-d>";
-              run = "shell --block fish";
-              desc = "Drop into terminal";
+              desc = "Run and orphan";
             }
             {
               on = "<Space>";
               run = "toggle";
-              desc = "Toggle select on current file";
+              desc = "Toggle select";
             }
             {
               on = ["g" "r"];
-              run = "shell -- ya emit cd '$(git rev-parse --show-toplevel)'";
-              desc = "Go to git repo root";
+              run = "shell -- ya emit cd \$(git rev-parse --show-toplevel)";
+              desc = "Go to git root";
             }
           ];
         };
