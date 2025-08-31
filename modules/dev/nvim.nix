@@ -1,19 +1,14 @@
 {
-  self,
-  inputs,
-  ...
-}: {
-  unify.modules.nvf = {
-    nixos = {
-      pkgs,
+  nvim =
+    {
+      self,
       config,
+      info,
       ...
-    }: let
-      inherit (pkgs.stdenv.hostPlatform) system;
-    in {
+    }:
+    {
       environment.systemPackages = [
-        (inputs.zNix.packages.${system}.nvim.override {colorscheme = config.lib.stylix.colors;})
+        (self.packages.${info.system}.nvim.override { colorscheme = config.lib.stylix.colors; })
       ];
     };
-  };
 }

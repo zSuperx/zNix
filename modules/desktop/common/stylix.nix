@@ -1,14 +1,13 @@
-{inputs, ...}: {
-  unify.nixos = {
-    imports = [
-      inputs.stylix.nixosModules.stylix
-    ];
-  };
-  unify.modules.stylix = let
-    # theme-name = "gruvbox-dark-hard";
-    theme-name = "nord";
-  in {
-    nixos = {pkgs, ...}: {
+let
+  theme-name = "gruvbox-dark-hard";
+in
+{
+  stylix =
+    { inputs, pkgs, ... }:
+    {
+      imports = [
+        inputs.stylix.nixosModules.stylix
+      ];
       environment.systemPackages = with pkgs; [
         nerd-fonts.jetbrains-mono
       ];
@@ -28,5 +27,4 @@
 
       console.font = "JetBrainsMono Nerd Font";
     };
-  };
 }

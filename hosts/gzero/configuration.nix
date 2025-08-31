@@ -1,22 +1,32 @@
 {
-  inputs,
   pkgs,
-  hostname,
+  lib,
+  config,
+  info,
   ...
-}: {
+}:
+{
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   services.fprintd.enable = true;
 
+  users.users.${info.username} = {
+    isNormalUser = true;
+    shell = lib.mkIf config.programs.fish.enable pkgs.fish;
+    extraGroups = [
+      "wheel"
+      "docker"
+      "networkmanager"
+    ];
+  };
   networking = {
     # Enable networking
-    hostName = hostname;
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [22];
-      allowedUDPPorts = [];
+      allowedTCPPorts = [ 22 ];
+      allowedUDPPorts = [ ];
       enable = true;
     };
   };
@@ -50,7 +60,7 @@
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
-      browseDomains = ["local"];
+      browseDomains = [ "local" ];
       publish = {
         enable = true;
         addresses = true;
@@ -80,7 +90,10 @@
       "flakes"
     ];
 
-    trusted-users = ["root" "@wheel"];
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;

@@ -1,12 +1,16 @@
-{self, ...}: {
-  unify.modules.profile-dev = self.lib.importBoth [
-    "cli"
-    "fish"
-    "nvf"
-    "kitty"
-    "wezterm"
-    "languages"
-    "tmux"
-    "zellij"
-  ];
+{
+  profiles.dev =
+    { self, ... }:
+    {
+      imports = with self.nixosModules; [
+        cli
+        fish
+        nvim
+        kitty
+        wezterm
+        languages
+        tmux
+        zellij
+      ];
+    };
 }

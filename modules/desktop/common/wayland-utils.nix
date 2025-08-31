@@ -1,14 +1,10 @@
-{self, ...}: {
-  unify.modules.wayland-utils = {
-    home = {pkgs, ...}: {
-      imports = with self.modules.home; [
-        wofi
-      ];
-    };
-
-    nixos = {pkgs, ...}: {
-      imports = with self.modules.nixos; [
+{
+  wayland-utils =
+    { self, pkgs, ... }:
+    {
+      imports = with self.nixosModules; [
         stylix
+        wofi
       ];
 
       environment.systemPackages = with pkgs; [
@@ -23,5 +19,4 @@
         swww
       ];
     };
-  };
 }

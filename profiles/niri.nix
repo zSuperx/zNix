@@ -1,6 +1,10 @@
-{self, ...}: {
-  unify.modules.profile-niri = self.lib.importBoth [
-    "niri"
-    "waybar"
-  ];
+{
+  profiles.niri =
+    { self, ... }:
+    {
+      imports = with self.nixosModules; [
+        niri
+        waybar
+      ];
+    };
 }

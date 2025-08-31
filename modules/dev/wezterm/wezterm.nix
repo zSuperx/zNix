@@ -1,17 +1,16 @@
 {
-  unify.modules.wezterm = {
-    home = {pkgs, ...}: {
-      stylix.targets.wezterm.enable = true;
+  wezterm =
+    { pkgs, ... }:
+    {
+      hm = {
+        stylix.targets.wezterm.enable = true;
 
-      programs.wezterm = {
-        enable = true;
-        package = pkgs.wezterm;
+        programs.wezterm = {
+          enable = true;
+          package = pkgs.wezterm;
 
-        # ITS FAT
-        extraConfig =
-          builtins.readFile
-          ./wezterm.lua
-          + ''
+          # ITS FAT
+          extraConfig = builtins.readFile ./wezterm.lua + ''
 
             return {
               cursor_blink_ease_in = "Constant",
@@ -20,7 +19,7 @@
               default_cursor_style = "BlinkingBar",
             }
           '';
+        };
       };
     };
-  };
 }

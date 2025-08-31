@@ -3,21 +3,6 @@
 This repository contains all scripts, config, and most importantly, `.nix`
 files that directly rebuild into my system.
 
-In addition to being managed by Nix, this project attempts to follow the
-[Dendritic pattern](https://github.com/mightyiam/dendritic) by utilizing a
-library called [Unify](https://codeberg.org/quasigod/unify) in conjunction with
-[`import-tree`](https://github.com/vic/import-tree).
-
-<!--toc:start-->
-- [Previews](#previews)
-- [Structure](#structure)
-  - [Modules](#modules)
-  - [Profiles](#profiles)
-  - [Hosts](#hosts)
-- [Building](#building)
-- [Credits](#credits)
-<!--toc:end-->
-
 ## Previews
 
 <details>
@@ -53,140 +38,112 @@ library called [Unify](https://codeberg.org/quasigod/unify) in conjunction with
 
 ## Structure
 
-Thanks to `import-tree` and the Dendritic pattern, every `.nix` file is not only
-recursively imported, but treated as a `flake-parts` module to be used by Unify.
+I have run through my fair share of flake libaries over the past few months
+(`flake-parts`, `unify`, `import-tree`), but I'm now proud to say that with the
+exception of `base16.nix`, the entire flake structure is dependency-less!
 
-All components prefixed with an underscore (i.e. `_nvim-settings.nix`) are ignored
-by `import-tree`.
+That is to say, any utility function used in this flake (again, with the
+exception of `mkSchemeAttrs` from `base16.nix`) can be found within this flake
+itself.
 
 ### Modules
 
-The Unify library allows you to "unify" NixOS and Home Manager code by grouping
-them into labeled modules (yes, they can be grouped together!). A typical
-module will be of the form:
+This flake exposes a **lot** of `nixosModules`. I follow a simple preference:
+all modules should be named and unreliant on their place in the file system.
+What does this mean?
+
+Unlike a normal `nixosModule`, which takes the form...
+
+```nix
+{ pkgs, ... }: {
+  # NixOS options go here
+}
+```
+
+... all imported `.nix` files will instead have the form:
 
 ```nix
 {
-  unify.modules.my-module = {
-    home = { pkgs, ... }: {
-      programs.my-program = {
-        enable = true;
-        someOption = true;
-      };
-    };
-
-    nixos = { pkgs, ... }: {
-      services.my-service = {
-        enable = true;
-        someOtherOptions = pkgs.lib.importTOML ./you-get-the-idea.toml
-      };
-    };
+  module-name = 
+  { pkgs, ... }: {
+    # NixOS options go here
   };
 }
 ```
 
-The `modules/` and `profiles/` directories contain all such modules, and are
-recursively imported via `import-tree`, so their internal structure is for the
-most part, freeform. That is, things can be moved around freely without
-impacting flake evaluation. This let me organize it in an intuitive way without
-having to worry about relative imports and paths at all!
+This form allows me to recursively import all files from a set of root
+directories, and every file will be a named NixOS module! And because it is a
+recursive import, the `.nix` files for modules can be freely moved or renamed
+at any time!
 
 ### Profiles
 
-Profiles are actually no different than modules, but their semantic purpose
-is simply to include other modules. To aid with this, I define a helper function,
-`importBoth`, which can be used like:
+Profiles have one semantic purpose: group regular modules together into a
+collection that can all be  imported at once. Syntactically, they are actually
+no different than modules, as a typical profile looks like:
 
 ```nix
-{self, ...}: {
-  unify.modules.my-profile = self.lib.importBoth [
-    "xyz"
+{
+  profile-name =
+  { self, ... }:
+  {
+    imports = with self.nixosModules; [
+      module1
+      module2
+      module3
+      module4
+    ];
+  };
+}
+```
+
+This allows for modules to be as granular as they want while still being able
+to connect together like pieces of a puzzle. For example, `niri` relies on
+`wayland-utils`, but so does `hyprland`. Thus, it makes sense to define a
+`niri` profile that imports the `niri` and `wayland-utils` modules. Similarily,
+a `hyprland` profile exists to import `hyprland`, `hyprutils`, and
+`wayland-utils`.
+
+### Hosts
+
+Finally, hosts are system configurations that consume modules and profiles. A
+helper function (`self.lib.mkSystem`) exists to call `nixpkgs.lib.nixosSystem`
+and import prerequisite modules (namely `mkAliasOptionModule [ "hm" ] [
+"home-manager" "users" username ]`.
+
+```nix
+# hosts/gzero/default.nix
+{
+  self,
+  userInfo,
+  ...
+}:
+self.lib.mkSystem {
+  inherit (userInfo) username;
+  hostname = "gzero";
+  system = "x86_64-linux";
+  insanelySpecialArgs = userInfo;
+  modules = with self.nixosModules; [
+    profiles.basic
+    profiles.dev
+    profiles.hyprland
+    profiles.gaming
+    profiles.niri
+
+    wayland-utils
+    gBar
+    gnome
+
+    ./configuration.nix
+    ./hardware-configuration.nix
   ];
 }
 ```
 
-This will simply add `imports = [self.modules.nixos.xyz];` to
-`unify.modules.my-profile.nixos` and `imports = [self.modules.home.xyz];` to
-`unify.modules.my-profile.home`.
-
-(Note: the syntax and usage of this function is quite cumbersome and limited. I
-do plan on implementing this functionality natively in a fork of Unify
-someday...)
-
-### Hosts
-
-Hosts can consume modules, and because profiles are just modules, a host can be
-defined to use a preconfigured set of profiles. This can be seen in
-`hosts/gzero/gzero.nix`, for example:
-```nix
-{config, ...}: let
-  username = "zsuper";
-  hostname = "gzero";
-  stateVersion = "25.05";
-in {
-  unify.hosts.nixos.${hostname} = rec {
-    modules = with config.unify.modules; [
-      profile-basic
-      profile-dev
-      profile-hyprland
-      profile-gaming
-      profile-niri
-      wayland-utils
-      gBar
-    ];
-
-    users.${username}.modules = modules;
-
-    # ...
-  };
-}
-```
-
-This host is configured to use the profiles for `basic`, `dev`, `hyprland`,
-etc., but also imports the `gBar` and `wayland-utils` modules directly.
-
-Additionally, the `hosts/<hostname>` directories contain `_configuration.nix`
-and `_hardware-configuration.nix` files that are meant to be specific to the
-associated host.
-
-In the future, I plan on breaking up `_configuration.nix` into Unify modules,
-but for now it is a "vanilla" NixOS import.
-
-Additionally, `_hardware-configuration.nix` is **specific to a machine's
-hardware**. NixOS should automatically generate this file for you upon first
-boot, but in case you want to regenerate it, check out the command
-[`nixos-generate-config`](https://nixos.wiki/wiki/Nixos-generate-config).
-
-## Building
-
-First clone the repo:
-
-```console
-git clone git@github.com:zSuperx/dotfiles.git
-```
-
-Then run the following commands to overwrite my `_hardware-configuration.nix` with yours:
-
-```console
-nixos-generate-config --show-hardware-config > ./dotfiles/hosts/<hostname>/_hardware-configuration.nix
-```
-
-Then, granted you have [flake support enabled](https://nixos.wiki/wiki/flakes)
-in NixOS, you can rebuild using the standard rebuild command:
-
-```console
-sudo nixos-rebuild switch --flake ./dotfiles#<hostname>
-```
-
-or with Nix Helper:
-
-```console
-nh os switch ./dotfiles -H <hostname>
-```
-
 ## Credits
 
-Here are the slightly lesser known sources I referenced or drew inspiration from:
+Here are the slightly lesser known sources I referenced or drew inspiration
+from in the past:
 
 - [Unify](https://codeberg.org/quasigod/unify)
 - [`import-tree`](https://github.com/vic/import-tree)

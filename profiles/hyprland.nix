@@ -1,6 +1,11 @@
-{self, ...}: {
-  unify.modules.profile-hyprland = self.lib.importBoth [
-    "hyprland"
-    "hypr-util"
-  ];
+{
+  profiles.hyprland =
+    { self, ... }:
+    {
+      imports = with self.nixosModules; [
+        hyprland
+        hyprutil
+        wayland-utils
+      ];
+    };
 }

@@ -1,6 +1,6 @@
 {
-  unify.modules.nh = {
-    home = {pkgs, ...}: {
+  nh = {
+    hm = {
       programs.nh = {
         enable = true;
         clean.enable = true;

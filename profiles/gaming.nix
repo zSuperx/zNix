@@ -1,5 +1,9 @@
-{self, ...}: {
-  unify.modules.profile-gaming = self.lib.importBoth [
-    "gaming"
-  ];
+{
+  profiles.gaming =
+    { self, ... }:
+    {
+      imports = with self.nixosModules; [
+        gaming
+      ];
+    };
 }

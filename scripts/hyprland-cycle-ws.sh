@@ -1,25 +1,25 @@
 if [[ $# -ne 1 ]]; then
-	echo "Usage: $0 [prev|next]"
-	exit 1
+  echo "Usage: $0 [prev|next]"
+  exit 1
 fi
 
 if [ "$1" = "next" ]; then
-	op="+"
+  op="+"
 elif [ "$1" = "prev" ]; then
-	op="-"
+  op="-"
 else
-	echo "Invalid argument: $1"
-	exit 1
+  echo "Invalid argument: $1"
+  exit 1
 fi
 
 active=$(hyprctl activewindow -j)
 if [ "$active" = "{}" ]; then
-	if [ "$op" = "+" ]; then
-		hyprctl dispatch workspace m+1
-	else
-		hyprctl dispatch workspace m-1
-	fi
-	exit 1
+  if [ "$op" = "+" ]; then
+    hyprctl dispatch workspace m+1
+  else
+    hyprctl dispatch workspace m-1
+  fi
+  exit 1
 fi
 
 active_monitor=$(echo "$active" | jq '.monitor')

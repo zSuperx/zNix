@@ -1,6 +1,6 @@
 {
-  unify.modules.vesktop = {
-    home = {pkgs, ...}: {
+  vesktop = {
+    hm = {
       stylix.targets.vesktop.enable = false;
 
       programs.vesktop = {

@@ -1,6 +1,6 @@
 {
-  unify.modules.yazi = {
-    home = {pkgs, ...}: {
+  yazi = {
+    hm = {
       programs.yazi = {
         enable = true;
         keymap = {
@@ -21,7 +21,10 @@
               desc = "Toggle select";
             }
             {
-              on = ["g" "r"];
+              on = [
+                "g"
+                "r"
+              ];
               run = "shell -- ya emit cd \$(git rev-parse --show-toplevel)";
               desc = "Go to git root";
             }

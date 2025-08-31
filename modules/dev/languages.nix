@@ -1,6 +1,7 @@
-{inputs, ...}: {
-  unify.modules.languages = {
-    nixos = {pkgs, ...}: {
+{
+  languages =
+    { inputs, pkgs, ... }:
+    {
       nixpkgs.overlays = [
         inputs.fenix.overlays.default
       ];
@@ -25,5 +26,4 @@
         python312
       ];
     };
-  };
 }

@@ -1,11 +1,7 @@
 {
-  unify.modules.TEMPLATE = {
-    home = {pkgs, ...}: {
-      # Home manager config here
+  NAME =
+    { pkgs, ... }:
+    {
+      hm = { };
     };
-
-    nixos = {pkgs, ...}: {
-      # NixOS config here
-    };
-  };
 }

@@ -1,10 +1,12 @@
 {
-  self,
-  inputs,
-  ...
-}: {
-  unify.modules.cli = {
-    nixos = {pkgs, ...}: {
+  cli =
+    {
+      self,
+      inputs,
+      pkgs,
+      ...
+    }:
+    {
       environment.systemPackages = with pkgs; [
         jq
         fzf
@@ -22,14 +24,18 @@
         dig
         busybox
       ];
-      programs.command-not-found.enable = true;
-      programs.command-not-found.dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+
+      # Reverse map from binary names to Nix packages
+      programs.command-not-found = {
+        enable = true;
+        dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+      };
+
+      imports = with self.nixosModules; [
+        yazi
+        nh
+        direnv
+        zoxide
+      ];
     };
-    home.imports = with self.modules.home; [
-      yazi
-      nh
-      direnv
-      zoxide
-    ];
-  };
 }

@@ -1,6 +1,7 @@
 {
-  unify.modules.gaming = {
-    nixos = {pkgs, ...}: {
+  gaming =
+    { pkgs, ... }:
+    {
       environment.systemPackages = with pkgs; [
         prismlauncher
         heroic
@@ -8,5 +9,4 @@
 
       programs.steam.enable = true;
     };
-  };
 }

@@ -1,29 +1,26 @@
 {
   description = "Nixos configuration";
 
-  outputs = inputs @ {
-    self,
-    flake-parts,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs self;} {
-      systems = ["x86_64-linux"];
-      imports = [
-        inputs.unify.flakeModule
-        (inputs.import-tree [
-          ./hosts
-          ./modules
-          ./profiles
-        ])
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      ...
+    }:
+    let
+      userInfo = import ./userInfo.nix;
+    in
+    {
+      lib = import ./lib { inherit inputs self; };
+
+      nixosConfigurations = import ./hosts { inherit self inputs userInfo; };
+
+      nixosModules = self.lib.recursiveImport [
+        ./modules
+        ./profiles
       ];
 
-      flake.lib = {
-        # Imports both Home and NixOS modules from self
-        importBoth = modules: {
-          home.imports = map (elem: self.modules.home.${elem}) modules;
-          nixos.imports = map (elem: self.modules.nixos.${elem}) modules;
-        };
-      };
+      packages = import ./packages { inherit inputs; };
     };
 
   nixConfig = {
@@ -38,19 +35,7 @@
   };
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
     import-tree.url = "github:vic/import-tree";
-    unify = {
-      url = "git+https://codeberg.org/zSuperx/unify";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    zNix = {
-      url = "github:zSuperx/zNix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -70,6 +55,8 @@
     };
 
     spicetify.url = "github:Gerg-L/spicetify-nix";
+    mnw.url = "github:Gerg-L/mnw";
+    base16.url = "github:SenchoPens/base16.nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
 

@@ -1,26 +1,12 @@
 {
-  self,
-  inputs,
-  ...
-}: {
-  unify.modules.niri = {
-    home = {
+  niri =
+    {
+      inputs,
       pkgs,
-      config,
       lib,
       ...
-    }: {
-      imports = [
-        # All Niri config is stored in `./_settings`, so just recursively import everything
-        (inputs.import-tree.initFilter (p: lib.hasSuffix ".nix" p) [
-          ./_settings
-        ])
-      ];
-
-      stylix.targets.niri.enable = true;
-    };
-
-    nixos = {pkgs, ...}: {
+    }:
+    {
       xdg.portal.extraPortals = [
         pkgs.xdg-desktop-portal-gtk
       ];
@@ -34,6 +20,13 @@
       ];
 
       programs.niri.enable = true;
+
+      # Configure Niri through Home Manager
+      hm = {
+        # All Niri config is stored in `./_settings`, so just recursively import everything
+        imports = (builtins.filter (path: lib.hasSuffix ".nix" path)) (lib.fileset.toList ./_settings);
+
+        stylix.targets.niri.enable = true;
+      };
     };
-  };
 }
