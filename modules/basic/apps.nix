@@ -6,6 +6,7 @@
         mpv
         obsidian
         nautilus
+        blueman
       ];
     };
 

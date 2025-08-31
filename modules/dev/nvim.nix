@@ -4,20 +4,16 @@
   ...
 }: {
   unify.modules.nvf = {
-    home = {pkgs, ...}: let
+    nixos = {
+      pkgs,
+      config,
+      ...
+    }: let
       inherit (pkgs.stdenv.hostPlatform) system;
     in {
-      imports = [
-        inputs.nvf.homeManagerModules.default
+      environment.systemPackages = [
+        (inputs.zNix.packages.${system}.nvim.override {colorscheme = config.lib.stylix.colors;})
       ];
-
-      programs.nvf = {
-        enable = true;
-        defaultEditor = true;
-        settings = inputs.nvim-personal.configuration.${system}.default;
-      };
-
-      stylix.targets.nvf.enable = true;
     };
   };
 }

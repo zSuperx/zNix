@@ -47,14 +47,8 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    nvim-personal = {
-      # url = "github:zSuperx/nvim";
-      url = "/home/zsuper/nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nvf = {
-      url = "github:notashelf/nvf";
+    zNix = {
+      url = "github:zSuperx/zNix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
