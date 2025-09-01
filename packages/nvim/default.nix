@@ -65,6 +65,7 @@ inputs.mnw.lib.wrap pkgs {
         guess-indent-nvim
         vim-nix
         markdown-preview-nvim
+        colorizer
       ]
       ++ otherPlugins;
     dev.myconfig = {
@@ -80,6 +81,7 @@ inputs.mnw.lib.wrap pkgs {
     rust-analyzer
     rustfmt
 
+    nil
     nixd
     nixfmt
 

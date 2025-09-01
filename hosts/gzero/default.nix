@@ -9,16 +9,13 @@ self.lib.mkSystem {
   system = "x86_64-linux";
   insanelySpecialArgs = userInfo;
   modules = with self.nixosModules; [
+    profiles.system
     profiles.basic
     profiles.dev
     profiles.hyprland
     profiles.gaming
     profiles.niri
-
-    wayland-utils
-    gBar
     gnome
-
     ./configuration.nix
     ./hardware-configuration.nix
   ];

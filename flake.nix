@@ -4,16 +4,12 @@
   outputs =
     inputs@{
       self,
-      nixpkgs,
       ...
     }:
-    let
-      userInfo = import ./userInfo.nix;
-    in
     {
       lib = import ./lib { inherit inputs self; };
 
-      nixosConfigurations = import ./hosts { inherit self inputs userInfo; };
+      nixosConfigurations = import ./hosts { inherit self inputs; };
 
       nixosModules = self.lib.recursiveImport [
         ./modules
@@ -57,13 +53,9 @@
     spicetify.url = "github:Gerg-L/spicetify-nix";
     mnw.url = "github:Gerg-L/mnw";
     base16.url = "github:SenchoPens/base16.nix";
-
     hyprland.url = "github:hyprwm/Hyprland";
-
     niri.url = "github:sodiboo/niri-flake";
-
     gBar.url = "github:scorpion-26/gBar";
-
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

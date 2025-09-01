@@ -44,6 +44,7 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action)
 
 
 -- Plugins
@@ -67,4 +68,5 @@ vim.lsp.enable('lua_ls')
 vim.lsp.enable('pyright')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('nixd')
+vim.lsp.enable('nil_ls')
 vim.lsp.enable('marksman')

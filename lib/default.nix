@@ -52,7 +52,6 @@ in
         inputs.home-manager.nixosModules.home-manager
         (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
         {
-          networking.hostName = hostname;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = insanelySpecialArgs;

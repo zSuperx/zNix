@@ -1,5 +1,5 @@
 let
-  theme-name = "gruvbox-dark-hard";
+  theme-name = "gruvbox-dark-medium";
 in
 {
   stylix =

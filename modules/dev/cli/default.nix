@@ -17,6 +17,10 @@
         dust
         fd
         gotop
+        kitty
+        vim
+        wget
+        git
 
         # Networking
         nmap
