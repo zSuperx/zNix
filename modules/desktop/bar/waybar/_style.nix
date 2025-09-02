@@ -1,6 +1,5 @@
-{ config, ... }:
-with config.lib.stylix.colors.withHashtag;
-''
+{config, ...}:
+with config.lib.stylix.colors.withHashtag; ''
   * {
       font-family: Font Awesome, Liberation Mono, Maple Mono Italic, "JetbrainsMono Nerd Font", Roboto, sans-serif, DejaVuSansMono, Maple Mono, "AdwaithaMono";
       font-weight: 900;
@@ -19,10 +18,6 @@ with config.lib.stylix.colors.withHashtag;
   }
 
   #modules-right {
-      font-size: 18px;
-  }
-
-  #modules-center {
       font-size: 18px;
   }
 
@@ -154,12 +149,6 @@ with config.lib.stylix.colors.withHashtag;
       font-family: "bargraph";
       font-size: 15px;
       padding-right: 10px;
-  }
 
-  #custom-spotify {
-      color: ${base0E};
-      font-family: "bargraph";
-      font-size: 15px;
-      padding-right: 10px;
   }
 ''

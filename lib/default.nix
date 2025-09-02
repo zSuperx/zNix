@@ -42,8 +42,9 @@ in
             system
             stateVersion
             ;
-        };
-      } // args.insanelySpecialArgs;
+        }
+        // args.insanelySpecialArgs;
+      };
     in
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
