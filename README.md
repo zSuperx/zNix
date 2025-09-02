@@ -8,39 +8,39 @@ files that directly rebuild into my system.
 <details>
   <summary>Hyprland</summary>
 
-  Hyprland:
+  ### Hyprland:
   ![Hyprland tiled Fish terminals](./assets/preview/hyprland-tiling.png)
 
-  Hyprlock:
+  ### Hyprlock:
   ![Hyprlock (based on Catppuccin)](./assets/preview/hyprlock.png)
 
-  Hyprpanel:
+  ### Hyprpanel:
   ![Hyprpanel](./assets/preview/hyprpanel.png)
 </details>
 
 <details>
   <summary>Niri</summary>
 
-  Niri:
+  ### Niri:
   ![Niri](./assets/preview/niri.png)
 </details>
 
 <details>
   <summary>Applications</summary>
 
-  Rofi:
-  ![Rofi](./assets/preview/rofi-showcase.mp4)
+  ### Rofi:
+  ![Rofi](./assets/preview/rofi-showcase.gif)
 
-  Waybar:
-  ![Waybar](./assets/preview/waybar-showcase.mp4)
+  ### Waybar:
+  ![Waybar](./assets/preview/waybar-showcase.gif)
 
-  Yazi:
+  ### Yazi:
   ![Yazi](./assets/preview/yazi.png)
 
-  Neovim + Tmux:
+  ### Neovim + Tmux:
   ![Neovim + Tmux](./assets/preview/nvim-tmux.png)
 
-  Gotop:
+  ### Gotop:
   ![Gotop](./assets/preview/gotop.png)
 </details>
 
