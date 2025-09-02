@@ -2,6 +2,7 @@
   nixos =
     {
       info,
+      userInfo,
       pkgs,
       config,
       ...
@@ -30,6 +31,11 @@
           "docker"
           "networkmanager"
         ];
+      };
+      hm = {
+        home.sessionVariables = {
+          EDITOR = userInfo.editor;
+        };
       };
     };
 }

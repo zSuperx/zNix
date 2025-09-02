@@ -1,6 +1,6 @@
 {
   fish =
-    { self, info, ... }:
+    { self, userInfo, ... }:
     {
       programs.fish.enable = true;
 
@@ -12,7 +12,7 @@
         programs.fish = {
           enable = true;
 
-          inherit (info) shellAliases;
+          inherit (userInfo) shellAliases;
           # Disable Fish greeting & add ~/bin to path
           interactiveShellInit = ''
             set fish_greeting

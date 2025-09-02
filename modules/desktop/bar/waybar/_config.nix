@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   blueman-manager = lib.getExe' pkgs.blueman "blueman-manager";
   nmtui = "${lib.getExe pkgs.kitty} nmtui";
   toggle-bluetooth = pkgs.writeShellScript "toggle-bluetooth" ''
@@ -25,7 +26,35 @@
     fi
     waybar -t #Refresh Waybar after each action
   '';
-in {
+  spotify-status = pkgs.writeShellScript "spotify-status" ''
+playerctl --player=spotify metadata -F --format '{{status}} {{xesam:title}} - {{xesam:artist}}' |
+while read -r STATUS SONG; do
+  STATUS=$(playerctl --player=spotify status)
+  case "$STATUS" in
+    Playing) ICON="⏸" ;;
+    Paused) ICON="▶" ;;
+    Stopped) ICON="◼" ;;
+  esac
+  echo "$ICON $SONG"
+done
+  '';
+in
+{
+  modules-center = [
+    "custom/spotify"
+  ];
+  modules-left = [
+    "clock"
+    "network"
+    "bluetooth"
+  ];
+  modules-right = [
+    "pulseaudio"
+    "backlight"
+    "battery"
+    "power-profiles-daemon"
+    "custom/power"
+  ];
   backlight = {
     format = "  {icon} {percent}%";
     format-icons = [
@@ -85,26 +114,22 @@ in {
     tooltip-format = "<big>{:%d %A }</big>\n<tt><span font_desc=\"Maple Mono Bold \">{calendar}</span></tt>";
     on-click-right = "date +%m/%d/%Y | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
   };
+  "custom/spotify" = {
+    exec = spotify-status;
+    tail = true;
+    format = "  [ {} ]";
+    on-click = "playerctl --player=spotify play-pause";
+    on-click-right = "playerctl --player=spotify metadata -f {{xesam:url}} | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
+    on-scroll-up = "playerctl --player=spotify next";
+    on-scroll-down = "playerctl --player=spotify previous && waybar -t";
+  };
   "custom/power" = {
-    format = "[   ⏻   ] ";
+    format = "[  ⏻   ] ";
     on-click = "${lib.getExe pkgs.wofi-power-menu}";
     tooltip = false;
   };
   height = 35;
   layer = "top";
-  modules-center = [];
-  modules-left = [
-    "clock"
-    "network"
-    "bluetooth"
-  ];
-  modules-right = [
-    "pulseaudio"
-    "backlight"
-    "battery"
-    "power-profiles-daemon"
-    "custom/power"
-  ];
   network = {
     format-disabled = " [    󰤭     ]";
     format-disconnected = " [    󰤩     ]";
