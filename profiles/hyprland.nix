@@ -5,7 +5,6 @@
       imports = with self.nixosModules; [
         hyprland
         hyprutil
-        wayland-utils
       ];
     };
 }

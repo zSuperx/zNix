@@ -81,12 +81,13 @@ in {
   };
   clock = {
     format = "[ <span font_desc = \"Maple Mono Bold 11.2 \">{:%R %p}</span> ]";
-    format-alt = "[ <span font_desc =\"Maple Mono Bold 11.2 \">{:%d %m %Y}</span> ]";
+    format-alt = "[ <span font_desc =\"Maple Mono Bold 11.2 \">{:%m/%d/%Y}</span> ]";
     tooltip-format = "<big>{:%d %A }</big>\n<tt><span font_desc=\"Maple Mono Bold \">{calendar}</span></tt>";
+    on-click-right = "date +%m/%d/%Y | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
   };
   "custom/power" = {
     format = "[   ⏻   ] ";
-    on-click = "echo hi";
+    on-click = "${lib.getExe pkgs.wofi-power-menu}";
     tooltip = false;
   };
   height = 35;
@@ -121,7 +122,7 @@ in {
     tooltip-format = "{icon} {essid}";
   };
   power-profiles-daemon = {
-    format = "{icon}";
+    format = "{icon} ";
     format-icons = {
       balanced = "";
       default = "";

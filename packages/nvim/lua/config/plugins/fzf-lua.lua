@@ -16,6 +16,11 @@ require('fzf-lua').setup({
       ["ctrl-u"] = "half-page-up",
     }
   },
+  grep = {
+    actions = {
+      ["ctrl-f"] = { actions.grep_lgrep },
+    },
+  },
   buffers = {
     fzf_opts = {
       ["--header-lines"] = false,

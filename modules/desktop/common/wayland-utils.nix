@@ -4,7 +4,7 @@
     {
       imports = with self.nixosModules; [
         stylix
-        wofi
+        rofi
       ];
 
       environment.systemPackages = with pkgs; [

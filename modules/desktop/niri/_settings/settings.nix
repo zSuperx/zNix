@@ -69,17 +69,6 @@
 
         open-floating = true;
       }
-      /* { 
-        matches = [
-          {is-focused = false;}
-        ];
-
-        excludes = [
-          {title = ".*(Hulu|YouTube|Netflix).*";}
-        ];
-        
-        opacity = 0.7;
-      } */
       {
         geometry-corner-radius = {
           bottom-left = 12.0;

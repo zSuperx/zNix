@@ -5,7 +5,6 @@
       imports = with self.nixosModules; [
         niri
         waybar
-        wayland-utils
       ];
     };
 }

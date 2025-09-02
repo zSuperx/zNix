@@ -1,6 +1,7 @@
 {
   username = "zsuper";
   home =  "/home/zsuper/";
+  editor = "nvim";
 
   shellAliases = {
     # Remaps to modern versions

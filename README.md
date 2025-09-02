@@ -26,14 +26,22 @@ files that directly rebuild into my system.
 </details>
 
 <details>
-  <summary>Other</summary>
+  <summary>Applications</summary>
 
-  Wofi:
-  ![Wofi](./assets/preview/wofi.png)
+  Rofi:
+  ![Rofi](./assets/preview/rofi-showcase.mp4)
+
+  Waybar:
+  ![Waybar](./assets/preview/waybar-showcase.mp4)
 
   Yazi:
   ![Yazi](./assets/preview/yazi.png)
 
+  Neovim + Tmux:
+  ![Neovim + Tmux](./assets/preview/nvim-tmux.png)
+
+  Gotop:
+  ![Gotop](./assets/preview/gotop.png)
 </details>
 
 

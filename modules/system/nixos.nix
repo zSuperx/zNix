@@ -20,6 +20,7 @@
         ];
       };
 
+      documentation.nixos.enable = false;
       nixpkgs.config.allowUnfree = true;
       users.users.${info.username} = {
         isNormalUser = true;

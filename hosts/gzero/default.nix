@@ -15,6 +15,8 @@ self.lib.mkSystem {
     profiles.hyprland
     profiles.gaming
     profiles.niri
+
+    wayland-utils
     gnome
     ./configuration.nix
     ./hardware-configuration.nix
