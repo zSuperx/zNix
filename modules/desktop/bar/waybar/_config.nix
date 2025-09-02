@@ -27,16 +27,16 @@ let
     waybar -t #Refresh Waybar after each action
   '';
   spotify-status = pkgs.writeShellScript "spotify-status" ''
-playerctl --player=spotify metadata -F --format '{{status}} {{xesam:title}} - {{xesam:artist}}' |
-while read -r STATUS SONG; do
-  STATUS=$(playerctl --player=spotify status)
-  case "$STATUS" in
-    Playing) ICON="⏸" ;;
-    Paused) ICON="▶" ;;
-    Stopped) ICON="◼" ;;
-  esac
-  echo "$ICON $SONG"
-done
+    playerctl --player=spotify metadata -F --format '{{status}} {{xesam:title}} - {{xesam:artist}}' |
+    while read -r STATUS SONG; do
+      STATUS=$(playerctl --player=spotify status)
+      case "$STATUS" in
+        Playing) ICON="⏸" ;;
+        Paused) ICON="▶" ;;
+        Stopped) ICON="◼" ;;
+      esac
+      echo "$ICON $SONG"
+    done
   '';
 in
 {

@@ -7,7 +7,7 @@ self.lib.mkSystem {
   inherit (userInfo) username;
   hostname = "gzero";
   system = "x86_64-linux";
-  insanelySpecialArgs = userInfo;
+  insanelySpecialArgs = { inherit userInfo; };
   modules = with self.nixosModules; [
     profiles.system
     profiles.basic
@@ -18,7 +18,7 @@ self.lib.mkSystem {
 
     wayland-utils
     gnome
-    ./configuration.nix
+    
     ./hardware-configuration.nix
   ];
 }
