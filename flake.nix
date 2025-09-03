@@ -51,6 +51,7 @@
     };
 
     spicetify.url = "github:Gerg-L/spicetify-nix";
+    muxie.url = "github:phanorcoll/muxie";
     mnw.url = "github:Gerg-L/mnw";
     base16.url = "github:SenchoPens/base16.nix";
     hyprland.url = "github:hyprwm/Hyprland";

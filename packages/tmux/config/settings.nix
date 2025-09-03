@@ -1,8 +1,14 @@
 {
+  inputs,
   pkgs,
+  lib,
   scripts,
+  system,
   colorscheme,
 }:
+let
+  muxie = inputs.muxie.packages.${system}.default;
+in
 pkgs.writeText "tmux-core.conf" ''
   set  -g base-index      0
   setw -g pane-base-index 0
@@ -64,13 +70,9 @@ pkgs.writeText "tmux-core.conf" ''
 
   bind -n M-n run-shell ${scripts.smart-split}
 
-  bind-key -T root n if-shell -F '#{==:#{pane_mode},tree-mode}' \
-      'new-session' \
-      'send-keys n'
-
-  bind-key -T root d if-shell -F '#{==:#{pane_mode},tree-mode}' \
-      'send-keys x' \
-      'send-keys d'
+  # Override tmux's builtin session manager with muxie
+  unbind s
+  bind s popup -E ${lib.getExe' muxie "muxie"}
 
   # Options to make tmux more pleasant
   set -g mouse on

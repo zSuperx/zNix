@@ -18,6 +18,6 @@ inputs.nixpkgs.lib.genAttrs systems (
   in
   {
     nvim = pkgs.callPackage ./nvim { inherit inputs colorscheme; };
-    tmux = pkgs.callPackage ./tmux { inherit colorscheme; };
+    tmux = pkgs.callPackage ./tmux { inherit inputs colorscheme; };
   }
 )

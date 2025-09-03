@@ -27,21 +27,36 @@ let
     waybar -t #Refresh Waybar after each action
   '';
   spotify-status = pkgs.writeShellScript "spotify-status" ''
+    truncate() {
+      local str="$1"
+      local max_len="$2"
+
+      if (( ''${#str} > max_len )); then
+        echo "$(echo $str | head -c $max_len)..."
+      else
+        echo "$str"
+      fi
+    }
+
     playerctl --player=spotify metadata -F --format '{{status}} {{xesam:title}} - {{xesam:artist}}' |
-    while read -r STATUS SONG; do
+    while read -r STATUS FILLER; do
+      SONG=$(truncate "$(playerctl --player=spotify metadata title)" 15)
+      ARTIST=$(truncate "$(playerctl --player=spotify metadata artist)" 10)
       STATUS=$(playerctl --player=spotify status)
       case "$STATUS" in
         Playing) ICON="⏸" ;;
         Paused) ICON="▶" ;;
         Stopped) ICON="◼" ;;
       esac
-      echo "$ICON $SONG"
+      echo "$ICON | $SONG - $ARTIST" | sed -r 's/&/&amp;/g'
     done
   '';
 in
 {
   modules-center = [
+    "custom/spotify-previous"
     "custom/spotify"
+    "custom/spotify-next"
   ];
   modules-left = [
     "clock"
@@ -114,14 +129,23 @@ in
     tooltip-format = "<big>{:%d %A }</big>\n<tt><span font_desc=\"Maple Mono Bold \">{calendar}</span></tt>";
     on-click-right = "date +%m/%d/%Y | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
   };
+  "custom/spotify-previous" = {
+    format = "[⏮]";
+    on-click = "playerctl --player=spotify previous";
+    tooltip-format = "Previous";
+  };
   "custom/spotify" = {
     exec = spotify-status;
     tail = true;
-    format = "  [ {} ]";
+    format = "[ {} ]";
+    tooltip-format = "Right click to copy song URL";
     on-click = "playerctl --player=spotify play-pause";
     on-click-right = "playerctl --player=spotify metadata -f {{xesam:url}} | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
-    on-scroll-up = "playerctl --player=spotify next";
-    on-scroll-down = "playerctl --player=spotify previous && waybar -t";
+  };
+  "custom/spotify-next" = {
+    format = "[⏭]";
+    on-click = "playerctl --player=spotify next";
+    tooltip-format = "Next";
   };
   "custom/power" = {
     format = "[  ⏻   ] ";
