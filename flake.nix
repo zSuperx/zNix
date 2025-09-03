@@ -31,8 +31,6 @@
   };
 
   inputs = {
-    import-tree.url = "github:vic/import-tree";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
