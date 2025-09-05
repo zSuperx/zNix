@@ -579,21 +579,6 @@
         "type": "github"
       }
     },
-    "import-tree": {
-      "locked": {
-        "lastModified": 1752730890,
-        "narHash": "sha256-GES8fapSLGz36MMPRVNkSUWXUTtqvGQNXHjRmRLfJUY=",
-        "owner": "vic",
-        "repo": "import-tree",
-        "rev": "6ebb8cb87987b20264c09296166543fd3761d274",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vic",
-        "repo": "import-tree",
-        "type": "github"
-      }
-    },
     "mnw": {
       "locked": {
         "lastModified": 1756580127,
@@ -871,7 +856,6 @@
         "gBar": "gBar",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "import-tree": "import-tree",
         "mnw": "mnw",
         "muxie": "muxie",
         "niri": "niri",

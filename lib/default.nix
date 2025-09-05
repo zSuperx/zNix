@@ -34,7 +34,6 @@ in
     let
       insanelySpecialArgs = {
         inherit self inputs;
-        scripts = self.lib.scripts inputs.nixpkgs.legacyPackages.${system};
         info = {
           inherit
             username

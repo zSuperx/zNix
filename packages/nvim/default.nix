@@ -66,6 +66,7 @@ inputs.mnw.lib.wrap pkgs {
         vim-nix
         markdown-preview-nvim
         colorizer
+        uv-nvim
       ]
       ++ otherPlugins;
     dev.myconfig = {

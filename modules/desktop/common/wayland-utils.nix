@@ -10,6 +10,8 @@
       environment.systemPackages = with pkgs; [
         wl-clipboard
         wf-recorder
+        slurp
+        libnotify
         socat
         swaynotificationcenter
         brightnessctl

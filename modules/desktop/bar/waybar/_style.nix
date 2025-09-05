@@ -156,13 +156,6 @@ with config.lib.stylix.colors.withHashtag;
       padding-right: 10px;
   }
 
-  #custom-spotify-previous {
-      color: ${base0E};
-      font-family: "bargraph";
-      font-size: 15px;
-      padding-right: 10px;
-  }
-
   #custom-spotify {
       color: ${base0E};
       font-family: "bargraph";
@@ -170,10 +163,15 @@ with config.lib.stylix.colors.withHashtag;
       padding-right: 10px;
   }
 
-  #custom-spotify-next {
-      color: ${base0E};
-      font-family: "bargraph";
-      font-size: 15px;
-      padding-right: 10px;
+  #custom-screen-utils.idle {
+      color: ${base0A};
+      font-size: 16px;
+      font-family: arial;
+  }
+
+  #custom-screen-utils.recording {
+      color: ${base08};
+      font-size: 16px;
+      font-family: arial;
   }
 ''

@@ -1,8 +1,9 @@
 {
   fish =
-    { self, userInfo, ... }:
+    { self, userInfo, lib, ... }:
     {
       programs.fish.enable = true;
+      documentation.man.generateCaches = lib.mkForce false;
 
       imports = [
         self.nixosModules.starship

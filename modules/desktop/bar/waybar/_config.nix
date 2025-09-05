@@ -5,6 +5,8 @@
 }:
 let
   blueman-manager = lib.getExe' pkgs.blueman "blueman-manager";
+  slurp = lib.getExe' pkgs.slurp "slurp";
+  notify-send = lib.getExe' pkgs.libnotify "notify-send";
   nmtui = "${lib.getExe pkgs.kitty} nmtui";
   toggle-bluetooth = pkgs.writeShellScript "toggle-bluetooth" ''
     if bluetoothctl show | grep -q "Powered: yes"; then
@@ -42,26 +44,104 @@ let
     while read -r STATUS FILLER; do
       SONG=$(truncate "$(playerctl --player=spotify metadata title)" 15)
       ARTIST=$(truncate "$(playerctl --player=spotify metadata artist)" 10)
-      STATUS=$(playerctl --player=spotify status)
       case "$STATUS" in
         Playing) ICON="⏸" ;;
         Paused) ICON="▶" ;;
-        Stopped) ICON="◼" ;;
+        *) ICON="◼" ;;
       esac
-      echo "$ICON | $SONG - $ARTIST" | sed -r 's/&/&amp;/g'
+      echo "$ICON | $SONG - $ARTIST"
     done
+  '';
+  wf-waybar = pkgs.writeShellScript "wf-waybar" ''
+    check-wf-recorder() {
+      if pgrep -x wf-recorder > /dev/null;
+      then
+        echo '{"text":"  [    ⚒     ]","class":"recording"}'
+      else
+        echo '{"text":"  [    ⚒     ]","class":"idle"}'
+      fi
+    }
+
+    check-wf-recorder
+
+    trap 'check-wf-recorder' SIGUSR1
+    while true; do
+      sleep infinity & wait $!
+    done
+  '';
+  screen-utils = pkgs.writeShellScript "screen-utils" ''
+    record() {
+      local type=$1
+      # Prompt for output
+      output=$(niri msg outputs | rg -N "^Output" | sed -r "s/^Output //" | rofi -dmenu -p "Select an output to record")
+
+      # If user exits rofi then quit
+      if [[ -z "$output" ]];
+      then
+        exit 0
+      fi
+
+      outputName=$(echo "$output" | sed -r "s/(.*\(|\).*)//g")
+
+      if [[ "$type" = "region" ]]; then
+        sleep 0.5
+        region=$(slurp -o "$outputName")
+      fi
+
+      pkill -f wf-waybar --signal 10
+      case "$type" in
+        "region") wf-recorder -g "$region" -f /tmp/recording.mp4 -o "$outputName" -y ;;
+        "monitor") wf-recorder -f /tmp/recording.mp4 -o "$outputName" -y ;;
+        *) exit 0 ;;
+      esac
+
+      notify-send "Recording saved to /tmp/recording.mp4"
+    }
+
+    pick-color() {
+      output=$(niri msg pick-color)
+      echo "$output" | sed -r "s/(Picked color: |Hex: )//g" | tr '\n' ' ' | wl-copy
+      notify-send "Color copied to clipboard"
+    }
+
+    if pgrep -x wf-recorder > /dev/null;
+    then
+      pkill -x wf-recorder
+      sleep 0.5
+      pkill -f wf-waybar --signal 10
+      exit 0
+    fi
+
+    opt1="Take Screenshot (Region)  [to clipboard]"
+    opt2="Take Screenshot (Window)  [to clipboard]"
+    opt3="Record Screen   (Region)  [to /tmp/recording.mp4]"
+    opt4="Record Screen   (Monitor) [to /tmp/recording.mp4]"
+    opt5="Color Picker              [to clipboard]"
+    result=$(echo "$opt1
+    $opt2
+    $opt3
+    $opt4
+    $opt5" | rofi -dmenu -method fuzzy -case-smart -p "Select an Action")
+
+    case "$result" in
+      "$opt1") niri msg action screenshot ;;
+      "$opt2") niri msg action screenshot-window ;;
+      "$opt3") record "region" ;;
+      "$opt4") record "monitor" ;;
+      "$opt5") pick-color ;;
+      *) ;;
+    esac
   '';
 in
 {
   modules-center = [
-    "custom/spotify-previous"
     "custom/spotify"
-    "custom/spotify-next"
   ];
   modules-left = [
     "clock"
     "network"
     "bluetooth"
+    "custom/screen-utils"
   ];
   modules-right = [
     "pulseaudio"
@@ -129,23 +209,23 @@ in
     tooltip-format = "<big>{:%d %A }</big>\n<tt><span font_desc=\"Maple Mono Bold \">{calendar}</span></tt>";
     on-click-right = "date +%m/%d/%Y | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
   };
-  "custom/spotify-previous" = {
-    format = "[⏮]";
-    on-click = "playerctl --player=spotify previous";
-    tooltip-format = "Previous";
-  };
   "custom/spotify" = {
     exec = spotify-status;
     tail = true;
-    format = "[ {} ]";
-    tooltip-format = "Right click to copy song URL";
+    format = "  [ {} ]";
+    tooltip-format = "(Scroll = Next/Prev | Right Click = Copy URL)";
     on-click = "playerctl --player=spotify play-pause";
     on-click-right = "playerctl --player=spotify metadata -f {{xesam:url}} | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
+    on-scroll-up = "playerctl --player=spotify next";
+    on-scroll-down = "playerctl --player=spotify previous";
   };
-  "custom/spotify-next" = {
-    format = "[⏭]";
-    on-click = "playerctl --player=spotify next";
-    tooltip-format = "Next";
+  "custom/screen-utils" = {
+    format = "{}";
+    exec = wf-waybar;
+    on-click = screen-utils;
+    tooltip-format = "Click to select from screen tools";
+    return-type = "json";
+    tail = true;
   };
   "custom/power" = {
     format = "[  ⏻   ] ";

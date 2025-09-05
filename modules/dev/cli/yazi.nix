@@ -30,12 +30,19 @@
                 desc = "Toggle select";
               }
               {
-                on = [
-                  "g"
-                  "r"
-                ];
+                on = [ "g" "r" ];
                 run = "shell -- ya emit cd \$(git rev-parse --show-toplevel)";
                 desc = "Go to git root";
+              }
+              {
+                on = [ "H" ];
+                run = [ "arrow 0%" ];
+                desc = "Top of screen";
+              }
+              {
+                on = [ "L" ];
+                run = [ "arrow 100%" ];
+                desc = "Bottom of screen";
               }
             ];
           };

@@ -60,6 +60,7 @@ require('config.plugins.nvim-autopair')
 require('config.plugins.bufferline-nvim')
 require('config.plugins.conform-nvim')
 require('config.plugins.guess-indent-nvim')
+require('config.plugins.uv-nvim')
 
 
 -- LSP

@@ -12,13 +12,17 @@ let
     inherit inputs scripts colorscheme;
   };
   config-files = [
-    settings
     plugins
+    settings
   ];
   # Populate `tmux-main.conf` with imports for other files
-  tmux-main = pkgs.writeText "tmux-main.conf" (
-    concatMapStrings (x: "source-file " + x + "\n") config-files
-  );
+  tmux-main = pkgs.writeText "tmux-main-bruh.conf" ''
+    ${concatMapStrings (x: "source-file " + x + "\n") config-files}
+
+      # I don't like that I have to do this here, but it's to do with the way tmux
+      # orders its source files. Imperative option-setting, yuck...
+      setw -g popup-style bg=${colorscheme.withHashtag.base01}
+    '';
 in
 pkgs.stdenv.mkDerivation {
   inherit (pkgs.tmux) pname version;
