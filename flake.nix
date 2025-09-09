@@ -43,6 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    base16.url = "github:SenchoPens/base16.nix";
+    base16-schemes = {
+      url = "github:tinted-theming/base16-schemes";
+      flake = false;
+    };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,7 +56,6 @@
     spicetify.url = "github:Gerg-L/spicetify-nix";
     muxie.url = "github:phanorcoll/muxie";
     mnw.url = "github:Gerg-L/mnw";
-    base16.url = "github:SenchoPens/base16.nix";
     hyprland.url = "github:hyprwm/Hyprland";
     niri.url = "github:sodiboo/niri-flake";
     gBar.url = "github:scorpion-26/gBar";

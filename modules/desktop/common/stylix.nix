@@ -1,9 +1,6 @@
-let
-  theme-name = "gruvbox-dark-medium";
-in
 {
   stylix =
-    { inputs, pkgs, ... }:
+    { self, inputs, pkgs, ... }:
     {
       imports = [
         inputs.stylix.nixosModules.stylix
@@ -15,7 +12,7 @@ in
       stylix = {
         enable = true;
         autoEnable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme-name}.yaml";
+        base16Scheme = "${inputs.base16-schemes}/gruvbox-dark-medium.yaml";
         opacity.terminal = 0.9;
         fonts.sizes.terminal = 11;
         fonts.monospace = {

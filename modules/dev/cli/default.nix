@@ -21,6 +21,7 @@
         vim
         wget
         git
+        nix-tree
 
         # Networking
         nmap

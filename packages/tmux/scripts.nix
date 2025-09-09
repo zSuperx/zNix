@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }:
+{ writeShellScript }:
 {
-  smart-split = pkgs.writeShellScript "tmux-smart-split" ''
+  smart-split = writeShellScript "tmux-smart-split" ''
     WIDTH=$(($(tmux display -p "#{pane_width}") / 2 - 10));
     HEIGHT=$(tmux display -p "#{pane_height}");
 
@@ -11,7 +11,7 @@
     fi
   '';
 
-  get-battery-icon = pkgs.writeShellScript "get-battery-icon" ''
+  get-battery-icon = writeShellScript "get-battery-icon" ''
     battery_info=$(upower -e | grep --line-buffered BAT | head -n 1 | xargs upower -i)
 
     percent=$(echo "$battery_info" | grep percentage | awk '{ print $2 }' | sed 's/%//g')
@@ -38,7 +38,7 @@
     echo "$icon"
   '';
   
-  get-battery-capacity = pkgs.writeShellScript "get-battery-capacity" ''
+  get-battery-capacity = writeShellScript "get-battery-capacity" ''
     upower -e | grep --line-buffered BAT | head -n 1 | xargs upower -i | grep percentage | awk '{ print $2 }' | sed 's/%//g'
   '';
 }

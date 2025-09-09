@@ -3,6 +3,7 @@
   lib,
   scripts,
   colorscheme,
+  writeText
 }: let
   inherit (lib) types;
   pluginName = p:
@@ -11,7 +12,6 @@
     else p.plugin.pname;
 
   plugins = with pkgs.tmuxPlugins; [
-    sensible
     {
       plugin = catppuccin;
       extraConfig =
@@ -75,7 +75,7 @@
     }
   ];
 in
-  pkgs.writeText "plugins.conf" ''
+  writeText "plugins.conf" ''
     ${
       (lib.concatMapStringsSep "\n\n" (p: ''
           # ${pluginName p}

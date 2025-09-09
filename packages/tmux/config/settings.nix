@@ -9,7 +9,7 @@
 let
   muxie = inputs.muxie.packages.${system}.default;
 in
-pkgs.writeText "tmux-core.conf" ''
+pkgs.writeText "tmux-settings.conf" ''
   set  -g base-index      0
   setw -g pane-base-index 0
 
@@ -72,7 +72,7 @@ pkgs.writeText "tmux-core.conf" ''
 
   # Override tmux's builtin session manager with muxie
   unbind s
-  bind s popup -E ${lib.getExe' muxie "muxie"}
+  bind s popup -EB ${lib.getExe' muxie "muxie"}
 
   # Options to make tmux more pleasant
   set -g mouse on

@@ -16,13 +16,14 @@ let
     settings
   ];
   # Populate `tmux-main.conf` with imports for other files
-  tmux-main = pkgs.writeText "tmux-main-bruh.conf" ''
+  tmux-main = pkgs.writeText "tmux-main.conf" ''
     ${concatMapStrings (x: "source-file " + x + "\n") config-files}
 
-      # I don't like that I have to do this here, but it's to do with the way tmux
-      # orders its source files. Imperative option-setting, yuck...
-      setw -g popup-style bg=${colorscheme.withHashtag.base01}
-    '';
+    # I don't like that I have to do this here, but it's to do with the way tmux
+    # orders its source files. Imperative option-setting, yuck...
+    setw -g popup-style bg=default
+    set  -g escape-time     10
+  '';
 in
 pkgs.stdenv.mkDerivation {
   inherit (pkgs.tmux) pname version;
@@ -35,7 +36,6 @@ pkgs.stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
-    echo $hash
     makeWrapper ${lib.getExe pkgs.tmux} $out/bin/tmux \
       --add-flags "-f${tmux-main}"
   '';

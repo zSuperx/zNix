@@ -67,6 +67,7 @@ inputs.mnw.lib.wrap pkgs {
         markdown-preview-nvim
         colorizer
         uv-nvim
+        project-nvim
       ]
       ++ otherPlugins;
     dev.myconfig = {
@@ -92,5 +93,6 @@ inputs.mnw.lib.wrap pkgs {
     marksman
 
     yazi # for yazi-nvim
+    fzf  # for fzf-lua
   ];
 }
