@@ -83,3 +83,4 @@ vim.keymap.set("n", "<leader>ff", FzfLua.files, { desc = "Pick buffers from proj
 vim.keymap.set("n", "<leader>ft", FzfLua.tabs, { desc = "Pick tab from existing tabs" })
 vim.keymap.set("n", "<leader>fb", FzfLua.buffers, { desc = "Pick buffers from open buffers" })
 vim.keymap.set("n", "<leader>fg", FzfLua.live_grep, { desc = "Pick buffers from live grep" })
+

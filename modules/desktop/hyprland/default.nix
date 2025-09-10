@@ -4,11 +4,11 @@
       {
         self,
         inputs,
-        info,
+        pkgs,
         ...
       }:
       let
-        inherit (info) system;
+        inherit (pkgs) system;
         cycle-monitor-script = "${self}/scripts/cycle-monitor-ws.sh";
         launch-gBar-script = "${self}/scripts/launch-gBar.sh";
       in
@@ -22,7 +22,7 @@
           package = inputs.hyprland.packages.${system}.hyprland;
           portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
 
-          # Don't autostart hyprland since I'm kurrently using Niri
+          # Don't autostart hyprland since I'm currently using Niri
           systemd.enable = false;
 
           settings = {

@@ -3,12 +3,15 @@
     {
       self,
       config,
-      info,
+      pkgs,
       ...
     }:
+    let
+      inherit (pkgs) system;
+    in
     {
       environment.systemPackages = [
-        (self.packages.${info.system}.nvim.override { colorscheme = config.lib.stylix.colors; })
+        (self.packages.${system}.nvim.override { colorscheme = config.lib.stylix.colors; })
       ];
     };
 }

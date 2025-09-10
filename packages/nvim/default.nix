@@ -14,6 +14,15 @@ let
         hash = "sha256-uvnp9G3AIP66OeuEKjYG6ArbL1te6oPQM9IjRUgS+ZE=";
       };
     }
+    {
+      name = "project-nvim";
+      src = pkgs.fetchFromGitHub {
+        owner = "DrKJeff16";
+        repo = "project.nvim";
+        rev = "61afe931e5e445a55b0845e18b261778dfbf08a3";
+        hash = "sha256-kWFAU6a1ERy9kP+s5bom7AM9xKWfmgqGbY0dvkcTBUM=";
+      };
+    }
   ];
   impure-path = "/home/zsuper/zNix/packages/nvim";
   base16-colors = with colorscheme.withHashtag; ''
@@ -67,7 +76,6 @@ inputs.mnw.lib.wrap pkgs {
         markdown-preview-nvim
         colorizer
         uv-nvim
-        project-nvim
       ]
       ++ otherPlugins;
     dev.myconfig = {
@@ -93,6 +101,6 @@ inputs.mnw.lib.wrap pkgs {
     marksman
 
     yazi # for yazi-nvim
-    fzf  # for fzf-lua
+    fzf # for fzf-lua
   ];
 }
