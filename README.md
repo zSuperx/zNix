@@ -22,7 +22,7 @@ files that directly rebuild into my system.
   <summary>Niri</summary>
 
   ### Niri:
-  ![Niri](./assets/preview/niri.png)
+  ![Niri](./assets/preview/niri-preview.gif)
 </details>
 
 <details>
