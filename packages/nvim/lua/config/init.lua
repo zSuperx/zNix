@@ -43,10 +43,10 @@ vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
 
 vim.keymap.set("n", "<C-[>", ":po<CR>", { desc = "Go back 1 reference" })
 
-vim.keymap.set("n", "<C-j>", ":m +1<CR>", { desc = "Move current line down" })
-vim.keymap.set("n", "<C-k>", ":m -2<CR>", { desc = "Move current line up" })
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR><Esc>gv", { desc = "Move selected lines down" })
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR><Esc>gv", { desc = "Move selected lines up" })
+vim.keymap.set("n", "<C-j>", ":m +1<CR>=j", { desc = "Move current line down" })
+vim.keymap.set("n", "<C-k>", ":m -2<CR>=j", { desc = "Move current line up" })
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR><Esc>gv=gv", { desc = "Move selected lines down" })
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR><Esc>gv=gv", { desc = "Move selected lines up" })
 
 vim.keymap.set("v", ">", ">gv", { desc = "Indent selected lines" })
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent selected lines" })
