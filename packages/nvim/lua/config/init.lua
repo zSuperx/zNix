@@ -70,6 +70,7 @@ require('config.plugins.conform-nvim')
 require('config.plugins.guess-indent-nvim')
 require('config.plugins.uv-nvim')
 require('config.plugins.project-nvim')
+require('config.plugins.term-edit-nvim')
 
 
 -- LSP
