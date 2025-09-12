@@ -23,6 +23,15 @@ let
         hash = "sha256-kWFAU6a1ERy9kP+s5bom7AM9xKWfmgqGbY0dvkcTBUM=";
       };
     }
+    {
+      name = "select-undo-nvim";
+      src = pkgs.fetchFromGitHub {
+        owner = "SunnyTamang";
+        repo = "select-undo.nvim";
+        rev = "d5aa1f0dbef93b7ed4219ef8c7bfae9691264ef7";
+        hash = "sha256-DQcUwuHRfpFuab7Gx6vIgOHGI2HJ4WMSvOqMtXnej6U=";
+      };
+    }
   ];
   impure-path = "/home/zsuper/zNix/packages/nvim";
   base16-colors = with colorscheme.withHashtag; ''
@@ -77,6 +86,7 @@ inputs.mnw.lib.wrap pkgs {
         colorizer
         uv-nvim
         term-edit-nvim
+        typst-preview-nvim
       ]
       ++ otherPlugins;
     dev.myconfig = {

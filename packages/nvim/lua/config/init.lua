@@ -1,4 +1,4 @@
-
+-- My personalized Neovim options
 
 -- Options
 
@@ -50,11 +50,10 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR><Esc>gv=gv", { desc = "Move selected li
 vim.keymap.set("v", ">", ">gv", { desc = "Indent selected lines" })
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent selected lines" })
 
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format file" })
-vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Suggest code action" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "format file" })
+vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "suggest code action" })
 
-
--- Plugins
+-- Plugins are cool
 
 require('config.plugins.blink-cmp')
 require('config.plugins.tft-nvim')
@@ -70,6 +69,8 @@ require('config.plugins.guess-indent-nvim')
 require('config.plugins.uv-nvim')
 require('config.plugins.project-nvim')
 require('config.plugins.term-edit-nvim')
+require('config.plugins.typst-preview-nvim')
+require('config.plugins.select-undo-nvim')
 
 
 -- LSP
