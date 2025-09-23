@@ -83,10 +83,12 @@ inputs.mnw.lib.wrap pkgs {
         guess-indent-nvim
         vim-nix
         markdown-preview-nvim
-        colorizer
+        # nvim-colorizer-lua
         uv-nvim
         term-edit-nvim
         typst-preview-nvim
+        scope-nvim
+        colorizer
       ]
       ++ otherPlugins;
     dev.myconfig = {

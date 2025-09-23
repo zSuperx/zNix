@@ -7,7 +7,7 @@ let
   blueman-manager = lib.getExe' pkgs.blueman "blueman-manager";
   slurp = lib.getExe' pkgs.slurp "slurp";
   notify-send = lib.getExe' pkgs.libnotify "notify-send";
-  nmtui = "${lib.getExe pkgs.kitty} nmtui";
+  nmgui = "${lib.getExe pkgs.nmgui}";
   toggle-bluetooth = pkgs.writeShellScript "toggle-bluetooth" ''
     if bluetoothctl show | grep -q "Powered: yes"; then
       # If enabled, disable it
@@ -85,7 +85,7 @@ let
 
       if [[ "$type" = "region" ]]; then
         sleep 0.5
-        region=$(slurp -o "$outputName")
+        region=$(${slurp} -o "$outputName")
       fi
 
       pkill -f wf-waybar --signal 10
@@ -95,13 +95,13 @@ let
         *) exit 0 ;;
       esac
 
-      notify-send "Recording saved to /tmp/recording.mp4"
+      ${notify-send} "Recording saved to /tmp/recording.mp4"
     }
 
     pick-color() {
       output=$(niri msg pick-color)
       echo "$output" | sed -r "s/(Picked color: |Hex: )//g" | tr '\n' ' ' | wl-copy
-      notify-send "Color copied to clipboard"
+      ${notify-send} "Color copied to clipboard"
     }
 
     if pgrep -x wf-recorder > /dev/null;
@@ -247,7 +247,7 @@ in
     format-linked = "[ {ifname} (No IP) 모 ] ";
     format-wifi = " [    {icon}    ]";
     on-click = "${toggle-wifi}";
-    on-click-right = "${nmtui}";
+    on-click-right = "${nmgui}";
     tooltip-format = "{icon} {essid}";
   };
   power-profiles-daemon = {

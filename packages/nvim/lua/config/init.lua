@@ -35,7 +35,7 @@ vim.keymap.set("v", ";", ":lua vim.api.nvim_feedkeys(':\\'<,\\'>', 'v', true)<CR
 vim.keymap.set("n", "<Esc>", ":if v:hlsearch | noh | endif<CR>", { desc = "Unhighlight search results" })
 vim.keymap.set("n", "<C-c>", ":%y+<CR>", { desc = "Copy entire file to clipboard" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape to Normal mode from Terminal Insert mode" })
-vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape to Normal mode" })
+-- vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape to Normal mode" })
 
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
@@ -71,6 +71,8 @@ require('config.plugins.project-nvim')
 require('config.plugins.term-edit-nvim')
 require('config.plugins.typst-preview-nvim')
 require('config.plugins.select-undo-nvim')
+require('config.plugins.scope-nvim')
+-- require('config.plugins.nvim-colorizer-lua') -- Use the vimscript one until this one is not buggy
 
 
 -- LSP

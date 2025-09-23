@@ -7,9 +7,12 @@
       ...
     }:
     {
-      xdg.portal.extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
+      xdg.portal = {
+        config.niri.default = [ "gnome" "gtk" ];
+        extraPortals = [
+          pkgs.xdg-desktop-portal-gtk
+        ];
+      };
 
       nixpkgs.overlays = [
         inputs.niri.overlays.niri
