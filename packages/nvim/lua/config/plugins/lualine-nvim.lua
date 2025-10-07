@@ -25,10 +25,15 @@ require('lualine').setup({
 
       {
         'filename',
-        symbols = { modified = ' ', readonly = ' ' },
-        separator = {
-          right = ''
-        },
+        symbols = { modified = '', readonly = '', unnamed = '' },
+        fmt = function(name)
+          if vim.bo.modified then
+            -- Highlight group will color both filename and symbol
+            return "%#LualineModifiedFile#" .. name .. " ●%*"
+          else
+            return name
+          end
+        end,
       },
 
       {
@@ -138,3 +143,6 @@ require('lualine').setup({
     },
   }
 })
+
+
+vim.api.nvim_set_hl(0, "LualineModifiedFile", { fg = "#6cbf43", bold = true })

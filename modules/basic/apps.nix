@@ -12,6 +12,7 @@
         obsidian
         nautilus
         blueman
+        zathura
       ];
 
       hm = {
@@ -24,11 +25,6 @@
 
         programs.firefox = {
           enable = true;
-        };
-
-        stylix.targets.firefox = {
-          enable = true;
-          colorTheme.enable = true;
         };
       };
     };

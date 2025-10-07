@@ -12,6 +12,12 @@ require('fzf-lua').setup({
   },
   keymap = {
     fzf = {
+      ["start"] = "unbind(down,up)+hide-input",
+      ["j"] = "down",
+      ["k"] = "up",
+      ["q"] = "abort",
+      ["i"] = "show-input+unbind(i,j,k)",
+      ["ctrl-e"] = 'transform:if [[ "$FZF_INPUT_STATE" = enabled ]]; then echo "hide-input+rebind(i,j,k)"; fi',
       ["ctrl-d"] = "half-page-down",
       ["ctrl-u"] = "half-page-up",
     }
@@ -83,4 +89,3 @@ vim.keymap.set("n", "<leader>ff", FzfLua.files, { desc = "Pick buffers from proj
 vim.keymap.set("n", "<leader>ft", FzfLua.tabs, { desc = "Pick tab from existing tabs" })
 vim.keymap.set("n", "<leader>fb", FzfLua.buffers, { desc = "Pick buffers from open buffers" })
 vim.keymap.set("n", "<leader>fg", FzfLua.live_grep, { desc = "Pick buffers from live grep" })
-

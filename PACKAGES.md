@@ -49,7 +49,7 @@ be changed with `.override`. This ends up working pretty well with
 }:
 {
   environment.systemPackages = [
-    inputs.zNix.packages.${system}.nvim.override { colorscheme = config.lib.stylix.colors; };
+    (inputs.zNix.packages.${system}.nvim.override { colorscheme = config.lib.stylix.colors; })
   ];
 }
 ```

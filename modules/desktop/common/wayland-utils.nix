@@ -3,7 +3,6 @@
     { self, pkgs, ... }:
     {
       imports = with self.nixosModules; [
-        stylix
         rofi
       ];
 
@@ -18,6 +17,7 @@
         networkmanagerapplet
         playerctl
         xwayland-satellite
+        matugen
         swww
       ];
     };

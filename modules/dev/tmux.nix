@@ -11,7 +11,7 @@
     in
     {
       environment.systemPackages = [
-        (self.packages.${system}.tmux.override { colorscheme = config.lib.stylix.colors; })
+        self.packages.${system}.tmux
       ];
     };
 }

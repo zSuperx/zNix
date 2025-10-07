@@ -3,17 +3,24 @@
   pkgs,
   lib,
   colorscheme,
+  config,
 }:
 let
   inherit (lib.strings) concatMapStrings;
   scripts = pkgs.callPackage ./scripts.nix { };
-  plugins = pkgs.callPackage ./config/plugins.nix { inherit scripts colorscheme; };
+  plugins = pkgs.callPackage ./config/plugins.nix { };
   settings = pkgs.callPackage ./config/settings.nix {
-    inherit inputs scripts colorscheme;
+    inherit inputs scripts;
   };
+  status = ./config/status.conf;
   config-files = [
     plugins
     settings
+    status
+
+    # This file will be generated at runtime by matugen
+    # Even if the path is incorrect, matugen will re-source the true path
+    "~/.config/tmux/style.conf" 
   ];
   # Populate `tmux-main.conf` with imports for other files
   tmux-main = pkgs.writeText "tmux-main.conf" ''

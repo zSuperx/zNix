@@ -10,8 +10,8 @@
       ];
 
       stylix = {
-        enable = true;
-        autoEnable = true;
+        enable = false; # prefer dynamic theming with matugen
+        autoEnable = false;
         base16Scheme = "${inputs.base16-schemes}/gruvbox-dark-medium.yaml";
         opacity.terminal = 0.9;
         fonts.sizes.terminal = 11;

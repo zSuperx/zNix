@@ -13,7 +13,6 @@
         launch-gBar-script = "${self}/scripts/launch-gBar.sh";
       in
       {
-        stylix.targets.hyprland.enable = true;
 
         wayland.windowManager.hyprland = {
           enable = true;

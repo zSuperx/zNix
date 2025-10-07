@@ -48,10 +48,6 @@
       url = "github:tinted-theming/base16-schemes";
       flake = false;
     };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     spicetify.url = "github:Gerg-L/spicetify-nix";
     muxie.url = "github:phanorcoll/muxie";

@@ -1,0 +1,28 @@
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "wipe"]
+set = true
+
+[templates.waybar]
+input_path = './templates/waybar/template.css'
+output_path = '~/.config/waybar/style'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.tmux]
+input_path = './templates/tmux/template.conf'
+output_path = '~/.config/tmux/style.conf'
+post_hook = 'tmux source-file ~/.config/tmux/style.conf'
+
+[templates.nvim]
+input_path = './templates/nvim/template.lua'
+output_path = '~/.config/nvim/matugen/style.lua'
+post_hook = 'pkill -SIGUSR1 nvim'
+
+[templates.kitty]
+input_path = './templates/kitty/template.conf'
+output_path = '~/.config/kitty/themes/matugen.conf'
+post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.rofi]
+input_path = './templates/rofi/template.rasi'
+output_path = '~/.config/rofi/config.rasi'

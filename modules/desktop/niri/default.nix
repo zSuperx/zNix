@@ -11,6 +11,7 @@
         config.niri.default = [ "gnome" "gtk" ];
         extraPortals = [
           pkgs.xdg-desktop-portal-gtk
+          pkgs.xdg-desktop-portal-gnome
         ];
       };
 
@@ -29,7 +30,6 @@
         # All Niri config is stored in `./_settings`, so just recursively import everything
         imports = (builtins.filter (path: lib.hasSuffix ".nix" path)) (lib.fileset.toList ./_settings);
 
-        stylix.targets.niri.enable = true;
       };
     };
 }

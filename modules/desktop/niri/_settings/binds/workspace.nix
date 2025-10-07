@@ -131,9 +131,9 @@
     "Mod+Shift+E".action.quit = {};
     "Ctrl+Alt+Delete".action.quit = {};
 
-    "Mod+Escape" = {
-      action.toggle-keyboard-shortcuts-inhibit = {};
-      allow-inhibiting = false;
-    };
+    # "Mod+Escape" = {
+    #   action.toggle-keyboard-shortcuts-inhibit = {};
+    #   allow-inhibiting = false;
+    # };
   };
 }

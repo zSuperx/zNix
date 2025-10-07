@@ -14,7 +14,7 @@ cmp.setup({
 
     ["<C-k>"] = { "select_prev", "fallback" },
     ["<C-j>"] = { "select_next", "fallback" },
-    ["<C-f>"] = { "accept", "fallback" },
+    ["<C-l>"] = { "accept", "fallback" },
 
     ["<Tab>"] = { "snippet_forward", "fallback" },
     ["<S-Tab>"] = { "snippet_backward", "fallback" },

@@ -27,7 +27,7 @@
       default-column-width = {proportion = 0.5;};
       focus-ring = {
         width = 4;
-        active.color = config.lib.stylix.colors.base08;
+        active.color = "#83a598";
       };
     };
 

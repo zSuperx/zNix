@@ -17,7 +17,7 @@ vim.o.number = true
 vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
 
-vim.o.shiftround = true -- Round to the nearest indentation level when using `<` and `>`. INCREDIBLE
+vim.o.shiftround = true -- Snap to the nearest indentation level when using `<` and `>`. INCREDIBLE
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -37,8 +37,8 @@ vim.keymap.set("n", "<C-c>", ":%y+<CR>", { desc = "Copy entire file to clipboard
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape to Normal mode from Terminal Insert mode" })
 -- vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape to Normal mode" })
 
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
+-- vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
+-- vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
 
 vim.keymap.set("n", "<C-[>", ":po<CR>", { desc = "Go back 1 reference" })
 
@@ -53,7 +53,10 @@ vim.keymap.set("v", "<", "<gv", { desc = "Unindent selected lines" })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "format file" })
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "suggest code action" })
 
--- Plugins are cool
+
+vim.keymap.set({ "n", "v" }, "!", "gcl", { remap = true })
+
+-- Plugins
 
 require('config.plugins.blink-cmp')
 require('config.plugins.tft-nvim')
@@ -63,7 +66,7 @@ require('config.plugins.yazi-nvim')
 require('config.plugins.neogit')
 require('config.plugins.lualine-nvim')
 require('config.plugins.nvim-autopair')
-require('config.plugins.bufferline-nvim')
+-- require('config.plugins.bufferline-nvim')
 require('config.plugins.conform-nvim')
 require('config.plugins.guess-indent-nvim')
 require('config.plugins.uv-nvim')
@@ -72,8 +75,8 @@ require('config.plugins.term-edit-nvim')
 require('config.plugins.typst-preview-nvim')
 require('config.plugins.select-undo-nvim')
 require('config.plugins.scope-nvim')
--- require('config.plugins.nvim-colorizer-lua') -- Use the vimscript one until this one is not buggy
-
+require('config.plugins.fFtT-highlights-nvim')
+require('config.plugins.markdown-preview-nvim')
 
 -- LSP
 

@@ -40,7 +40,7 @@
 
         programs.wofi = {
           enable = true;
-          style = import ./_wofi-style.nix { inherit config; };
+          # style = import ./_wofi-style.nix { inherit config; };
           settings = {
             hide_scroll = true;
             show = "drun";

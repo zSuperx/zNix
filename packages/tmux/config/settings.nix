@@ -4,7 +4,6 @@
   lib,
   scripts,
   system,
-  colorscheme,
 }:
 let
   muxie = inputs.muxie.packages.${system}.default;
@@ -52,6 +51,7 @@ pkgs.writeText "tmux-settings.conf" ''
   bind -T copy-mode-vi y send-keys -X copy-pipe "pbcopy"
   bind -T copy-mode-vi i send-keys -X cancel
   bind -T copy-mode-vi a send-keys -X cancel
+  bind-key -T copy-mode-vi Y send-keys -X copy-end-of-line
 
   bind -n M-f resize-pane -Z
 
@@ -65,11 +65,16 @@ pkgs.writeText "tmux-settings.conf" ''
   bind -n M-K resize-pane -U 5
   bind -n M-L resize-pane -R 5
 
-  # Alt+n to smart-split and create a new pane
-  # bind -n M-n split-window -h
-  # bind -n M-N split-window -v
+  bind -n C-M-h previous-window
+  bind -n C-M-j next-window
+  bind -n C-M-k previous-window
+  bind -n C-M-l next-window
 
+  # Alt+n to smart-split and create a new pane
   bind -n M-n run-shell ${scripts.smart-split}
+
+  # Ctrl+Alt+n to create new window
+  bind -n C-M-n new-window 
 
   # Override tmux's builtin session manager with muxie
   unbind s

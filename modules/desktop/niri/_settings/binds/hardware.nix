@@ -60,8 +60,9 @@
     "Mod+Ctrl+Shift+WheelScrollUp".action.move-column-left = {};
 
     # Lock the screen and/or power off monitors
-    "Super+Alt+L".action.spawn = ["hyprlock"];
-    "Super+Alt+Ctrl+L" = {
+    "Mod+Escape".action.spawn = ["hyprlock"];
+    "Mod+Shift+Escape" = {
+      allow-when-locked = true;
       action.spawn = ["sh" "-c" "systemctl suspend & hyprlock & niri msg action power-off-monitors"];
     };
   };

@@ -9,15 +9,20 @@
       hm = {
         programs.kitty = {
           enable = true;
-          font.size = lib.mkForce 13;
-          settings = {
+          font = {
+            name = "JetBrainsMono Nerd Font";
+            size = lib.mkForce 13;
+          };
+          settings = { 
+            background_opacity = 0.90;
             shell = if config.programs.fish.enable then "fish" else "bash";
             cursor_trail = "1";
             themeFile = "Catppuccin-Mocha";
           };
+          extraConfig = ''
+            include themes/matugen.conf
+          '';
         };
-
-        stylix.targets.kitty.enable = true;
       };
     };
 }

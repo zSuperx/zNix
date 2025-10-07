@@ -3,7 +3,6 @@
     { pkgs, ... }:
     {
       hm = {
-        stylix.targets.wezterm.enable = true;
 
         programs.wezterm = {
           enable = true;

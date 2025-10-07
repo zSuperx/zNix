@@ -1,8 +1,6 @@
 {
   vesktop = {
     hm = {
-      stylix.targets.vesktop.enable = false;
-
       programs.vesktop = {
         enable = true;
         vencord.themes = {
