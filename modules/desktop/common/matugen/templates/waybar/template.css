@@ -1,5 +1,5 @@
 * {
-    font-family: "JetbrainsMono Nerd Font";
+    font-family: Font Awesome, Liberation Mono, Maple Mono Italic, "JetbrainsMono Nerd Font", Roboto, sans-serif, DejaVuSansMono, Maple Mono, "AdwaithaMono";
     font-weight: 900;
 }
 
@@ -118,7 +118,7 @@ window#waybar {
     background-color: transparent;
     color: {{colors.primary_fixed_dim.default.hex}};
     font-size: 16px;
-    font-family: "JetbrainsMono Nerd Font";
+    font-family: arial;
 }
 
 #network.disabled {

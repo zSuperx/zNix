@@ -20,5 +20,9 @@
         matugen
         swww
       ];
+
+      fonts.packages = [
+        pkgs.nerd-fonts.jetbrains-mono
+      ];
     };
 }
