@@ -12,6 +12,7 @@ require('fzf-lua').setup({
   },
   keymap = {
     fzf = {
+      ["start"] = "show-input+unbind(i,j,k)",
       ["j"] = "down",
       ["k"] = "up",
       ["q"] = "abort",

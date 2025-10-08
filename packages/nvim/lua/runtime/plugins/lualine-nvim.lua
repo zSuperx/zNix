@@ -3,6 +3,7 @@ require('lualine').setup({
     theme = "base16",
     section_separators = "",
     component_separators = "",
+    globalstatus = true,
     refresh = {
       statusline = 500,
     },
@@ -145,4 +146,4 @@ require('lualine').setup({
 })
 
 
-vim.api.nvim_set_hl(0, "LualineModifiedFile", { fg = "#6cbf43", bold = true })
+vim.api.nvim_set_hl(0, "LualineModifiedFile", { fg = "#6cbf43", bold = true, italic = true })

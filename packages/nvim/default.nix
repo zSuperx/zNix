@@ -5,26 +5,21 @@
 }:
 let
   impure-path = "/home/zsuper/zNix/packages/nvim";
-  matugen-path = "/home/zsuper/zNix/matugen_runtime";
 in
 inputs.mnw.lib.wrap pkgs {
   neovim = pkgs.neovim-unwrapped;
   initLua = ''
     require('config')
+
+    -- Because I use matugen to dynamically style Neovim, and because such
+    -- styling often requires full reloads of certain plugin files, some plugins
+    -- will be located in the 'runtime' module, which is loaded once at startup
+    -- and also every time Neovim receives `SIGUSR1`
+
+    require('runtime')
+
+    -- This is kind of a useless keybind lol, but it's sometimes used in #devMode
     vim.keymap.set("n", "<leader>r", ":source ${impure-path}/lua/config/init.lua<CR>")
-
-
-    -- In order to load matugen's saved changes, attempt to load it's file
-    local matugen_path = os.getenv("HOME") .. "/.config/nvim/matugen/style.lua"
-    dofile(matugen_path)
-
-    -- We must also register an autocmd to listen for matugen updates
-    vim.api.nvim_create_autocmd("Signal", {
-      pattern = "SIGUSR1",
-      callback = function()
-        dofile(matugen_path)
-      end
-    })
   '';
   plugins = {
     start = with pkgs.vimPlugins; [
@@ -49,6 +44,7 @@ inputs.mnw.lib.wrap pkgs {
       typst-preview-nvim
       scope-nvim
       colorizer
+      dashboard-nvim
       {
         name = "tft-nvim";
         src = pkgs.fetchFromGitHub {
@@ -93,22 +89,24 @@ inputs.mnw.lib.wrap pkgs {
   };
   # Mostly LSPs and formatters, along with a few helper binaries
   extraBinPath = with pkgs; [
-    lua-language-server
+    lua-language-server # Lua
     stylua
 
-    rust-analyzer
+    rust-analyzer       # Rust
     rustfmt
 
-    nil
+    nil                 # Nix
     nixd
     nixfmt
 
-    pyright
+    pyright             # Python
     black
 
-    marksman
+    marksman            # Markdown
 
-    yazi # for yazi-nvim
-    fzf # for fzf-lua
+    tinymist            # Typst
+
+    yazi                # for yazi-nvim
+    fzf                 # for fzf-lua
   ];
 }

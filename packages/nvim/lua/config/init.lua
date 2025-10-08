@@ -4,7 +4,10 @@
 
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
-vim.o.cmdheight = 0
+
+-- TODO: looks a bit ugly, but I've found it's got really useful telemtry
+vim.o.cmdheight = 1
+
 vim.o.expandtab = true
 vim.o.clipboard = "unnamedplus"
 vim.o.timeout = false
@@ -21,8 +24,11 @@ vim.o.shiftround = true -- Snap to the nearest indentation level when using `<` 
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.hlsearch = true -- Highlight search matches
 
+-- Highlight search matches, but default them to off
+-- in case this file was `:source`d dynamically
+vim.o.hlsearch = true
+vim.cmd("noh")
 
 -- Native Neovim Keymaps
 -- (plugin-specific keymaps can be found in their respective plugin setup files)
@@ -52,21 +58,22 @@ vim.keymap.set("v", "<", "<gv", { desc = "Unindent selected lines" })
 
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "format file" })
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "suggest code action" })
+vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { desc = "suggest code action" })
 
 
 vim.keymap.set({ "n", "v" }, "!", "gcl", { remap = true })
 
 -- Plugins
 
+
+require('config.plugins.base16-colorscheme')
 require('config.plugins.blink-cmp')
 require('config.plugins.tft-nvim')
 require('config.plugins.fzf-lua')
 require('config.plugins.transparent-nvim')
 require('config.plugins.yazi-nvim')
 require('config.plugins.neogit')
-require('config.plugins.lualine-nvim')
 require('config.plugins.nvim-autopair')
--- require('config.plugins.bufferline-nvim')
 require('config.plugins.conform-nvim')
 require('config.plugins.guess-indent-nvim')
 require('config.plugins.uv-nvim')
@@ -77,8 +84,13 @@ require('config.plugins.select-undo-nvim')
 require('config.plugins.scope-nvim')
 require('config.plugins.fFtT-highlights-nvim')
 require('config.plugins.markdown-preview-nvim')
+require('config.plugins.dashboard-nvim')
+
+-- Lualine is sourced in the runtime module
+-- require('config.plugins.lualine-nvim') 
 
 -- LSP
+
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('pyright')
@@ -87,3 +99,10 @@ vim.lsp.enable('nixd')
 vim.lsp.enable('gopls')
 vim.lsp.enable('nil_ls')
 vim.lsp.enable('marksman')
+vim.lsp.enable('tinymist')
+
+-- Extra Lua code to source
+
+
+require('config.extras.math-eval')
+

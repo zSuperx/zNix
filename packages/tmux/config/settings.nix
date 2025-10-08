@@ -14,7 +14,7 @@ pkgs.writeText "tmux-settings.conf" ''
 
   set -g status-keys vi
   set -g mode-keys   vi
-  set -g default-terminal screen-256color
+  set -g default-terminal xterm-256color
 
   bind -N "Select pane to the left of the active pane" h select-pane -L
   bind -N "Select pane below the active pane" j select-pane -D
