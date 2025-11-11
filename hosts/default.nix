@@ -5,5 +5,5 @@ let
   };
 in
 {
-  gzero = import ./gzero finalArgs;
+  zero = import ./zero finalArgs;
 }

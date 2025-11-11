@@ -20,7 +20,7 @@ let
 
     # This file will be generated at runtime by matugen
     # Even if the path is incorrect, matugen will re-source the true path
-    "~/.config/tmux/style.conf" 
+    "~/.config/tmux/matugen.conf" 
   ];
   # Populate `tmux-main.conf` with imports for other files
   tmux-main = pkgs.writeText "tmux-main.conf" ''

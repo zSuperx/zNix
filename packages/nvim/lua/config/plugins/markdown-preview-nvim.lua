@@ -1,7 +1,0 @@
--- -- Define the function
--- function _G.OpenMarkdownPreview(url)
---   vim.fn.execute("silent ! firefox --new-window " .. url)
--- end
---
--- -- Assign it to markdown-preview.nvim
--- vim.g.mkdp_browserfunc = "OpenMarkdownPreview"

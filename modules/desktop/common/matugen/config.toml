@@ -10,13 +10,13 @@ post_hook = 'pkill -SIGUSR2 waybar || true'
 
 [templates.tmux]
 input_path = './templates/tmux/template.conf'
-output_path = '~/.config/tmux/style.conf'
-post_hook = 'tmux source-file ~/.config/tmux/style.conf || true'
+output_path = '~/.config/tmux/matugen.conf'
+post_hook = 'tmux source-file ~/.config/tmux/matugen.conf || true'
 
 [templates.nvim]
 input_path = './templates/nvim/template.lua'
-output_path = '~/.config/nvim/matugen/style.lua'
-post_hook = 'pkill -SIGUSR1 nvim || true'
+output_path = '~/.config/nvim/matugen.lua'
+post_hook = 'pkill -SIGUSR1 nvim && false || true'
 
 [templates.kitty]
 input_path = './templates/kitty/template.conf'
@@ -26,3 +26,16 @@ post_hook = 'pkill -SIGUSR1 kitty || true'
 [templates.rofi]
 input_path = './templates/rofi/template.rasi'
 output_path = '~/.config/rofi/config.rasi'
+
+[templates.vesktop]
+input_path = './templates/vesktop/template.css'
+output_path = '~/.config/vesktop/themes/matugen.css'
+
+[templates.gtk3]
+input_path = './templates/gtk/template.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = './templates/gtk/template.css'
+output_path = '~/.config/gtk-4.0/colors.css'

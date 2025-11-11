@@ -21,6 +21,16 @@ inputs.mnw.lib.wrap pkgs {
     -- This is kind of a useless keybind lol, but it's sometimes used in #devMode
     vim.keymap.set("n", "<leader>r", ":source ${impure-path}/lua/config/init.lua<CR>")
   '';
+
+  # This vim script is needed to hint :MarkdownPreview to open each preview in
+  # a separate browser window
+  initViml = ''
+    function OpenMarkdownPreview (url)
+      execute "silent ! firefox --new-window " . a:url
+    endfunction
+    let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+  '';
+
   plugins = {
     start = with pkgs.vimPlugins; [
       vim-visual-multi
@@ -36,8 +46,6 @@ inputs.mnw.lib.wrap pkgs {
       nvim-autopairs
       bufferline-nvim
       conform-nvim
-      guess-indent-nvim
-      vim-nix
       markdown-preview-nvim
       uv-nvim
       term-edit-nvim
@@ -45,6 +53,7 @@ inputs.mnw.lib.wrap pkgs {
       scope-nvim
       colorizer
       dashboard-nvim
+      nvim-web-devicons
       {
         name = "tft-nvim";
         src = pkgs.fetchFromGitHub {
@@ -64,15 +73,6 @@ inputs.mnw.lib.wrap pkgs {
         };
       }
       {
-        name = "select-undo-nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "SunnyTamang";
-          repo = "select-undo.nvim";
-          rev = "d5aa1f0dbef93b7ed4219ef8c7bfae9691264ef7";
-          hash = "sha256-DQcUwuHRfpFuab7Gx6vIgOHGI2HJ4WMSvOqMtXnej6U=";
-        };
-      }
-      {
         name = "fFtT-highlights-nvim";
         src = pkgs.fetchFromGitHub {
           owner = "samiulsami";
@@ -87,26 +87,33 @@ inputs.mnw.lib.wrap pkgs {
       impure = impure-path;
     };
   };
+
   # Mostly LSPs and formatters, along with a few helper binaries
   extraBinPath = with pkgs; [
-    lua-language-server # Lua
+    lua-language-server                   # Lua
     stylua
 
-    rust-analyzer       # Rust
+    rust-analyzer                         # Rust
     rustfmt
 
-    nil                 # Nix
+    gcc                                   # C/C++
+    ccls
+
+    nil                                   # Nix
     nixd
     nixfmt
 
-    pyright             # Python
+    gopls                                 # Go
+    go
+
+    pyright                               # Python
     black
 
-    marksman            # Markdown
+    marksman                              # Markdown
 
-    tinymist            # Typst
+    tinymist                              # Typst
 
-    yazi                # for yazi-nvim
-    fzf                 # for fzf-lua
+    yazi                                  # for yazi-nvim
+    fzf                                   # for fzf-lua
   ];
 }

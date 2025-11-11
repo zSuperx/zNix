@@ -23,7 +23,6 @@ require('lualine').setup({
         icon_only = true,
         icon = { align = 'left' },
       },
-
       {
         'filename',
         symbols = { modified = '', readonly = '', unnamed = '' },
@@ -36,7 +35,6 @@ require('lualine').setup({
           end
         end,
       },
-
       {
         "",
         draw_empty = true,
@@ -45,8 +43,22 @@ require('lualine').setup({
     },
     lualine_c = {
       {
+        'altfile',
+        color = { gui='italic' },
+        fmt = function()
+          local alt = vim.fn.bufnr('#')
+          if alt ~= -1 then
+            local full_alt_path = vim.api.nvim_buf_get_name(alt)
+
+            return vim.fn.fnamemodify(full_alt_path, ":t")
+          else
+            return ""
+          end
+        end,
+      },
+      {
         "diff",
-        symbols = { added = '+', modified = '~', removed = '-' }, -- Changes the diff symbols
+        symbols = { added = '+', modified = '~', removed = '-' },
         separator = { right = '' }
       },
       {
@@ -145,5 +157,6 @@ require('lualine').setup({
   }
 })
 
-
-vim.api.nvim_set_hl(0, "LualineModifiedFile", { fg = "#6cbf43", bold = true, italic = true })
+local lualine_hl = vim.api.nvim_get_hl(0, { name = "lualine_b_normal" })
+local lualine_hl_new = vim.tbl_extend('force', lualine_hl, { fg = "#6cbf43", bold = true, italic = true })
+vim.api.nvim_set_hl(0, "LualineModifiedFile", lualine_hl_new)

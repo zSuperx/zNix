@@ -15,6 +15,7 @@
           };
           settings = { 
             background_opacity = 0.90;
+            background_blur = 10;
             shell = if config.programs.fish.enable then "fish" else "bash";
             cursor_trail = "1";
             themeFile = "Catppuccin-Mocha";

@@ -55,6 +55,12 @@
     layer-rules = [
       {
         matches = [
+          {namespace = "wayland-test";}
+        ];
+        place-within-backdrop = true;
+      }
+      {
+        matches = [
           {namespace = "swww";}
         ];
         place-within-backdrop = true;

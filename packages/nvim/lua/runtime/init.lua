@@ -1,4 +1,4 @@
--- As described in the package `default.nix`, this file sets up an auxiliary function
+-- As described in the package's `default.nix`, this file sets up an auxiliary function
 -- that is run once at the start (from config/init.lua), and also upon every `SIGUSR1`
 
 -- Helper function to set multiple highlight groups at once
@@ -16,6 +16,8 @@ local function source(path)
   if err ~= nil then
     -- Some placeholder theme, this will be overwritten once matugen kicks in
     vim.cmd('colorscheme base16-catppuccin-mocha')
+    vim.print("WARNING:")
+    vim.print("A matugen style file was not found, but that's okay! The colorscheme will dynamically change if matugen runs!")
   else
     dofile(path)
     io.close(file)
@@ -26,11 +28,11 @@ end
 -- Main entrypoint on matugen reloads
 local function auxiliary_function()
   -- Load the matugen style file to get all the new colors
-  local matugen_path = os.getenv("HOME") .. "/.config/nvim/matugen/style.lua"
+  local matugen_path = os.getenv("HOME") .. "/.config/nvim/matugen.lua"
   source(matugen_path)
 
   -- Because reloading base16 overwrites lualine configuration, just source lualine here
-  package.loaded['runtime.plugins.lualine-nvim'] = nil -- This is some cursed lua shit right here, but if it works...
+  package.loaded['runtime.plugins.lualine-nvim'] = nil -- This is some cursed lua shit right here, but hey if it works...
   require('runtime.plugins.lualine-nvim')
 
   -- Manually italicize comments

@@ -6,3 +6,4 @@ require('conform').setup({
     nix = { 'nixfmt' },
   }
 })
+

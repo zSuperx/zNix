@@ -62,6 +62,7 @@ vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { desc = "suggest code act
 
 
 vim.keymap.set({ "n", "v" }, "!", "gcl", { remap = true })
+vim.keymap.set("n", "<Tab>", "<C-^>", { remap = true })
 
 -- Plugins
 
@@ -75,19 +76,17 @@ require('config.plugins.yazi-nvim')
 require('config.plugins.neogit')
 require('config.plugins.nvim-autopair')
 require('config.plugins.conform-nvim')
-require('config.plugins.guess-indent-nvim')
 require('config.plugins.uv-nvim')
-require('config.plugins.project-nvim')
-require('config.plugins.term-edit-nvim')
+-- require('config.plugins.project-nvim')
+-- require('config.plugins.term-edit-nvim')
 require('config.plugins.typst-preview-nvim')
-require('config.plugins.select-undo-nvim')
 require('config.plugins.scope-nvim')
 require('config.plugins.fFtT-highlights-nvim')
-require('config.plugins.markdown-preview-nvim')
 require('config.plugins.dashboard-nvim')
+require('config.plugins.nvim-web-devicons')
 
 -- Lualine is sourced in the runtime module
--- require('config.plugins.lualine-nvim') 
+-- require('config.plugins.lualine-nvim')
 
 -- LSP
 
@@ -100,9 +99,9 @@ vim.lsp.enable('gopls')
 vim.lsp.enable('nil_ls')
 vim.lsp.enable('marksman')
 vim.lsp.enable('tinymist')
+vim.lsp.enable('ccls')
 
 -- Extra Lua code to source
 
 
 require('config.extras.math-eval')
-

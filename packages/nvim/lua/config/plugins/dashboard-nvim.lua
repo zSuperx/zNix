@@ -5,7 +5,7 @@ require('dashboard').setup({
       statusline = false,
     },
     header = { '' },
-    disable_move = true,
+    disable_move = false,
     shortcut = {
       {
         desc = 'Close the dashboard',

@@ -13,6 +13,9 @@
         nautilus
         blueman
         zathura
+        firefox
+        spotify-player
+        inputs.zen-browser.packages.${pkgs.system}.default
       ];
 
       hm = {
@@ -20,10 +23,6 @@
           inputs.spicetify.homeManagerModules.default
         ];
         programs.spicetify = {
-          enable = true;
-        };
-
-        programs.firefox = {
           enable = true;
         };
       };

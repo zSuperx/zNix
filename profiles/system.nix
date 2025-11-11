@@ -8,6 +8,7 @@
         nixos
         services
         timezone
+        tlp # Minecraft runs horribly with this on wtf??
       ];
     };
 }

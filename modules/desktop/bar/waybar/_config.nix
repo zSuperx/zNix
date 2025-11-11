@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 let
@@ -40,10 +41,10 @@ let
       fi
     }
 
-    playerctl --player=spotify metadata -F --format '{{status}} {{xesam:title}} - {{xesam:artist}}' |
+    playerctl -p spotify_player,spotify metadata -F --format '{{status}} {{xesam:title}} - {{xesam:artist}}' |
     while read -r STATUS FILLER; do
-      SONG=$(truncate "$(playerctl --player=spotify metadata title)" 15)
-      ARTIST=$(truncate "$(playerctl --player=spotify metadata artist)" 10)
+      SONG=$(truncate "$(playerctl -p spotify_player,spotify metadata title)" 15)
+      ARTIST=$(truncate "$(playerctl -p spotify_player,spotify metadata artist)" 10)
       case "$STATUS" in
         Playing) ICON="⏸" ;;
         Paused) ICON="▶" ;;
@@ -147,7 +148,6 @@ in
     "pulseaudio"
     "backlight"
     "battery"
-    "power-profiles-daemon"
     "custom/power"
   ];
   backlight = {
@@ -214,10 +214,10 @@ in
     tail = true;
     format = "  [ {} ]";
     tooltip-format = "(Scroll = Next/Prev | Right Click = Copy URL)";
-    on-click = "playerctl --player=spotify play-pause";
-    on-click-right = "playerctl --player=spotify metadata -f {{xesam:url}} | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
-    on-scroll-up = "playerctl --player=spotify next";
-    on-scroll-down = "playerctl --player=spotify previous";
+    on-click = "playerctl -p spotify_player,spotify play-pause";
+    on-click-right = "playerctl -p spotify_player,spotify metadata -f {{xesam:url}} | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
+    on-scroll-up = "playerctl -p spotify_player,spotify next";
+    on-scroll-down = "playerctl -p spotify_player,spotify previous";
   };
   "custom/screen-utils" = {
     format = "{}";

@@ -1,3 +1,3 @@
-require('project').setup()
+require('project').setup({ })
 
-vim.keymap.set("n", "<leader>fp", ":ProjectFzf<CR>", { desc = "Pick a project" })
+vim.keymap.set("n", "<leader>fp", ":ProjectFzf<CR><C-e>", { desc = "Pick a project" })

@@ -1,5 +1,5 @@
 configuration {
-  modes: "window,drun";
+  modes: "window,drun,recursivebrowser";
   font: "JetBrainsMono NF 18";
   drun-display-format: "{name}";
   kb-mode-complete: "";

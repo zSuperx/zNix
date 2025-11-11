@@ -6,18 +6,27 @@ local actions = require('fzf-lua.actions')
 require('fzf-lua').setup({
   'border-fused',
   files = {
+    hidden = true,
     actions = {
       ["default"] = actions.file_edit,
     }
   },
+  winopts = {
+    on_create = function()
+      vim.keymap.del("t", "<Esc>")
+    end,
+    on_close = function()
+      vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+    end,
+  },
   keymap = {
     fzf = {
-      ["start"] = "show-input+unbind(i,j,k)",
+      ["start"] = "show-input+unbind(i,j,k,q)",
       ["j"] = "down",
       ["k"] = "up",
       ["q"] = "abort",
-      ["i"] = "show-input+unbind(i,j,k)",
-      ["ctrl-e"] = 'transform:if [[ "$FZF_INPUT_STATE" = enabled ]]; then echo "hide-input+rebind(i,j,k)"; fi',
+      ["i"] = "show-input+unbind(i,j,k,q)",
+      ["esc"] = 'transform:if [[ "$FZF_INPUT_STATE" = enabled ]]; then echo "hide-input+rebind(i,j,k,q)"; fi',
       ["ctrl-d"] = "half-page-down",
       ["ctrl-u"] = "half-page-up",
     }
@@ -85,7 +94,8 @@ FzfLua.register_ui_select()
 
 vim.keymap.set("n", "<leader>fl", FzfLua.builtin, { desc = "Open FzfLua's menu--with FzfLua!" })
 vim.keymap.set("n", "<leader>fr", FzfLua.resume, { desc = "Resume previous FzfLua search" })
-vim.keymap.set("n", "<leader>ff", FzfLua.files, { desc = "Pick buffers from project directory" })
-vim.keymap.set("n", "<leader>ft", FzfLua.tabs, { desc = "Pick tab from existing tabs" })
-vim.keymap.set("n", "<leader>fb", FzfLua.buffers, { desc = "Pick buffers from open buffers" })
+vim.keymap.set("n", "<leader>ff", ":FzfLua files<CR><Esc>", { desc = "Pick buffers from project directory" })
+vim.keymap.set("n", "<leader>ft", ":FzfLua tabs<CR><Esc>", { desc = "Pick tab from existing tabs" })
+vim.keymap.set("n", "<leader>fb", ":FzfLua buffers<CR><Esc>", { desc = "Pick buffers from open buffers" })
 vim.keymap.set("n", "<leader>fg", FzfLua.live_grep, { desc = "Pick buffers from live grep" })
+vim.keymap.set("n", "<leader>fj", ":FzfLua jumps<CR><Esc>", { desc = "Pick buffers from live grep" })

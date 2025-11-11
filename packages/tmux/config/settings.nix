@@ -78,7 +78,7 @@ pkgs.writeText "tmux-settings.conf" ''
 
   # Override tmux's builtin session manager with muxie
   unbind s
-  bind s popup -EB ${lib.getExe' muxie "muxie"}
+  bind s popup -EB ${lib.getExe muxie}
 
   # Options to make tmux more pleasant
   set -g mouse on

@@ -1,5 +1,5 @@
 configuration {
-  modes: "window,drun";
+  modes: "window,drun,filebrowser";
   font: "JetBrainsMono NF 18";
   drun-display-format: "{name}";
   kb-mode-complete: "";
@@ -32,7 +32,6 @@ configuration {
 
 window {
   fullscreen: true;
-  padding: 35% 30%;       // you might want to ajust these to resize rofi.
   transparency: "real";
   background-color: @bgt;
   border-color: @t;

@@ -13,7 +13,7 @@
       action.spawn = ["bash" "-c" "pkill rofi || rofi -show drun -method fuzzy -show-icons"];
     };
     "Mod+B" = {
-      action.spawn = ["firefox"];
+      action.spawn = ["zen"];
     };
     "Mod+N" = {
       action.spawn = ["playerctl" "next"];
