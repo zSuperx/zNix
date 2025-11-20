@@ -25,7 +25,7 @@
       nixpkgs.config.allowUnfree = true;
       users.users.${info.username} = {
         isNormalUser = true;
-        shell = if config.programs.fish.enable then pkgs.fish else pkgs.bash;
+        shell = pkgs.fish;
         extraGroups = [
           "wheel"
           "docker"
