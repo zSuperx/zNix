@@ -108,10 +108,12 @@ inputs.mnw.lib.wrap pkgs {
 
     pyright                               # Python
     black
+    uv
 
     marksman                              # Markdown
 
     tinymist                              # Typst
+
 
     yazi                                  # for yazi-nvim
     fzf                                   # for fzf-lua

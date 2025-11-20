@@ -22,6 +22,7 @@
         wget
         git
         nix-tree
+        typst
 
         # Networking
         nmap
