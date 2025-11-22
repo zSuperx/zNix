@@ -11,13 +11,10 @@ inputs.nixpkgs.lib.genAttrs systems (
   system:
   let
     pkgs = inputs.nixpkgs.legacyPackages.${system};
-
-    # You have to instantiate base16's lib before using its functions
-    inherit (inputs.base16.lib { inherit (pkgs) pkgs lib; }) mkSchemeAttrs;
-    colorscheme = mkSchemeAttrs "${inputs.base16-schemes}/gruvbox-dark-medium.yaml";
   in
   {
-    nvim = pkgs.callPackage ./nvim { inherit inputs colorscheme; };
-    tmux = pkgs.callPackage ./tmux { inherit inputs colorscheme; };
+    nvim = pkgs.callPackage ./nvim { inherit inputs; };
+    tmux = pkgs.callPackage ./tmux { inherit inputs; };
+    waybar = pkgs.callPackage ./waybar { };
   }
 )

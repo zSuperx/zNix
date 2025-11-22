@@ -4,35 +4,44 @@
   outputs =
     inputs@{
       self,
+      nixpkgs,
+      home-manager,
+      colmena,
       ...
     }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
-      lib = import ./lib { inherit inputs self; };
+      homeModules.zsuper = ./home; # So NixOS configurations can reference via self
+      homeConfigurations.zsuper = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          self.homeModules.zsuper
+        ];
+        extraSpecialArgs = { inherit inputs self; };
+      };
 
-      nixosConfigurations = import ./hosts { inherit self inputs; };
+      colmenaHive = colmena.lib.makeHive (import ./nodes { inherit inputs self pkgs; });
 
-      nixosModules = self.lib.recursiveImport [
-        ./modules
-        ./profiles
-      ];
+      nixosConfigurations = self.colmenaHive.nodes; # useful for repl debugging
 
       packages = import ./packages { inherit inputs; };
     };
 
   nixConfig = {
     extra-substituters = [
-      "https://hyprland.cachix.org"
-      "https://niri.cachix.org"
+      "https://niri.cachix.org" # Niri Window Manager
     ];
     extra-trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=" # Niri Window Manager
     ];
   };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
+    colmena.url = "github:zhaofengli/colmena";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,19 +59,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    base16.url = "github:SenchoPens/base16.nix";
-    base16-schemes = {
-      url = "github:tinted-theming/base16-schemes";
-      flake = false;
-    };
-
-    spicetify.url = "github:Gerg-L/spicetify-nix";
     muxie.url = "github:zSuperx/muxie";
-    # muxie.url = "github:phanorcoll/muxie"; # TODO: switch back to upstream once PR gets merged.
     mnw.url = "github:Gerg-L/mnw";
-    # hyprland.url = "github:hyprwm/Hyprland";
     niri.url = "github:sodiboo/niri-flake";
-    # gBar.url = "github:scorpion-26/gBar";
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

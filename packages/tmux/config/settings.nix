@@ -3,10 +3,10 @@
   pkgs,
   lib,
   scripts,
-  system,
+  stdenv,
 }:
 let
-  muxie = inputs.muxie.packages.${system}.default;
+  muxie = inputs.muxie.packages.${stdenv.hostPlatform.system}.default;
 in
 pkgs.writeText "tmux-settings.conf" ''
   set  -g base-index      0

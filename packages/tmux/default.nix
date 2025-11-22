@@ -2,8 +2,6 @@
   inputs,
   pkgs,
   lib,
-  colorscheme,
-  config,
 }:
 let
   inherit (lib.strings) concatMapStrings;
