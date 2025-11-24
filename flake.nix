@@ -20,7 +20,10 @@
         modules = [
           self.homeModules.zsuper
         ];
-        extraSpecialArgs = { inherit inputs self; };
+        extraSpecialArgs = {
+          inherit inputs self;
+          inherit (pkgs.stdenv.hostPlatform) system;
+        };
       };
 
       colmenaHive = colmena.lib.makeHive (import ./nodes { inherit inputs self pkgs; });
@@ -62,7 +65,7 @@
     muxie.url = "github:zSuperx/muxie";
     mnw.url = "github:Gerg-L/mnw";
     niri.url = "github:sodiboo/niri-flake";
-    
+
     disko.url = "github:nix-community/disko";
     colmena.url = "github:zhaofengli/colmena";
 

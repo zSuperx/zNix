@@ -31,7 +31,10 @@ in
   meta = {
     nixpkgs = pkgs;
     allowApplyAll = false;
-    specialArgs = { inherit inputs self; };
+    specialArgs = {
+      inherit inputs self;
+      inherit (pkgs.stdenv.hostPlatform) system;
+    };
   };
 }
 // mkNodes {

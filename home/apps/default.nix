@@ -18,9 +18,9 @@
       matugen
       rofi
       spotify-player
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.zen-browser.packages.${system}.default
     ]
-    ++ (with self.packages.${pkgs.stdenv.hostPlatform.system}; [
+    ++ (with self.packages.${system}; [
       nvim
       tmux
       waybar

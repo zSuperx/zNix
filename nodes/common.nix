@@ -1,10 +1,18 @@
 # NixOS configuration options common between all nodes.
 # Additional configuration should be added on top of this through the use of other modules.
-{ inputs, pkgs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 let
   publicKeys = [
-    # Main laptop
+    # Main laptop (old)
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILl06sDJJiaC+aP+Yf8pbD++dC+8syQIOen22e7ysDXA zsuper@nixos"
+
+    # Main laptop (new)
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1ynXOnCqUQny5Suy/b0DJciv4GB2w+aBZ26nrW0NZQ zsuper@zero"
 
     # On-network thinkpad (YOU SHOULD DEPLOY FROM HERE)
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEZd/NHanLEeZcO7UJ3cSA3L6+t9bHJiX4Vv/aCzS6Na supergonk@thinkpad"
@@ -12,7 +20,7 @@ let
 in
 {
   imports = [ inputs.disko.nixosModules.disko ];
-  
+
   users.users = {
     zsuper = {
       isNormalUser = true;
@@ -43,7 +51,10 @@ in
     tailscale = {
       enable = true; # declaratively add node to Tailnet
       authKeyFile = "/run/keys/tailscale.secret"; # populated by Colmena
-      extraUpFlags = [ "--hostname" config.networking.hostName ];
+      extraUpFlags = [
+        "--hostname"
+        config.networking.hostName
+      ];
     };
     openssh.enable = true;
   };
