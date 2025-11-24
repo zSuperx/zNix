@@ -41,7 +41,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    colmena.url = "github:zhaofengli/colmena";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,9 +58,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     muxie.url = "github:zSuperx/muxie";
     mnw.url = "github:Gerg-L/mnw";
     niri.url = "github:sodiboo/niri-flake";
+    
+    disko.url = "github:nix-community/disko";
+    colmena.url = "github:zhaofengli/colmena";
 
     fenix = {
       url = "github:nix-community/fenix";
