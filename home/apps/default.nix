@@ -30,4 +30,11 @@
     enable = true;
     vencord.settings.enabledThemes = [ "matugen.css" ];
   };
+
+  home.file = {
+    "matugen" = {
+      source = ./matugen;
+      target = ".config/matugen/";
+    };
+  };
 }

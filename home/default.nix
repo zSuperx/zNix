@@ -8,7 +8,7 @@
   home = {
     username = "zsuper";
     homeDirectory = "/home/zsuper";
-    stateVersion = "25.05"; # Please read the comment before changing.
+    stateVersion = "25.05";
     sessionVariables = {
       EDITOR = "nvim";
     };
