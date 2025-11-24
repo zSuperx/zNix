@@ -1,5 +1,5 @@
 {
-  description = "Nixos configuration";
+  description = "Me and what army, you ask?";
 
   outputs =
     inputs@{
