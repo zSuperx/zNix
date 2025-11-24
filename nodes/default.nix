@@ -19,7 +19,7 @@ let
       };
       networking.hostName = nodeName;
       imports = [
-        ./${nodeName}
+        ./${nodeName}/default.nix
         ./${nodeName}/hardware-configuration.nix
         ./common.nix
       ]
@@ -39,53 +39,64 @@ in
     deployment = {
       targetHost = null;
       allowLocalDeployment = true;
+      tags = [ "all" ];
     };
   };
   zenith = {
     deployment = {
       targetHost = "zenith";
       allowLocalDeployment = true;
+      tags = [ "all" ];
     };
-    modules = [ inputs.disko.nixosModules.disko ];
   };
   zealot = {
     deployment = {
       targetHost = "zealot";
       # targetHost = "10.0.0.51";
-      tags = [ "nuc" ];
+      tags = [
+        "nuc"
+        "all"
+      ];
     };
-    modules = [ inputs.disko.nixosModules.disko ];
   };
   zed = {
     deployment = {
       targetHost = "zed";
       # targetHost = "10.0.0.52";
-      tags = [ "nuc" ];
+      tags = [
+        "nuc"
+        "all"
+      ];
     };
-    modules = [ inputs.disko.nixosModules.disko ];
   };
   zodiac = {
     deployment = {
       targetHost = "zodiac";
       # targetHost = "10.0.0.53";
-      tags = [ "nuc" ];
+      tags = [
+        "nuc"
+        "all"
+      ];
     };
-    modules = [ inputs.disko.nixosModules.disko ];
   };
   zoom = {
     deployment = {
       targetHost = "zoom";
       # targetHost = "10.0.0.54";
-      tags = [ "nuc" ];
+      tags = [
+        "nuc"
+        "all"
+      ];
     };
-    modules = [ inputs.disko.nixosModules.disko ];
   };
   zuko = {
     deployment = {
       targetHost = "zuko";
       # targetHost = "10.0.0.55";
-      tags = [ "nuc" ];
+      tags = [
+        "nuc"
+        "all"
+      ];
     };
-    modules = [ inputs.disko.nixosModules.disko ];
   };
 }
