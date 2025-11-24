@@ -1,6 +1,6 @@
 # NixOS configuration options common between all nodes.
 # Additional configuration should be added on top of this through the use of other modules.
-{ pkgs, config, ... }:
+{ inputs, pkgs, config, ... }:
 let
   publicKeys = [
     # Main laptop
@@ -11,6 +11,8 @@ let
   ];
 in
 {
+  imports = [ inputs.disko.nixosModules.disko ];
+  
   users.users = {
     zsuper = {
       isNormalUser = true;
