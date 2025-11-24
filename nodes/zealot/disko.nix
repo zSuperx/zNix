@@ -4,7 +4,7 @@
       # main SSD
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_M.2_250GB_S24BNWAG500917E";
+        device = "/dev/disk/by-id/ata-Samsung_SSD_850_EVO_M.2_250GB_S24BNWAG500706W";
         content = {
           type = "gpt";
           partitions = {

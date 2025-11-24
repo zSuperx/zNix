@@ -30,6 +30,7 @@ in
 {
   meta = {
     nixpkgs = pkgs;
+    allowApplyAll = false;
     specialArgs = { inherit inputs self; };
   };
 }
@@ -42,38 +43,48 @@ in
   };
   zenith = {
     deployment = {
-      targetHost = "thinkpad";
+      targetHost = "zenith";
       allowLocalDeployment = true;
-    };
-    modules = [ inputs.disko.nixosModules.disko ];
-  };
-  zed = {
-    deployment = {
-      targetHost = "t1";
     };
     modules = [ inputs.disko.nixosModules.disko ];
   };
   zealot = {
     deployment = {
-      targetHost = "t2";
+      targetHost = "zealot";
+      # targetHost = "10.0.0.51";
+      tags = [ "nuc" ];
+    };
+    modules = [ inputs.disko.nixosModules.disko ];
+  };
+  zed = {
+    deployment = {
+      targetHost = "zed";
+      # targetHost = "10.0.0.52";
+      tags = [ "nuc" ];
     };
     modules = [ inputs.disko.nixosModules.disko ];
   };
   zodiac = {
     deployment = {
-      targetHost = "t3";
+      targetHost = "zodiac";
+      # targetHost = "10.0.0.53";
+      tags = [ "nuc" ];
     };
     modules = [ inputs.disko.nixosModules.disko ];
   };
   zoom = {
     deployment = {
-      targetHost = "t4";
+      targetHost = "zoom";
+      # targetHost = "10.0.0.54";
+      tags = [ "nuc" ];
     };
     modules = [ inputs.disko.nixosModules.disko ];
   };
   zuko = {
     deployment = {
-      targetHost = "t5";
+      targetHost = "zuko";
+      # targetHost = "10.0.0.55";
+      tags = [ "nuc" ];
     };
     modules = [ inputs.disko.nixosModules.disko ];
   };

@@ -1,6 +1,6 @@
 # NixOS configuration options common between all nodes.
 # Additional configuration should be added on top of this through the use of other modules.
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   publicKeys = [
     # Main laptop
@@ -41,6 +41,7 @@ in
     tailscale = {
       enable = true; # declaratively add node to Tailnet
       authKeyFile = "/run/keys/tailscale.secret"; # populated by Colmena
+      extraUpFlags = [ "--hostname" config.networking.hostName ];
     };
     openssh.enable = true;
   };
