@@ -1,14 +1,17 @@
 # NixOS configuration options common between all nodes.
 # Additional configuration should be added on top of this through the use of other modules.
-let
-  publicKeys = import ./public-keys.nix;
-in
 { pkgs, ... }:
-{
-  time.timeZone = "America/Los_Angeles";
+let
+  publicKeys = [
+    # Main laptop
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILl06sDJJiaC+aP+Yf8pbD++dC+8syQIOen22e7ysDXA zsuper@nixos"
 
+    # On-network thinkpad (YOU SHOULD DEPLOY FROM HERE)
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEZd/NHanLEeZcO7UJ3cSA3L6+t9bHJiX4Vv/aCzS6Na supergonk@thinkpad"
+  ];
+in
+{
   users.users = {
-    # All nodes will have the supergonk user defined
     zsuper = {
       isNormalUser = true;
       extraGroups = [
@@ -42,6 +45,11 @@ in
     openssh.enable = true;
   };
 
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
+
   networking = {
     nameservers = [
       "1.0.0.1"
@@ -55,6 +63,8 @@ in
       allowedUDPPorts = [ ];
     };
   };
+
+  time.timeZone = "America/Los_Angeles";
 
   # Nix related options that likely won't change
   documentation.nixos.enable = false;
@@ -70,15 +80,18 @@ in
       "@wheel"
     ];
   };
-nixpkgs = {
-  config.allowUnfree = true;
-  overlays = [ (final: prev: {
-    inherit (prev.lixPackageSets.stable)
-      nixpkgs-review
-      nix-eval-jobs
-      nix-fast-build
-      colmena;
-  }) ];
-};
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      (final: prev: {
+        inherit (prev.lixPackageSets.stable)
+          nixpkgs-review
+          nix-eval-jobs
+          nix-fast-build
+          colmena
+          ;
+      })
+    ];
+  };
   system.stateVersion = "25.05";
 }
