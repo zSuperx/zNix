@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  colorscheme,
 }:
 let
   impure-path = "/home/zsuper/zNix/packages/nvim";
