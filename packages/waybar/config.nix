@@ -147,6 +147,7 @@ in
     "pulseaudio"
     "backlight"
     "battery"
+    "power-profiles-daemon"
     "custom/power"
   ];
   backlight = {
@@ -233,6 +234,7 @@ in
   };
   height = 35;
   layer = "top";
+  position = "bottom";
   network = {
     format-disabled = " [    󰤭     ]";
     format-disconnected = " [    󰤩     ]";

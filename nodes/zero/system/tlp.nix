@@ -1,8 +1,8 @@
 { lib, ... }:
 {
-  services.power-profiles-daemon.enable = lib.mkForce false;
+  services.power-profiles-daemon.enable = lib.mkForce true;
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
       TLP_ENABLE = "1";
       DISK_IDLE_SECS_ON_AC = "0";

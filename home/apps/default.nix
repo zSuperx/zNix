@@ -2,6 +2,7 @@
   self,
   inputs,
   pkgs,
+  system,
   ...
 }:
 {
@@ -18,7 +19,11 @@
       matugen
       rofi
       spotify-player
+      thunderbird
+    ]
+    ++ [
       inputs.zen-browser.packages.${system}.default
+      inputs.muxie.packages.${system}.default
     ]
     ++ (with self.packages.${system}; [
       nvim

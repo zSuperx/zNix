@@ -12,8 +12,6 @@ pkgs.writeText "tmux-settings.conf" ''
   set  -g base-index      0
   setw -g pane-base-index 0
 
-  set -g status-keys vi
-  set -g mode-keys   vi
   set -g default-terminal xterm-256color
 
   bind -N "Select pane to the left of the active pane" h select-pane -L
@@ -47,12 +45,19 @@ pkgs.writeText "tmux-settings.conf" ''
 
   bind * set-option -w synchronize-panes
 
-  bind -T copy-mode-vi v send -X begin-selection
+  # Vim keybinds
+
+  set -g status-keys vi
+  set -g mode-keys   vi
+  bind -T copy-mode-vi v     run-shell 'tmux send-keys -X begin-selection; tmux send-keys -X rectangle-off'
+  bind -T copy-mode-vi 'C-v' run-shell 'tmux send-keys -X begin-selection; tmux send-keys -X rectangle-on'
+
   bind -T copy-mode-vi y send-keys -X copy-pipe "pbcopy"
+  bind -T copy-mode-vi Y send-keys -X copy-end-of-line
   bind -T copy-mode-vi i send-keys -X cancel
   bind -T copy-mode-vi a send-keys -X cancel
-  bind-key -T copy-mode-vi Y send-keys -X copy-end-of-line
 
+  # Alt keybindings
   bind -n M-f resize-pane -Z
 
   bind -n M-h select-pane -L
@@ -75,6 +80,9 @@ pkgs.writeText "tmux-settings.conf" ''
 
   # Ctrl+Alt+n to create new window
   bind -n C-M-n new-window 
+
+  bind -n M-[ copy-mode
+  bind -n M-s popup -EB ${lib.getExe muxie}
 
   # Override tmux's builtin session manager with muxie
   unbind s

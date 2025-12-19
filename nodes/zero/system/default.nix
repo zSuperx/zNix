@@ -8,10 +8,16 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    # Core
     vim
-    wget
     git
-    home-manager
     inputs.colmena.packages.${pkgs.system}.colmena
+
+    # Networking
+    wget
+    nmap
+    traceroute
+    dig
+    busybox
   ];
 }

@@ -26,7 +26,7 @@
         };
       };
 
-      colmenaHive = colmena.lib.makeHive (import ./nodes { inherit inputs self pkgs; });
+      colmenaHive = colmena.lib.makeHive (import ./nodes/colmena.nix { inherit inputs self pkgs; });
 
       nixosConfigurations = self.colmenaHive.nodes; # useful for repl debugging
 
@@ -61,6 +61,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    yazi.url = "github:sxyazi/yazi";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     muxie.url = "github:zSuperx/muxie";
     mnw.url = "github:Gerg-L/mnw";
@@ -68,6 +69,10 @@
 
     disko.url = "github:nix-community/disko";
     colmena.url = "github:zhaofengli/colmena";
+    server-modules = {
+      url = "/home/zsuper/server-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     fenix = {
       url = "github:nix-community/fenix";

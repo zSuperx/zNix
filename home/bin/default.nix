@@ -26,12 +26,6 @@
     git
     nix-tree
     typst
-
-    # Networking
-    nmap
-    traceroute
-    dig
-    busybox
   ];
 
   # Reverse map from binary names to Nix packages
