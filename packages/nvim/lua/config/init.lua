@@ -100,6 +100,7 @@ vim.lsp.enable('nil_ls')
 vim.lsp.enable('marksman')
 vim.lsp.enable('tinymist')
 vim.lsp.enable('ccls')
+vim.lsp.enable('html')
 
 -- Extra Lua code to source
 

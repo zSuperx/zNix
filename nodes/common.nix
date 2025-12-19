@@ -51,6 +51,7 @@ in
     tailscale = {
       enable = true; # declaratively add node to Tailnet
       authKeyFile = "/run/keys/tailscale.secret"; # populated by Colmena
+      extraDaemonFlags = [ "--encrypt-state=false" ];
       extraUpFlags = [
         "--hostname"
         config.networking.hostName

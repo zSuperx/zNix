@@ -30,7 +30,6 @@ in
 {
   meta = {
     nixpkgs = pkgs;
-    allowApplyAll = false;
     specialArgs = {
       inherit inputs self;
       inherit (pkgs.stdenv.hostPlatform) system;
@@ -42,64 +41,42 @@ in
     deployment = {
       targetHost = null;
       allowLocalDeployment = true;
-      tags = [ "all" ];
     };
   };
   zenith = {
     deployment = {
       targetHost = "zenith";
       allowLocalDeployment = true;
-      tags = [ "all" ];
     };
   };
   zealot = {
     deployment = {
       targetHost = "zealot";
-      # targetHost = "10.0.0.51";
-      tags = [
-        "nuc"
-        "all"
-      ];
+      tags = [ "nuc" ];
     };
   };
   zed = {
     deployment = {
       targetHost = "zed";
-      # targetHost = "10.0.0.52";
-      tags = [
-        "nuc"
-        "all"
-      ];
+      tags = [ "nuc" ];
     };
   };
   zodiac = {
     deployment = {
       targetHost = "zodiac";
-      # targetHost = "10.0.0.53";
-      tags = [
-        "nuc"
-        "all"
-      ];
+      tags = [ "nuc" ];
     };
   };
   zoom = {
     deployment = {
       targetHost = "zoom";
-      # targetHost = "10.0.0.54";
-      tags = [
-        "nuc"
-        "all"
-      ];
+      tags = [ "nuc" ];
     };
   };
   zuko = {
     deployment = {
       targetHost = "zuko";
-      # targetHost = "10.0.0.55";
-      tags = [
-        "nuc"
-        "all"
-      ];
+      tags = [ "nuc" ];
     };
   };
 }

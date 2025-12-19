@@ -2,6 +2,7 @@
   self,
   inputs,
   lib,
+  system,
   ...
 }:
 {
@@ -17,7 +18,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit self inputs; };
+    extraSpecialArgs = { inherit self inputs system; };
     users.zsuper = {
       imports = [ self.homeModules.zsuper ];
       nixpkgs.config = lib.mkForce null; # Force disable nixpkgs configuration if using as nixosModule
