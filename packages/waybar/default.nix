@@ -4,10 +4,10 @@
   jq,
   makeWrapper,
   pkgs,
-  lib,
 }:
 let
-  waybar-config = import ./config.nix { inherit pkgs lib; };
+  scripts = import ./scripts.nix { inherit (pkgs) lib pkgs; };
+  waybar-config = import ./config.nix { inherit pkgs scripts; };
 in
 symlinkJoin {
   name = "waybar";

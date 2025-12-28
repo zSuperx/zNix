@@ -24,6 +24,7 @@
   ];
 
   programs.niri.enable = true;
+  programs.niri.package = pkgs.niri-unstable;
 
   # Niri options will be configured through Home Manager
   home-manager.users.zsuper = import ./niri;

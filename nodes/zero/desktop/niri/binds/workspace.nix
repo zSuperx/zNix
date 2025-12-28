@@ -37,9 +37,6 @@
     "Mod+K".action.focus-window-or-workspace-up = {};
     "Mod+L".action.focus-column-or-monitor-right = {};
 
-    "Mod+Tab".action.focus-column-right-or-first = {};
-    "Mod+Shift+Tab".action.focus-column-left-or-last = {};
-
     "Mod+Shift+H".action.move-column-left-or-to-monitor-left = {};
     "Mod+Shift+J".action.move-window-down-or-to-workspace-down = {};
     "Mod+Shift+K".action.move-window-up-or-to-workspace-up = {};
@@ -130,10 +127,5 @@
 
     "Mod+Shift+E".action.quit = {};
     "Ctrl+Alt+Delete".action.quit = {};
-
-    # "Mod+Escape" = {
-    #   action.toggle-keyboard-shortcuts-inhibit = {};
-    #   allow-inhibiting = false;
-    # };
   };
 }

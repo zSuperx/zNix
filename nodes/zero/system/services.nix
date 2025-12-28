@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
@@ -37,6 +38,7 @@
   };
 
   hardware = {
+    bluetooth.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -45,5 +47,4 @@
 
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
-  environment.systemPackages = [ pkgs.podman-compose ];
 }

@@ -44,6 +44,7 @@ in
     vim
     wget
     git
+    podman-compose
   ];
 
   programs.fish.enable = true;

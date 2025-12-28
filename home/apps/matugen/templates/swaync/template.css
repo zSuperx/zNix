@@ -1,0 +1,274 @@
+/*
+ * SwayNC Matugen Template
+ * Integrated Style: Structural Widgets + Stylized Notifications
+ */
+
+/* --- Matugen Color Definitions --- */
+@define-color background-alt {{colors.surface_container.default.hex}}ee;
+@define-color selected {{colors.primary.default.hex}};
+@define-color hover-bg {{colors.primary.default.hex}}0f;
+@define-color text-main {{colors.on_surface.default.hex}};
+@define-color text-muted {{colors.on_surface_variant.default.hex}};
+@define-color accent {{colors.secondary.default.hex}};
+@define-color error-color {{colors.error.default.hex}};
+@define-color border-color {{colors.outline_variant.default.hex}};
+
+/* --- General Typography --- */
+* {
+  /* Using font stacks from second config */
+  font-family: "Shantell Sans", "JetBrainsMono Nerd Font", sans-serif;
+}
+
+/* --- Notification Row & Hover Effects --- */
+.notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0px;
+  transition: all 200ms ease;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+  background: @hover-bg;
+}
+
+.control-center .notification-row {
+  opacity: 0.95;
+  margin: 4px;
+}
+
+/* --- Notification Card Styling (Second Config Style) --- */
+.notification {
+  padding: 0.4em;
+  margin: 6px;
+  /* Retro offset shadow using primary color */
+  box-shadow: 4px 4px 0 0 {{colors.primary.default.hex}};
+  border-radius: 0px;
+  background: {{colors.surface.default.hex}};
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border: 1px solid @border-color;
+}
+
+/* Urgency Borders */
+.low {
+  border: 1px solid {{colors.tertiary.default.hex}};
+  box-shadow: 4px 4px 0 0 {{colors.tertiary.default.hex}};
+}
+.normal {
+  border: 1px solid {{colors.primary.default.hex}};
+  box-shadow: 4px 4px 0 0 {{colors.primary.default.hex}};
+}
+.critical {
+  box-shadow: 4px 4px 0 0 @error-color;
+}
+
+.notification.critical .notification-content .summary {
+  color: {{colors.error.default.hex}};
+}
+
+.notification-content {
+  padding: 5px 0;
+  margin-left: 10px;
+  color: @text-main;
+  background: transparent;
+}
+
+.summary {
+  font-size: 1.2em;
+  font-weight: bold;
+  background: transparent;
+  color: white;
+  text-shadow: none;
+}
+
+.time {
+  font-size: 1.0em;
+  font-weight: normal;
+  color: @text-muted;
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+.body {
+  font-size: 11pt;
+  font-weight: normal;
+  background: transparent;
+  color: @text-main;
+}
+
+/* --- Notification Groups --- */
+.notification-group {
+  background-color: transparent;
+}
+
+.notification-group-headers {
+  font-weight: bold;
+  font-size: 1.00rem;
+  color: @text-main;
+  font-family: "Megrim", cursive;
+  
+  /* Reset margins to prevent clipping */
+  margin-left: 0; 
+  margin-right: 0;
+  padding-left: 10px; /* Use padding instead to move text right */
+  
+  /* Force the widget to take as much horizontal space as it needs */
+  min-width: 200px; 
+}
+
+.notification-group-icon {
+  color: {{colors.primary.default.hex}};
+  margin-right: 8px;
+}
+
+/* --- Images --- */
+.image {
+  margin-left: 2px;
+  margin-right: 12px;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 8px;
+}
+
+.body-image {
+  margin-top: 6px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* --- Close & Action Buttons --- */
+/* Integrated approach: Minimal but visible */
+.close-button {
+  background: {{colors.surface_variant.default.hex}};
+  color: @text-main;
+  border-radius: 100%;
+  padding: 2px;
+  margin-top: 5px;
+  margin-right: 5px;
+  min-width: 20px;
+  min-height: 20px;
+  border: none;
+}
+
+.close-button:hover {
+  background: @error-color;
+  color: {{colors.on_error.default.hex}};
+}
+
+.notification-default-action,
+.notification-action {
+  padding: 4px;
+  margin: 0;
+  background: transparent;
+  border: none;
+  color: @text-main;
+}
+
+/* --- Control Center Window --- */
+.control-center {
+  background: @background-alt;
+  border-radius: 12px;
+  padding: 8px;
+  border: 1px solid @border-color;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.top-action-title {
+  color: @text-main;
+  font-weight: bold;
+}
+
+/* --- Widgets (From First Config) --- */
+
+/* MPRIS Player */
+.widget-mpris-player {
+  padding: 12px;
+  margin: 8px;
+  background-color: {{colors.surface_container_high.default.hex}};
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 0 {{colors.secondary.default.hex}};
+}
+
+.widget-mpris-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: {{colors.primary.default.hex}};
+}
+
+.widget-mpris-subtitle {
+  font-size: 0.9rem;
+  color: @text-muted;
+}
+
+/* Volume/Backlight Sliders */
+.widget-volume, .widget-backlight {
+  background-color: {{colors.surface_container_low.default.hex}};
+  padding: 10px;
+  margin: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid @border-color;
+}
+
+/* Buttons Grid (Wifi, Bluetooth, etc) */
+.widget-buttons-grid {
+  padding: 8px;
+  margin: 8px;
+  border-radius: 12px;
+  background-color: {{colors.surface_container_low.default.hex}};
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button {
+  background: {{colors.surface_container_highest.default.hex}};
+  border-radius: 8px;
+  margin: 4px;
+  padding: 10px;
+  color: @text-main;
+  border: none;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button:hover {
+  background: @selected;
+  color: {{colors.on_primary.default.hex}};
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button:checked {
+  background: @selected;
+  color: {{colors.on_primary.default.hex}};
+}
+
+/* Title & Clear All */
+.widget-title > button {
+  background: {{colors.surface_container_high.default.hex}};
+  color: @text-main;
+  padding: 4px 12px;
+  border: 1px solid @border-color;
+  border-radius: 8px;
+}
+
+.widget-title > button:hover {
+  background: @selected;
+  color: {{colors.on_primary.default.hex}};
+}
+
+/* DND Switch */
+.widget-dnd > switch {
+  font-size: 1.1rem;
+  border-radius: 20px;
+  background: {{colors.surface_container_highest.default.hex}};
+  border: 1px solid @border-color;
+}
+
+.widget-dnd > switch:checked {
+  background: @selected;
+}
+
+.widget-dnd > switch slider {
+  background: @text-main;
+  border-radius: 20px;
+  margin: 2px;
+}

@@ -20,7 +20,7 @@
       "rustfmt"
     ])
 
-    # Python
+    # Python (why does it have a ridiculous build time???)
     # python312
   ];
 }

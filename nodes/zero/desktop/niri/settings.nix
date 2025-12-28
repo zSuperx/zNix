@@ -1,7 +1,8 @@
-{config, ...}: {
+{
   programs.niri.settings = {
     input = {
       touchpad.natural-scroll = false;
+      touchpad.disabled-on-external-mouse = true;
       focus-follows-mouse = {
         enable = true;
         max-scroll-amount = "0%";
@@ -24,17 +25,20 @@
 
       center-focused-column = "never";
 
-      default-column-width = {proportion = 0.5;};
+      default-column-width = {
+        proportion = 0.5;
+      };
       focus-ring = {
         width = 4;
-        active.color = "#83a598";
+        active.color = "#ffa500";
       };
     };
 
     spawn-at-startup = [
-      {command = ["xwayland-satellite"];}
-      {command = ["swww-daemon"];}
-      {command = ["waybar"];}
+      { command = [ "xwayland-satellite" ]; }
+      { command = [ "swww-daemon" ]; }
+      { command = [ "waybar" ]; }
+      { command = [ "swaync" ]; }
     ];
 
     environment = {
@@ -55,13 +59,7 @@
     layer-rules = [
       {
         matches = [
-          {namespace = "wayland-test";}
-        ];
-        place-within-backdrop = true;
-      }
-      {
-        matches = [
-          {namespace = "swww";}
+          { namespace = "swww"; }
         ];
         place-within-backdrop = true;
       }
@@ -70,9 +68,14 @@
     window-rules = [
       {
         matches = [
-          {app-id = "r#\"firefox$\"# title=\"^Picture-in-Picture$\"";}
+          { app-id = "r#\"firefox$\"# title=\"^Picture-in-Picture$\""; }
         ];
-
+        open-floating = true;
+      }
+      {
+        matches = [
+          { app-id = "com.network.manager"; }
+        ];
         open-floating = true;
       }
       {

@@ -67,6 +67,8 @@
     mnw.url = "github:Gerg-L/mnw";
     niri.url = "github:sodiboo/niri-flake";
 
+    nix-bore.url = "github:zSuperx/nix-bore";
+
     disko.url = "github:nix-community/disko";
     colmena.url = "github:zhaofengli/colmena";
     server-modules = {

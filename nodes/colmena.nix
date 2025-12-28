@@ -15,6 +15,7 @@ let
         keys = {
           "tailscale.secret".keyFile = "/home/zsuper/zNix/.secrets/tailscale.secret";
           "hashedPassword.secret".keyFile = "/home/zsuper/zNix/.secrets/hashedPassword.secret";
+          "bore-minecraft.secret".keyFile = "/home/zsuper/zNix/.secrets/bore-minecraft.secret";
         };
       };
       networking.hostName = nodeName;

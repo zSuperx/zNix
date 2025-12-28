@@ -6,6 +6,11 @@
   ...
 }:
 {
+  imports = [
+    # TODO: maybe wrap this into its own package and then dogfood it back in?
+    ./swaync
+  ];
+
   home.packages =
     with pkgs;
     [
@@ -20,6 +25,7 @@
       rofi
       spotify-player
       thunderbird
+      nmgui
     ]
     ++ [
       inputs.zen-browser.packages.${system}.default
