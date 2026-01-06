@@ -1,6 +1,8 @@
 * {
-    font-family: Font Awesome, Liberation Mono, Maple Mono Italic, "JetbrainsMono Nerd Font", Roboto, sans-serif, DejaVuSansMono, Maple Mono, "AdwaithaMono";
+    font-family: "JetBrainsMono Nerd Font";
     font-weight: 900;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 window#waybar {
