@@ -64,6 +64,7 @@
     yazi.url = "github:sxyazi/yazi";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     muxie.url = "github:zSuperx/muxie";
+    muffin.url = "github:zSuperx/muffin";
     mnw.url = "github:Gerg-L/mnw";
     niri.url = "github:sodiboo/niri-flake";
 

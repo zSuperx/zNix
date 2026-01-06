@@ -12,8 +12,6 @@ let
     wpctl
     toggle-wifi
     spotify-status
-    wf-waybar
-    screen-utils
     ;
 in
 {
@@ -22,7 +20,7 @@ in
     "custom/notifications"
     "network"
     "bluetooth"
-    "custom/screen-utils"
+    "custom/visual-refresh"
   ];
   modules-center = [
     "custom/spotify"
@@ -103,13 +101,11 @@ in
     on-scroll-up = "playerctl -p spotify_player,spotify next";
     on-scroll-down = "playerctl -p spotify_player,spotify previous";
   };
-  "custom/screen-utils" = {
-    format = "{}";
-    exec = "${wf-waybar}";
-    on-click = "${screen-utils}";
-    tooltip-format = "Click to select from screen tools";
-    return-type = "json";
-    tail = true;
+  "custom/visual-refresh" = {
+    format = " [ <span font_size=\"13pt\"> 󰑐 </span>  ]  ";
+    on-click = "pkill -SIGUSR2 waybar";
+    tooltip = true;
+    tooltip-format = "Click to visually refresh waybar";
   };
   "custom/notifications" = {
     tooltip = true;

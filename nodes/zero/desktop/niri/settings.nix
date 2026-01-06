@@ -2,7 +2,6 @@
   programs.niri.settings = {
     input = {
       touchpad.natural-scroll = false;
-      touchpad.disabled-on-external-mouse = true;
       focus-follows-mouse = {
         enable = true;
         max-scroll-amount = "0%";

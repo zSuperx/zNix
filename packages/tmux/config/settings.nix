@@ -6,7 +6,7 @@
   stdenv,
 }:
 let
-  muxie = inputs.muxie.packages.${stdenv.hostPlatform.system}.default;
+  muffin = inputs.muffin.packages.${stdenv.hostPlatform.system}.default;
 in
 pkgs.writeText "tmux-settings.conf" ''
   set  -g base-index      0
@@ -80,10 +80,10 @@ pkgs.writeText "tmux-settings.conf" ''
   # Ctrl+Alt+n to create new window
   bind -n C-M-n new-window 
 
-  # Override tmux's builtin session manager with muxie
+  # Override tmux's builtin session manager with muffin
   unbind s
-  bind s popup -EB ${lib.getExe muxie}
-  bind -n M-s popup -EB ${lib.getExe muxie}
+  bind s popup -EB ${lib.getExe muffin}
+  bind -n M-s popup -EB ${lib.getExe muffin}
 
   # Options to make tmux more pleasant
   set -g mouse on

@@ -23,12 +23,6 @@
     interactiveShellInit = ''
       set fish_greeting
       nitch
-      if test -f ~/todo.md
-        echo
-        echo === YOUR TODO ===
-        echo
-        cat ~/todo.md
-      end
     '';
   };
 }

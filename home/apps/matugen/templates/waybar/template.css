@@ -165,14 +165,8 @@ window#waybar {
     padding-right: 10px;
 }
 
-#custom-screen-utils.idle {
+#custom-visual-refresh {
     color: {{colors.on_primary_container.default.hex}};
-    font-size: 16px;
-    font-family: arial;
-}
-
-#custom-screen-utils.recording {
-    color: {{colors.error.default.hex}};
     font-size: 16px;
     font-family: arial;
 }
