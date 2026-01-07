@@ -11,7 +11,7 @@
 @define-color text-muted {{colors.on_surface_variant.default.hex}};
 @define-color accent {{colors.secondary.default.hex}};
 @define-color error-color {{colors.error.default.hex}};
-@define-color border-color {{colors.primary.default.hex}};
+@define-color border-color {{colors.tertiary.default.hex}};
 
 
 /* --- General Typography --- */

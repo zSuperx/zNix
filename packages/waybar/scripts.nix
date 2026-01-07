@@ -29,30 +29,9 @@
     waybar -t #Refresh Waybar after each action
   '';
   spotify-status = pkgs.writeShellScript "spotify-status" ''
-    truncate() {
-      local max_len="$1"
-      local str="$2"
-
-      if (( ''${#str} > max_len )); then
-        echo "$(echo $str | head -c $max_len)..."
-      else
-        echo "$str"
-      fi
-    }
-
-
-    playerctl -p spotify metadata -F --format '{{status}} {{xesam:title}} - {{xesam:artist}}' | while read -r STATUS FILLER; do
+    playerctl -p spotify status -F | while read -r STATUS FILLER; do
       STATUS=$(playerctl -p spotify status)
-      SONG_RAW=$(playerctl -p spotify metadata --format '{{title}}')
-      SONG=$(truncate 15 "$SONG_RAW")
-      ARTIST_RAW=$(playerctl -p spotify metadata --format '{{xesam:artist}}')
-      ARTIST=$(truncate 15 "$ARTIST_RAW")
-      case "$STATUS" in
-        Playing) echo "{\"text\": \"   $SONG - $ARTIST\", \"tooltip\": \"$SONG_RAW - $ARTIST_RAW\", \"class\": \"$STATUS\"}" ;;
-        Paused) echo "{\"text\": \"   $SONG - $ARTIST\", \"tooltip\": \"$SONG_RAW - $ARTIST_RAW\", \"class\": \"$STATUS\"}" ;;
-        *) echo "{\"text\": \"\"}" ;;
-      esac
-      
+      echo "{\"class\": \"$STATUS\"}"
     done
   '';
 }

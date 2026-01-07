@@ -23,15 +23,16 @@ in
     "custom/visual-refresh"
   ];
   modules-center = [
-    "custom/spotify"
+    "custom/spotify-prev"
+    "mpris"
+    "custom/spotify-next"
   ];
   modules-right = [
     "tray"
     "pulseaudio"
     "backlight"
-    "battery"
+    "group/hardware"
     "power-profiles-daemon"
-    "custom/power"
   ];
   backlight = {
     format = "  {percent:3}%";
@@ -80,15 +81,62 @@ in
     tooltip-format = "{:%A %d}\n{calendar}";
     on-click-right = "date +%m/%d/%Y | ${wl-copy}";
   };
-  "custom/spotify" = {
+  "group/hardware" = {
+    orientation = "inherit";
+    "drawer" = {
+      "transition-duration" = 500;
+      "children-class" = "not-power";
+      "transition-left-to-right" = false;
+    };
+    children-class = "hardware-child";
+    modules = [
+      "battery"
+      "disk"
+      "memory"
+      "cpu"
+    ];
+  };
+  disk = {
+    format = " {percentage_used}%";
+  };
+  memory = {
+    format = " {percentage}%";
+  };
+  cpu = {
+    format = " {usage}%";
+  };
+  mpris = {
+    player = "spotify";
+    format = "  {status_icon} {dynamic:^23}";
+    tooltip-format = "{title} - {artist}";
+    dynamic-order = [
+      "title"
+      "artist"
+    ];
+    title-len = 10;
+    artist-len = 10;
+    status-icons = {
+      "paused" = "";
+      "playing" = "";
+    };
+    on-click-right = "playerctl -p spotify metadata -f \"{{xesam:title}} - {{xesam:artist}}, {{xesam:url}}\" | ${wl-copy}";
+  };
+  "custom/spotify-prev" = {
     exec = "${spotify-status}";
     tail = true;
-    format = "{}";
     return-type = "json";
-    on-click = "playerctl -p spotify play-pause";
-    on-click-right = "playerctl -p spotify metadata -f {{xesam:url}} | ${wl-copy}";
-    on-scroll-up = "playerctl -p spotify next";
-    on-scroll-down = "playerctl -p spotify previous";
+    tooltip = false;
+    format = "";
+    format-Stopped = "";
+    on-click = "playerctl -p spotify previous";
+  };
+  "custom/spotify-next" = {
+    exec = "${spotify-status}";
+    tail = true;
+    return-type = "json";
+    tooltip = false;
+    format = "";
+    on-click = "playerctl -p spotify next";
   };
   "custom/visual-refresh" = {
     format = "󰑐";
@@ -115,11 +163,6 @@ in
     on-click = "swaync-client -t -sw";
     on-click-right = "swaync-client -d -sw";
     escape = true;
-  };
-  "custom/power" = {
-    format = "⏻";
-    on-click = "${lib.getExe pkgs.wofi-power-menu}";
-    tooltip = false;
   };
   height = 35;
   layer = "top";

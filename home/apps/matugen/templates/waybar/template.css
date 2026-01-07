@@ -25,9 +25,17 @@ window#waybar {
 #bluetooth,
 #pulseaudio,
 #wireplumber,
+#mpris,
+#hardware,
 #mode,
+#memory,
+#cpu,
+#disk,
 #custom-notifications,
 #custom-visual-refresh,
+#custom-spotify-prev,
+#custom-spotify,
+#custom-spotify-next,
 #power-profiles-daemon,
 #mpd {
   color: {{colors.on_surface.default.hex}};
@@ -70,6 +78,12 @@ window#waybar {
   padding-left: 5px
 }
 
+#hardware {
+  background-color: {{colors.surface.default.hex}};
+  padding: 0;
+  margin: 0;
+}
+
 #battery {
   color: {{colors.tertiary.default.hex}};
 }
@@ -103,7 +117,7 @@ window#waybar {
 }
 
 #bluetooth.off {
-  color: {{colors.error.default.hex}};
+  color: {{colors.surface_variant.default.hex}};
 }
 
 #backlight {
@@ -112,12 +126,12 @@ window#waybar {
 
 #network {
   color: {{colors.primary_fixed_dim.default.hex}};
-  padding-left: 8px;
+  padding-left: 6px;
   padding-right: 12px;
 }
 
 #network.disabled {
-  color: {{colors.surface_container_low.default.hex}};
+  color: {{colors.surface_variant.default.hex}};
 }
 
 #network.disconnected {
@@ -138,23 +152,44 @@ window#waybar {
   padding-right: 5px
 }
 
-#custom-spotify {
+/*===========SPOTIFY MODULE===============*/
+
+
+#custom-spotify-prev {
+  padding-left: 7px;
+  padding-right: 12px;
+}
+
+#custom-spotify-next {
+  padding-left: 7px;
+  padding-right: 11px;
+}
+
+#mpris {
+  min-width: 250px;
+}
+
+#custom-spotify-prev,
+#mpris,
+#custom-spotify-next
+{
   color: {{colors.primary.default.hex}};
 }
 
-#custom-spotify.Playing {
+#custom-spotify-next.Playing,
+#custom-spotify-prev.Playing,
+#mpris.playing {
   color: {{colors.primary.default.hex}};
 }
 
-#custom-spotify.Paused {
+#custom-spotify-next.Paused,
+#custom-spotify-prev.Paused,
+#mpris.paused {
   color: {{colors.surface_variant.default.hex}};
   font-style: italic;
 }
 
-#custom-spotify.Stopped {
-  color: {{colors.surface_variant.default.hex}};
-  font-style: italic;
-}
+/*========================================*/
 
 #custom-visual-refresh {
   color: {{colors.secondary.default.hex}};
@@ -162,4 +197,12 @@ window#waybar {
 
 #custom-notifications {
   color: {{colors.primary.default.hex}};
+}
+
+#custom-notifications.dnd-notification {
+  color: {{colors.surface_variant.default.hex}};
+}
+
+#custom-notifications.dnd-none {
+  color: {{colors.surface_variant.default.hex}};
 }
