@@ -101,6 +101,7 @@ vim.lsp.enable('marksman')
 vim.lsp.enable('tinymist')
 vim.lsp.enable('ccls')
 vim.lsp.enable('html')
+vim.lsp.enable('hls')
 
 -- Extra Lua code to source
 

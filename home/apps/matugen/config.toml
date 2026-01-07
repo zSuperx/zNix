@@ -36,12 +36,14 @@ input_path = './templates/swaync/template.css'
 output_path = '~/.config/swaync/style.css'
 post_hook = 'swaync-client -rs'
 
-# [templates.gtk3]
-# input_path = './templates/gtk/template.css'
-# output_path = '~/.config/gtk-3.0/colors.css'
-# post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
-#
-# [templates.gtk4]
-# input_path = './templates/gtk/template.css'
-# output_path = '~/.config/gtk-4.0/colors.css'
+[templates.gtk3]
+input_path = './templates/gtk/template.css'
+output_path = '~/.config/gtk-3.0/colors.css'
 
+[templates.gtk4]
+input_path = './templates/gtk/template.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.niri]
+input_path = './templates/niri/template.kdl'
+output_path = '~/.config/niri/matugen.kdl'

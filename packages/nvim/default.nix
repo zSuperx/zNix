@@ -25,7 +25,7 @@ inputs.mnw.lib.wrap pkgs {
   # a separate browser window
   initViml = ''
     function OpenMarkdownPreview (url)
-      execute "silent ! firefox --new-window " . a:url
+      execute "silent ! zen --new-window " . a:url
     endfunction
     let g:mkdp_browserfunc = 'OpenMarkdownPreview'
   '';
@@ -89,32 +89,33 @@ inputs.mnw.lib.wrap pkgs {
 
   # Mostly LSPs and formatters, along with a few helper binaries
   extraBinPath = with pkgs; [
-    lua-language-server                   # Lua
+    ################# LSPs #####################
+    lua-language-server     # Lua
     stylua
 
-    rust-analyzer                         # Rust
+    rust-analyzer           # Rust
     rustfmt
 
-    gcc                                   # C/C++
+    gcc                     # C/C++
     ccls
 
-    nil                                   # Nix
+    nil                     # Nix
     nixd
     nixfmt
 
-    gopls                                 # Go
+    gopls                   # Go
     go
 
-    pyright                               # Python
+    pyright                 # Python
     black
     uv
+    
+    marksman                # Markdown
 
-    marksman                              # Markdown
+    tinymist                # Typst
 
-    tinymist                              # Typst
-
-
-    yazi                                  # for yazi-nvim
-    fzf                                   # for fzf-lua
+    ############### Other Utilities ############
+    yazi                 # for yazi-nvim
+    fzf                  # for fzf-lua
   ];
 }

@@ -26,6 +26,7 @@ in
     "custom/spotify"
   ];
   modules-right = [
+    "tray"
     "pulseaudio"
     "backlight"
     "battery"
@@ -33,15 +34,16 @@ in
     "custom/power"
   ];
   backlight = {
-    format = "   {percent}%";
+    format = "  {percent:3}%";
     scroll-step = 5;
   };
   battery = {
-    format = " {icon} {capacity}%";
-    format-alt = " {time} {icon}";
-    format-charging = " {icon} {capacity}%󱐋";
-    format-critical = "  {capacity}%";
-    format-full = " {icon} {capacity}%";
+    format = "{icon} {capacity:3}%";
+    format-alt = "{icon} {time}";
+    format-time = "{H}:{m} hrs";
+    format-full = "{icon} {capacity:3}%";
+    format-charging = "{icon} {capacity:3}%󱐋";
+    format-critical = " {capacity:3}%";
     format-icons = [
       ""
       "󰁺"
@@ -55,8 +57,8 @@ in
       "󰂂"
       "󰁹"
     ];
-    format-plugged = " {icon} {capacity}%󱐋";
-    format-warning = " {icon} {capacity}%";
+    format-plugged = "{icon} {capacity:3}%󱐋";
+    format-warning = "{icon} {capacity:3}%";
     states = {
       critical = 10;
       good = 80;
@@ -73,20 +75,20 @@ in
     tooltip-format = "{controller_alias}\t{controller_address}\n{device_enumerate}";
   };
   clock = {
-    format = "<span font_desc = \"JetbrainsMono Nerd Font Bold \">{:%R %p}</span>";
-    format-alt = "<span font_desc = \"JetbrainsMono Nerd Font Bold \">{:%m/%d/%Y}</span>";
-    tooltip-format = "<big>{:%d %A }</big>\n<tt><span font_desc=\"JetbrainsMono Nerd Font Bold \">{calendar}</span></tt>";
+    format = "{:%I:%M %p}";
+    format-alt = "{:%m/%d/%Y}";
+    tooltip-format = "{:%A %d}\n{calendar}";
     on-click-right = "date +%m/%d/%Y | ${wl-copy}";
   };
   "custom/spotify" = {
     exec = "${spotify-status}";
     tail = true;
-    format = "  [ {} ]";
-    tooltip-format = "(Scroll = Next/Prev | Right Click = Copy URL)";
-    on-click = "playerctl -p spotify_player,spotify play-pause";
-    on-click-right = "playerctl -p spotify_player,spotify metadata -f {{xesam:url}} | ${wl-copy}";
-    on-scroll-up = "playerctl -p spotify_player,spotify next";
-    on-scroll-down = "playerctl -p spotify_player,spotify previous";
+    format = "{}";
+    return-type = "json";
+    on-click = "playerctl -p spotify play-pause";
+    on-click-right = "playerctl -p spotify metadata -f {{xesam:url}} | ${wl-copy}";
+    on-scroll-up = "playerctl -p spotify next";
+    on-scroll-down = "playerctl -p spotify previous";
   };
   "custom/visual-refresh" = {
     format = "󰑐";
@@ -115,7 +117,7 @@ in
     escape = true;
   };
   "custom/power" = {
-    format = " ⏻";
+    format = "⏻";
     on-click = "${lib.getExe pkgs.wofi-power-menu}";
     tooltip = false;
   };
@@ -141,20 +143,20 @@ in
   power-profiles-daemon = {
     format = "{icon}";
     format-icons = {
-      balanced = "";
+      balanced = "  Bal";
       default = "";
-      performance = "";
-      power-saver = "";
+      performance = " Perf";
+      power-saver = " Eco";
     };
     tooltip = true;
     tooltip-format = "Power profile: {profile}\nDriver: {driver}";
   };
   pulseaudio = {
-    format = "{icon}  {volume}%";
-    format-bluetooth = "{icon}  {volume}%";
-    format-bluetooth-critical = "󰖁  {volume}%";
-    format-bluetooth-muted = "󰖁  {volume}%";
-    format-critical = "󰖁  {volume}%";
+    format = "{icon}  {volume:3}%";
+    format-bluetooth = "{icon}  {volume:3}%";
+    format-bluetooth-critical = "󰖁  {volume:3}%";
+    format-bluetooth-muted = "󰖁  {volume:3}%";
+    format-critical = "󰖁  {volume:3}%";
     format-icons = {
       default = [
         ""
@@ -170,7 +172,7 @@ in
         ""
       ];
     };
-    format-muted = "󰖁 {volume}%";
+    format-muted = "󰖁  {volume:3}%";
     on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
     scroll-step = 5;
     states = {

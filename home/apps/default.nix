@@ -20,7 +20,6 @@
       nautilus
       blueman
       zathura
-      firefox
       matugen
       rofi
       spotify-player

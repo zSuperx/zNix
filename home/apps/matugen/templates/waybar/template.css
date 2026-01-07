@@ -1,28 +1,21 @@
 * {
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: 900;
-    padding-left: 10px;
-    padding-right: 10px;
+  all: unset;
+  background-color: {{colors.surface.default.hex}};
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: 700;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 window#waybar {
-    margin-top: 10px;
-    font-size: 16px;
-    color: transparent;
-    background-color: {{colors.surface.default.hex}};
+  margin-top: 10px;
+  color: transparent;
+  border-top: 1px solid;
+  border-color: #49564c;
 }
 
 #workspaces button {
-    color: {{colors.primary.default.hex}};
-    font-size: 14px;
-}
-
-#modules-right {
-    font-size: 18px;
-}
-
-#modules-center {
-    font-size: 18px;
+  color: {{colors.primary.default.hex}};
 }
 
 #clock,
@@ -33,147 +26,140 @@ window#waybar {
 #pulseaudio,
 #wireplumber,
 #mode,
+#custom-notifications,
+#custom-visual-refresh,
+#power-profiles-daemon,
 #mpd {
-    padding: 0 10px;
-    color: {{colors.on_surface.default.hex}};
+  color: {{colors.on_surface.default.hex}};
+  border: 2px none;
+  border-radius: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: {{colors.surface_container.default.hex}};
 }
 
-#power-profiles-daemon {
-    padding: 0 10px;
-    color: {{colors.on_surface.default.hex}};
-    background-color: transparent;
+#power-profiles-daemon.performance {
+  color: #ffa541;
+}
+
+#power-profiles-daemon.balanced {
+  color: {{colors.on_surface.default.hex}};
+}
+
+#power-profiles-daemon.power-saver {
+  color: #99ff33;
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 #clock {
-    background-color: transparent;
-    color: {{colors.tertiary.default.hex}};
-    font-weight: bold;
-    font-size: 16px;
-    font-family: arial;
+  color: {{colors.tertiary.default.hex}};
+  padding-left: 5px
 }
 
 #battery {
-    background-color: transparent;
-    color: {{colors.secondary.default.hex}};
-    border: 0px;
-    border-color: {{colors.outline.default.hex}};
-    padding-right: 15px;
+  color: {{colors.tertiary.default.hex}};
 }
 
 #battery.charging,
 #battery.plugged {
-    color: {{colors.secondary_container.default.hex}};
-    background-color: transparent;
+  color: {{colors.tertiary.default.hex}};
 }
 
 #battery.warning:not(.charging) {
-    background-color: transparent;
-    color: {{colors.error_container.default.hex}};
+  color: {{colors.error.default.hex}};
 }
 
 @keyframes blink {
-    to {
-        background-color: transparent;
-        color: {{colors.surface_dim.default.hex}};
-    }
+  to {
+    color: {{colors.surface_dim.default.hex}};
+  }
 }
 
 #battery.critical:not(.charging) {
-    background-color: transparent;
-    color: {{colors.error.default.hex}};
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: {{colors.error.default.hex}};
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #bluetooth {
-    color: {{colors.primary_fixed.default.hex}};
-    font-size: 16px;
-    font-family: arial;
+  color: {{colors.secondary.default.hex}};
 }
 
 #bluetooth.off {
-    color: {{colors.error.default.hex}};
+  color: {{colors.error.default.hex}};
 }
 
 #backlight {
-    background-color: transparent;
-    color: {{colors.on_primary_container.default.hex}};
+  color: {{colors.primary.default.hex}};
 }
 
 #network {
-    background-color: transparent;
-    color: {{colors.primary_fixed_dim.default.hex}};
-    font-size: 16px;
-    font-family: arial;
+  color: {{colors.primary_fixed_dim.default.hex}};
+  padding-left: 8px;
+  padding-right: 12px;
 }
 
 #network.disabled {
-    background-color: transparent;
-    color: {{colors.surface_container_low.default.hex}};
+  color: {{colors.surface_container_low.default.hex}};
 }
 
 #network.disconnected {
-    background-color: transparent;
-    color: {{colors.error_container.default.hex}};
+  color: {{colors.error.default.hex}};
 }
 
 #pulseaudio {
-    background-color: transparent;
-    color: {{colors.secondary_fixed.default.hex}};
+  color: {{colors.secondary.default.hex}};
 }
 
 #pulseaudio.muted,
 #pulseaudio.critical {
-    background-color: transparent;
-    color: {{colors.error.default.hex}};
-}
-
-#wireplumber {
-    background-color: {{colors.on_surface.default.hex}};
-    color: {{colors.surface.default.hex}};
-}
-
-#wireplumber.muted {
-    background-color: {{colors.error.default.hex}};
+  color: {{colors.error.default.hex}};
 }
 
 #custom-power {
-    color: {{colors.error.default.hex}};
-    font-family: "bargraph";
-    font-size: 15px;
-    padding-right: 10px;
+  color: {{colors.error.default.hex}};
+  padding-right: 5px
 }
 
 #custom-spotify {
-    color: {{colors.primary.default.hex}};
-    font-family: "bargraph";
-    font-size: 15px;
-    padding-right: 10px;
+  color: {{colors.primary.default.hex}};
+}
+
+#custom-spotify.Playing {
+  color: {{colors.primary.default.hex}};
+}
+
+#custom-spotify.Paused {
+  color: {{colors.surface_variant.default.hex}};
+  font-style: italic;
+}
+
+#custom-spotify.Stopped {
+  color: {{colors.surface_variant.default.hex}};
+  font-style: italic;
 }
 
 #custom-visual-refresh {
-    color: {{colors.on_primary_container.default.hex}};
-    font-size: 16px;
-    font-family: arial;
+  color: {{colors.secondary.default.hex}};
 }
 
 #custom-notifications {
-    color: {{colors.on_primary_container.default.hex}};
-    font-size: 16px;
+  color: {{colors.primary.default.hex}};
 }

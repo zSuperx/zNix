@@ -160,7 +160,7 @@ in
           text = "Do Not Disturb 󰤄";
         };
         mpris = {
-          image-size = 128;
+          image-size = 96;
           image-radius = 8;
         };
         volume = {
