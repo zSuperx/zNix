@@ -28,7 +28,7 @@
     ]
     ++ [
       inputs.zen-browser.packages.${system}.default
-      inputs.muxie.packages.${system}.default
+      inputs.hellpaper.packages.${system}.default
     ]
     ++ (with self.packages.${system}; [
       nvim
@@ -45,6 +45,10 @@
     "matugen" = {
       source = ./matugen;
       target = ".config/matugen/";
+    };
+    "hypridle" = {
+      source = ./hypr/hypridle.conf;
+      target = ".config/hypr/hypridle.conf";
     };
   };
 }

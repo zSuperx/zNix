@@ -8,7 +8,7 @@
   fonts.fontDir.enable = true;
   programs.nix-ld.enable = true;
   security.rtkit.enable = true;
-  security.pam.services.hyprlock.fprintAuth = lib.mkDefault false;
+  security.pam.services.swaylock = { };
   services = {
     fprintd.enable = true;
     upower.enable = true;

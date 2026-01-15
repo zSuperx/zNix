@@ -10,7 +10,7 @@
       size = lib.mkForce 13;
     };
     settings = {
-      background_opacity = 0.90;
+      background_opacity = 0.92;
       background_blur = 10;
       shell = "fish";
       cursor_trail = "1";

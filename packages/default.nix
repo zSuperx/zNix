@@ -15,6 +15,6 @@ inputs.nixpkgs.lib.genAttrs systems (
   {
     nvim = pkgs.callPackage ./nvim { inherit inputs; };
     tmux = pkgs.callPackage ./tmux { inherit inputs; };
-    waybar = pkgs.callPackage ./waybar { };
+    waybar = pkgs.callPackage ./waybar { inherit inputs; };
   }
 )

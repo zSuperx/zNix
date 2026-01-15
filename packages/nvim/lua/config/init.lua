@@ -77,8 +77,6 @@ require('config.plugins.neogit')
 require('config.plugins.nvim-autopair')
 require('config.plugins.conform-nvim')
 require('config.plugins.uv-nvim')
--- require('config.plugins.project-nvim')
--- require('config.plugins.term-edit-nvim')
 require('config.plugins.typst-preview-nvim')
 require('config.plugins.scope-nvim')
 require('config.plugins.fFtT-highlights-nvim')
@@ -101,7 +99,6 @@ vim.lsp.enable('marksman')
 vim.lsp.enable('tinymist')
 vim.lsp.enable('ccls')
 vim.lsp.enable('html')
-vim.lsp.enable('hls')
 
 -- Extra Lua code to source
 

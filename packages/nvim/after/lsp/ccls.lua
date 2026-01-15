@@ -1,1 +1,3 @@
-return {}
+return {
+  workspace_required = false,
+}

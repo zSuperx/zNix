@@ -6,7 +6,7 @@ set = true
 [templates.waybar]
 input_path = './templates/waybar/template.css'
 output_path = '~/.config/waybar/style.css'
-post_hook = 'pkill -SIGUSR2 waybar || true'
+# post_hook = 'pkill -SIGUSR2 waybar || true'
 
 [templates.tmux]
 input_path = './templates/tmux/template.conf'
@@ -47,3 +47,11 @@ output_path = '~/.config/gtk-4.0/colors.css'
 [templates.niri]
 input_path = './templates/niri/template.kdl'
 output_path = '~/.config/niri/matugen.kdl'
+
+[templates.hellpaper]
+input_path = './templates/hellpaper/template.conf'
+output_path = '~/.config/hellpaper/hellpaper.conf'
+
+[templates.hyprlock]
+input_path = './templates/hyprlock/template.conf'
+output_path = '~/.config/hypr/hyprlock.conf'

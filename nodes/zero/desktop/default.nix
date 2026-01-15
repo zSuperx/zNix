@@ -20,6 +20,9 @@
     gnome.gvfs
   ];
 
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
+
   services.gnome.glib-networking.enable = true;
   environment.variables = {
     GIO_MODULE_DIR = "${pkgs.glib-networking}/lib/gio/modules/";

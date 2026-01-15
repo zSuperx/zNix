@@ -1,6 +1,5 @@
 * {
   all: unset;
-  background-color: {{colors.surface.default.hex}};
   font-family: "JetBrainsMono Nerd Font";
   font-weight: 700;
   padding-left: 10px;
@@ -10,8 +9,7 @@
 window#waybar {
   margin-top: 10px;
   color: transparent;
-  border-top: 1px solid;
-  border-color: #49564c;
+  background-color: {{colors.surface.default.hex}};
 }
 
 #workspaces button {
@@ -31,6 +29,7 @@ window#waybar {
 #memory,
 #cpu,
 #disk,
+#tray,
 #custom-notifications,
 #custom-visual-refresh,
 #custom-spotify-prev,
@@ -83,6 +82,65 @@ window#waybar {
   padding: 0;
   margin: 0;
 }
+
+decoration {
+  background: transparent;
+}
+
+tooltip {
+  background-color: {{colors.surface.default.hex}};
+  border: 2px solid {{colors.tertiary.default.hex}};
+  border-radius: 10px;
+  color: {{colors.on_surface_variant.default.hex}};
+}
+
+/*===========SYSTEM TRAY==================*/
+
+#tray menu {
+  padding: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border-radius: 10px;
+  background-color: {{colors.surface_container.default.hex}};
+  border: 2px solid {{colors.tertiary.default.hex}};
+}
+
+#tray *:not(decoration) {
+  background-color: {{colors.surface_container.default.hex}};
+}
+
+#tray menu separator,
+#tray menu menuitem > *:not(decoration),
+#tray menu menuitem > * > *:not(decoration),
+#tray menu menuitem {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: {{colors.on_surface_variant.default.hex}};
+  background-color: {{colors.surface_container.default.hex}};
+}
+
+#tray menu menuitem:hover > check,
+#tray menu menuitem:hover > box,
+#tray menu menuitem:hover > box > *,
+#tray menu menuitem:hover > arrow,
+#tray menu menuitem:hover > label,
+#tray menu menuitem:hover {
+  background-color: {{colors.shadow.default.hex}};
+  color: {{colors.primary.default.hex}};
+}
+
+#tray menu menuitem:disabled > check,
+#tray menu menuitem:disabled > box,
+#tray menu menuitem:disabled > box > *,
+#tray menu menuitem:disabled > arrow,
+#tray menu menuitem:disabled > label,
+#tray menu menuitem:disabled {
+  color: {{colors.inverse_on_surface.default.hex}};
+}
+
+/*========================================*/
 
 #battery {
   color: {{colors.tertiary.default.hex}};
@@ -176,12 +234,6 @@ window#waybar {
   color: {{colors.primary.default.hex}};
 }
 
-#custom-spotify-next.Playing,
-#custom-spotify-prev.Playing,
-#mpris.playing {
-  color: {{colors.primary.default.hex}};
-}
-
 #custom-spotify-next.Paused,
 #custom-spotify-prev.Paused,
 #mpris.paused {
@@ -189,9 +241,25 @@ window#waybar {
   font-style: italic;
 }
 
+#custom-spotify-next.Playing,
+#custom-spotify-prev.Playing,
+#mpris.playing {
+  color: {{colors.primary.default.hex}};
+}
+
+#mpris:not(.playing):not(.paused),
+#custom-spotify-next.Stopped,
+#custom-spotify-prev.Stopped {
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  opacity: 0;
+}
+
 /*========================================*/
 
 #custom-visual-refresh {
+  padding-left: 8px;
   color: {{colors.secondary.default.hex}};
 }
 

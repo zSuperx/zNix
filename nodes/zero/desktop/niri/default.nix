@@ -1,5 +1,15 @@
+{ pkgs, ... }:
 {
-  home.file."niri/config.kdl" = {
+  home.file."niri/config.kdl" = 
+  let
+    hellpaper-script = pkgs.writeShellScript "hellpaper-script.sh" ''
+      pkill hellpaper || WALL=$(hellpaper --recursive ~/Pictures/backgrounds/);
+      swww img "$WALL" --transition-type wipe --transition-duration 1;
+      matugen -c ~/zNix/home/apps/matugen/config.toml image "$WALL";
+      pkill -SIGUSR2 waybar
+    '';
+  in
+  {
     enable = true;
     target = ".config/niri/config.kdl";
     text = ''
@@ -116,6 +126,7 @@
           Mod+Minus { set-column-width "-10%"; }
           Mod+N allow-when-locked=true { spawn "playerctl" "-p" "spotify" "next"; }
           Mod+O repeat=false { toggle-overview; }
+          Mod+M { spawn "${hellpaper-script}"; }
           "Mod+Page_Down" { focus-workspace-down; }
           "Mod+Page_Up" { focus-workspace-up; }
           Mod+Period { expel-window-from-column; }

@@ -1,4 +1,5 @@
 {
+  inputs,
   symlinkJoin,
   waybar,
   jq,
@@ -6,7 +7,7 @@
   pkgs,
 }:
 let
-  scripts = import ./scripts.nix { inherit (pkgs) lib pkgs; };
+  scripts = import ./scripts.nix { inherit inputs; inherit (pkgs) lib pkgs; };
   waybar-config = import ./config.nix { inherit pkgs scripts; };
 in
 symlinkJoin {

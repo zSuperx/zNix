@@ -107,14 +107,14 @@ in
   };
   mpris = {
     player = "spotify";
-    format = "  {status_icon} {dynamic:^23}";
+    format = "  {status_icon} {dynamic:^30}";
     tooltip-format = "{title} - {artist}";
     dynamic-order = [
       "title"
       "artist"
     ];
-    title-len = 10;
-    artist-len = 10;
+    title-len = 14;
+    artist-len = 13;
     status-icons = {
       "paused" = "";
       "playing" = "";
@@ -127,7 +127,6 @@ in
     return-type = "json";
     tooltip = false;
     format = "";
-    format-Stopped = "";
     on-click = "playerctl -p spotify previous";
   };
   "custom/spotify-next" = {
@@ -139,10 +138,16 @@ in
     on-click = "playerctl -p spotify next";
   };
   "custom/visual-refresh" = {
-    format = "󰑐";
-    on-click = "pkill -SIGUSR2 waybar";
+    format = "";
+    on-click = ''
+      pkill hellpaper || WALL=$(hellpaper --recursive ~/Pictures/backgrounds/);
+      swww img "$WALL" --transition-type wipe --transition-duration 1;
+      matugen -c ~/zNix/home/apps/matugen/config.toml image "$WALL";
+      pkill -SIGUSR2 waybar
+    '';
+    on-right-click = "pkill -SIGUSR2 waybar";
     tooltip = true;
-    tooltip-format = "Click to visually refresh waybar";
+    tooltip-format = "LMB = select wallpaper | RMB = reload wallpaper";
   };
   "custom/notifications" = {
     tooltip = true;

@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
 }:
@@ -11,26 +12,21 @@
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
   toggle-bluetooth = pkgs.writeShellScript "toggle-bluetooth" ''
     if bluetoothctl show | grep -q "Powered: yes"; then
-      # If enabled, disable it
       bluetoothctl power off
     else
-      # If disabled, enable it
       bluetoothctl power on
     fi
   '';
   toggle-wifi = pkgs.writeShellScript "toggle-wifi" ''
     if nmcli radio wifi | grep -q "enabled"; then
       nmcli radio wifi off
-      echo "WiFi is now OFF"
     else
       nmcli radio wifi on
-      echo "WiFi is now ON"
     fi
-    waybar -t #Refresh Waybar after each action
   '';
   spotify-status = pkgs.writeShellScript "spotify-status" ''
     playerctl -p spotify status -F | while read -r STATUS FILLER; do
-      STATUS=$(playerctl -p spotify status)
+      STATUS=$(playerctl -p spotify status || echo "Stopped")
       echo "{\"class\": \"$STATUS\"}"
     done
   '';

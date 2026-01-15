@@ -19,5 +19,15 @@
     traceroute
     dig
     busybox
+    termshark
+    wireshark
+  ];
+
+  programs.wireshark = {
+    dumpcap.enable = true;
+    enable = true;
+  };
+  users.users.zsuper.extraGroups = [
+    "wireshark"
   ];
 }
