@@ -20,17 +20,17 @@
       nautilus
       blueman
       zathura
-      matugen
       rofi
       spotify-player
       thunderbird
       nmgui
     ]
-    ++ [
+    ++ [ # Third party binaries
       inputs.zen-browser.packages.${system}.default
       inputs.hellpaper.packages.${system}.default
+      inputs.matugen.packages.${system}.default
     ]
-    ++ (with self.packages.${system}; [
+    ++ (with self.packages.${system}; [ # Custom-packaged programs
       nvim
       tmux
       waybar
@@ -49,6 +49,10 @@
     "hypridle" = {
       source = ./hypr/hypridle.conf;
       target = ".config/hypr/hypridle.conf";
+    };
+    "hyprlock" = {
+      source = ./hypr/hyprlock.conf;
+      target = ".config/hypr/hyprlock.conf";
     };
   };
 }

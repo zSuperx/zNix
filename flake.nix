@@ -68,6 +68,7 @@
     hellpaper.url = "github:zSuperx/hellpaper";
     mnw.url = "github:Gerg-L/mnw";
     niri.url = "github:sodiboo/niri-flake";
+    matugen.url = "github:InioX/matugen";
 
     nix-bore.url = "github:zSuperx/nix-bore";
 

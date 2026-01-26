@@ -1,11 +1,12 @@
 require('fFtT-highlights'):setup({
-  next = ".",
-  prev = ",",
+  next = "",
+  prev = "",
   multi_line = {
     enable = true
   },
   match_highlight = {
     style = "full",
+    show_jump_numbers = false,
   },
   backdrop = {
     style = {

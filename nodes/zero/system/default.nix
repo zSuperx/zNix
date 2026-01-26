@@ -12,13 +12,15 @@
     vim
     git
     inputs.colmena.packages.${pkgs.system}.colmena
+    coreutils
+    usbutils
 
     # Networking
+    dig
     wget
     nmap
+    websocat
     traceroute
-    dig
-    busybox
     termshark
     wireshark
   ];

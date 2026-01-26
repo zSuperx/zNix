@@ -140,10 +140,7 @@ in
   "custom/visual-refresh" = {
     format = "";
     on-click = ''
-      pkill hellpaper || WALL=$(hellpaper --recursive ~/Pictures/backgrounds/);
-      swww img "$WALL" --transition-type wipe --transition-duration 1;
-      matugen -c ~/zNix/home/apps/matugen/config.toml image "$WALL";
-      pkill -SIGUSR2 waybar
+      pkill hellpaper || matugen -c ~/zNix/home/apps/matugen/config.toml image "$(hellpaper --recursive ~/Pictures/backgrounds/)" --source-color-index 0
     '';
     on-right-click = "pkill -SIGUSR2 waybar";
     tooltip = true;

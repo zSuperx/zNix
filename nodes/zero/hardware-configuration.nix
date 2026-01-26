@@ -11,6 +11,14 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+
+  # Enable S3 sleep for better battery life preservation while suspended
+  # Requires a hacky workaround for fprintd so it properly releases its USB device on DBUS
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
+  powerManagement.powerDownCommands = ''
+    ${pkgs.systemd}/bin/systemctl stop fprintd.service 2>/dev/null || true
+  '';
+
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =

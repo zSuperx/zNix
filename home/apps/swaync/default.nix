@@ -94,7 +94,7 @@ in
             actions = [
               {
                 "label" = "󰌾 Lock Screen";
-                "command" = "swaync-client -t -sw && swaylock -f";
+                "command" = "swaync-client -t -sw && hyprlock";
               }
               {
                 "label" = "󰈆 Log Out";

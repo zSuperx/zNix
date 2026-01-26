@@ -1,12 +1,21 @@
 [config.wallpaper]
-command = "swww"
-arguments = ["img", "--transition-type", "wipe", "--transition-duration", "1"]
-set = true
+command = 'swww'
+set = false
+# config.wallpaper seems to run AFTER all templates, which is an issue if running from waybar
+# since waybar's template pkills itself and all child processes (including the calling matugen)
+# Solution is to treat swww as a template with an index of -1, which ensures it's run before 
+# pkill waybar
+
+[templates.wallpaper]
+input_path = './templates/hellpaper/template.conf'
+pre_hook = "swww img --transition-type center --transition-duration 1 {{ image }}"
+index = -1 # Run swww first for reasons described above
 
 [templates.waybar]
 input_path = './templates/waybar/template.css'
 output_path = '~/.config/waybar/style.css'
-# post_hook = 'pkill -SIGUSR2 waybar || true'
+post_hook = 'pkill -SIGUSR2 waybar || true'
+index = 1 # Reload waybar last for reasons described above
 
 [templates.tmux]
 input_path = './templates/tmux/template.conf'
@@ -54,4 +63,4 @@ output_path = '~/.config/hellpaper/hellpaper.conf'
 
 [templates.hyprlock]
 input_path = './templates/hyprlock/template.conf'
-output_path = '~/.config/hypr/hyprlock.conf'
+output_path = '~/.config/hypr/matugen.conf'

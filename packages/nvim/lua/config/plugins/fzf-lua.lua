@@ -29,6 +29,7 @@ require('fzf-lua').setup({
       ["esc"] = 'transform:if [[ "$FZF_INPUT_STATE" = enabled ]]; then echo "hide-input+rebind(i,j,k,q)"; fi',
       ["ctrl-d"] = "half-page-down",
       ["ctrl-u"] = "half-page-up",
+      ["ctrl-a"] = "select-all+accept",
     }
   },
   grep = {
