@@ -221,7 +221,7 @@ SOFTWARE. */
 #app-mount,
 .bg_d4b111,
 .layer_cd0de5 {
-  background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.92) !important;
+  background: {{colors.surface.default.rgba | set_alpha: 0.92 }} !important;
 }
 
 .sidebar_a4d4d1, 
@@ -231,6 +231,20 @@ SOFTWARE. */
   background: transparent !important;
 }
 /* END OF TRANSPARENCY CONTROL */
+
+/* Add border to chat images, videos, and attachments */
+[class*="imageWrapper_"], 
+[class*="video_"], 
+[class*="attachment_"] {
+    border: 2px solid {{colors.primary.default.hex}} !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    
+    /* Forces the layout to respect the border at the bottom */
+    display: inline-block !important; 
+    vertical-align: bottom !important;
+}
 
 /*--- Default Folder Color Recolor ---*/
 .default__459fb {
