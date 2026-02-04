@@ -1,9 +1,9 @@
 :root {
     /* --- Core backgrounds --- */
-    --base00: {{colors.surface.default.hex}};                               /* Main app background */
+    --base00: transparent;                                  /* Main app background */
     --base01: {{colors.on_secondary_fixed.default.hex}};                       /* Slightly elevated areas (sidebar, chat) */
     --base02: {{colors.surface_container_low.default.hex}};                    /* Popouts, menus */
-    --base03: {{colors.tertiary.default.hex}};                       /* Active list, hover, subtle highlights */
+    --base03: {{colors.tertiary.default.hex}};                                 /* Active list, hover, subtle highlights */
 
     /* --- Foregrounds / text --- */
     --base04: {{colors.tertiary.default.hex}};                                 /* Muted text */
@@ -215,6 +215,21 @@
     --yellow-300: var(--base0A) !important;
     --__lottieIconColor: var(--base03) !important;
 }
+
+/* BEGINNING OF TRANSPARENCY CONTROL */
+#app-mount,
+.bg_d4b111,
+.layer_cd0de5 {
+    background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.92) !important;
+}
+
+.sidebar_a4d4d1, 
+.chat_a7d72e, 
+.container_ee991e, 
+.members_cbd271 {
+    background: transparent !important;
+}
+/* END OF TRANSPARENCY CONTROL */
 
 /*--- Default Folder Color Recolor ---*/
 .default__459fb {

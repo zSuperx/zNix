@@ -1,9 +1,10 @@
-{ inputs, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
   imports = [
     inputs.minegrub-theme.nixosModules.default
   ];
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
   # Bootloader.
   boot.loader.grub = {

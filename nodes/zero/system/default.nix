@@ -15,6 +15,9 @@
     coreutils
     usbutils
 
+    qemu
+    obs-studio
+
     # Networking
     dig
     wget

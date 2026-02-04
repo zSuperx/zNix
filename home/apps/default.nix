@@ -25,12 +25,14 @@
       thunderbird
       nmgui
     ]
-    ++ [ # Third party binaries
+    ++ [
+      # Third party binaries
       inputs.zen-browser.packages.${system}.default
       inputs.hellpaper.packages.${system}.default
       inputs.matugen.packages.${system}.default
     ]
-    ++ (with self.packages.${system}; [ # Custom-packaged programs
+    ++ (with self.packages.${system}; [
+      # Custom-packaged programs
       nvim
       tmux
       waybar
@@ -38,7 +40,10 @@
 
   programs.vesktop = {
     enable = true;
-    vencord.settings.enabledThemes = [ "matugen.css" ];
+    vencord.settings = {
+      enabledThemes = [ "matugen.css" ];
+      transparent = true;
+    };
   };
 
   home.file = {

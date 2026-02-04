@@ -21,6 +21,6 @@
     ])
 
     # Python (why does it have a ridiculous build time???)
-    # python312
+    python313
   ];
 }
