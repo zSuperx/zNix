@@ -43,7 +43,7 @@ in
     format-alt = "{icon} {time}";
     format-time = "{H}:{m} hrs";
     format-full = "{icon} {capacity:3}%";
-    format-charging = "{icon} {capacity:3}%󱐋";
+    format-charging = "{icon} {capacity:3}%";
     format-critical = " {capacity:3}%";
     format-icons = [
       ""
@@ -58,7 +58,7 @@ in
       "󰂂"
       "󰁹"
     ];
-    format-plugged = "{icon} {capacity:3}%󱐋";
+    format-plugged = "{icon} {capacity:3}%";
     format-warning = "{icon} {capacity:3}%";
     states = {
       critical = 10;
@@ -71,8 +71,8 @@ in
     format-connected = "󰂱";
     format-off = "󰂲";
     format-on = "󰂯";
-    on-click = "${toggle-bluetooth}";
-    on-click-right = "${blueman-manager}";
+    on-click = "${blueman-manager}";
+    on-click-right = "${toggle-bluetooth}";
     tooltip-format = "{controller_alias}\t{controller_address}\n{device_enumerate}";
   };
   clock = {
@@ -138,11 +138,11 @@ in
     on-click = "playerctl -p spotify next";
   };
   "custom/visual-refresh" = {
-    format = "";
+    format = "";
     on-click = ''
       pkill hellpaper || matugen -c ~/zNix/home/apps/matugen/config.toml image "$(hellpaper --recursive ~/Pictures/backgrounds/)" --source-color-index 0
     '';
-    on-right-click = "pkill -SIGUSR2 waybar";
+    on-click-right = "pkill -SIGUSR2 waybar";
     tooltip = true;
     tooltip-format = "LMB = select wallpaper | RMB = reload wallpaper";
   };
@@ -181,8 +181,8 @@ in
     ];
     format-linked = "{ifname} (No IP) 모";
     format-wifi = "{icon}";
-    on-click = "${toggle-wifi}";
-    on-click-right = "${nmgui}";
+    on-click = "${nmgui}";
+    on-click-right = "${toggle-wifi}";
     tooltip-format = "{icon} {essid}";
   };
   power-profiles-daemon = {
@@ -199,9 +199,9 @@ in
   pulseaudio = {
     format = "{icon}  {volume:3}%";
     format-bluetooth = "{icon}  {volume:3}%";
-    format-bluetooth-critical = "󰖁  {volume:3}%";
-    format-bluetooth-muted = "󰖁  {volume:3}%";
-    format-critical = "󰖁  {volume:3}%";
+    format-bluetooth-critical = "  {volume:3}%";
+    format-bluetooth-muted = "  {volume:3}%";
+    format-critical = "  {volume:3}%";
     format-icons = {
       default = [
         ""
@@ -217,7 +217,7 @@ in
         ""
       ];
     };
-    format-muted = "󰖁  {volume:3}%";
+    format-muted = "  {volume:3}%";
     on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
     scroll-step = 5;
     states = {

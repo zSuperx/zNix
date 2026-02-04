@@ -64,3 +64,8 @@ output_path = '~/.config/hellpaper/hellpaper.conf'
 [templates.hyprlock]
 input_path = './templates/hyprlock/template.conf'
 output_path = '~/.config/hypr/matugen.conf'
+
+# Zen requires a restart for colors to change...
+# [templates.zen]
+# input_path = './templates/zen/template.css'
+# output_path = '~/.zen/dpfn4rtk.Default Profile/chrome/userChrome.css'
