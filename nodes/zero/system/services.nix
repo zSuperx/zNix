@@ -54,7 +54,17 @@
     nrf-udev
     segger-jlink
   ];
-  ################################################
+  environment.systemPackages = with pkgs; [
+    nrfconnect
+      segger-jlink
+      nrf-command-line-tools
+      nrfutil
+      cmake
+      ninja
+
+      vscode-fhs
+  ];
+################################################
 
   virtualisation.podman.enable = true;
 }

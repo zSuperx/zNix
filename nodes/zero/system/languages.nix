@@ -22,5 +22,6 @@
 
     # Python (why does it have a ridiculous build time???)
     python313
+    uv
   ];
 }
