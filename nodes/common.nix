@@ -95,6 +95,9 @@ in
       "root"
       "@wheel"
     ];
+    accept-flake-config = true;
+    builders-use-substitutes = true;
+    auto-optimise-store = true;
   };
   nixpkgs = {
     config.allowUnfree = true;

@@ -12,6 +12,7 @@
       ga = "git add";
       ls = "eza";
       l = "eza -alh";
+      t = "tmux";
 
       # Neovim redirects
       vim = "nvim";

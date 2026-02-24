@@ -41,10 +41,6 @@ vim.keymap.set("v", ";", ":lua vim.api.nvim_feedkeys(':\\'<,\\'>', 'v', true)<CR
 vim.keymap.set("n", "<Esc>", ":if v:hlsearch | noh | endif<CR>", { desc = "Unhighlight search results" })
 vim.keymap.set("n", "<C-c>", ":%y+<CR>", { desc = "Copy entire file to clipboard" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape to Normal mode from Terminal Insert mode" })
--- vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape to Normal mode" })
-
--- vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
--- vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
 
 vim.keymap.set("n", "<C-[>", ":po<CR>", { desc = "Go back 1 reference" })
 
@@ -82,6 +78,7 @@ require('config.plugins.scope-nvim')
 require('config.plugins.fFtT-highlights-nvim')
 require('config.plugins.dashboard-nvim')
 require('config.plugins.nvim-web-devicons')
+require('config.plugins.gitsigns-nvim')
 
 -- Lualine is sourced in the runtime module
 -- require('config.plugins.lualine-nvim')

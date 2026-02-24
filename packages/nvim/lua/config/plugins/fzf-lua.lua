@@ -5,11 +5,17 @@ local actions = require('fzf-lua.actions')
 
 require('fzf-lua').setup({
   'border-fused',
+  defaults = {
+    show_help = false,
+  },
   files = {
     hidden = true,
     actions = {
       ["default"] = actions.file_edit,
     }
+  },
+  grep = {
+    actions = {}
   },
   winopts = {
     on_create = function()
@@ -21,28 +27,23 @@ require('fzf-lua').setup({
   },
   keymap = {
     fzf = {
-      ["start"] = "show-input+unbind(i,j,k,q)",
+      ["start"] = "unbind(i,j,k,q)+change-prompt(❯ )+show-input",
+      ["i"] = "unbind(i,j,k,q)+change-prompt(❯ )+show-input",
       ["j"] = "down",
       ["k"] = "up",
       ["q"] = "abort",
-      ["i"] = "show-input+unbind(i,j,k,q)",
-      ["esc"] = 'transform:if [[ "$FZF_INPUT_STATE" = enabled ]]; then echo "hide-input+rebind(i,j,k,q)"; fi',
+      ["esc"] = 'transform:[[ "$FZF_PROMPT" != "NORMAL" ]] && echo "rebind(i,j,k,q)+change-prompt(NORMAL)+hide-input"',
       ["ctrl-d"] = "half-page-down",
       ["ctrl-u"] = "half-page-up",
       ["ctrl-a"] = "select-all+accept",
     }
-  },
-  grep = {
-    actions = {
-      ["ctrl-f"] = { actions.grep_lgrep },
-    },
   },
   buffers = {
     fzf_opts = {
       ["--header-lines"] = false,
     },
     actions = {
-      ["ctrl-d"] = {
+      ["ctrl-x"] = {
         reload = true,
         fn = function(selected, opts)
           for _, sel in ipairs(selected) do
@@ -93,10 +94,12 @@ require('fzf-lua').setup({
 
 FzfLua.register_ui_select()
 
+-- These pickers should be started in insert mode
 vim.keymap.set("n", "<leader>fl", FzfLua.builtin, { desc = "Open FzfLua's menu--with FzfLua!" })
 vim.keymap.set("n", "<leader>fr", FzfLua.resume, { desc = "Resume previous FzfLua search" })
-vim.keymap.set("n", "<leader>ff", ":FzfLua files<CR><Esc>", { desc = "Pick buffers from project directory" })
-vim.keymap.set("n", "<leader>ft", ":FzfLua tabs<CR><Esc>", { desc = "Pick tab from existing tabs" })
-vim.keymap.set("n", "<leader>fb", ":FzfLua buffers<CR><Esc>", { desc = "Pick buffers from open buffers" })
+vim.keymap.set("n", "<leader>ff", FzfLua.files, { desc = "Pick buffers from project directory" })
 vim.keymap.set("n", "<leader>fg", FzfLua.live_grep, { desc = "Pick buffers from live grep" })
+
+-- These pickers are quick hops, so start them in normal mode
+vim.keymap.set("n", "<leader>fb", ":FzfLua buffers<CR><Esc>", { desc = "Pick buffers from open buffers" })
 vim.keymap.set("n", "<leader>fj", ":FzfLua jumps<CR><Esc>", { desc = "Pick buffers from live grep" })

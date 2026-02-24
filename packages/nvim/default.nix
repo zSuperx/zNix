@@ -53,7 +53,7 @@ inputs.mnw.lib.wrap pkgs {
       colorizer
       dashboard-nvim
       nvim-web-devicons
-      haskell-tools-nvim
+      gitsigns-nvim
       {
         name = "tft-nvim";
         src = pkgs.fetchFromGitHub {

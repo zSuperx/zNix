@@ -24,6 +24,7 @@
       spotify-player
       thunderbird
       nmgui
+      vscode-fhs
     ]
     ++ [
       # Third party binaries

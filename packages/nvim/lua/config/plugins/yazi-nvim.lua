@@ -10,6 +10,14 @@ require("yazi").setup({
       vim.cmd(string.format("edit %s", vim.fn.fnameescape(chosen_file)))
     end
   end,
+
+  integrations = {
+    grep_in_directory = function (directory)
+      require("fzf-lua").live_grep({
+        cwd = directory,
+      })
+    end
+  }
 })
 
 vim.keymap.set("n", "<leader>-", ":Yazi<CR>", { desc = "Open Yazi in current file's directory" })

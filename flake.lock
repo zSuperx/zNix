@@ -736,7 +736,7 @@
       },
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-TBv2ELICASPHfCw10Wfe3Mf4p3jhvCTMqRga8F4XzGg=",
+        "narHash": "sha256-rWDMkWWMqYYzqr0gHu4ului6KNqS+hyAlO0inaE/cDw=",
         "type": "git",
         "url": "file:///home/zsuper/server-modules"
       },
