@@ -19,6 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 :root {
+  /* --font: 'Monocraft', 'Monocraft', monospace; */
   --font: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
   /* --- Core backgrounds --- */
   --base00: transparent;                                                     /* Main app background */

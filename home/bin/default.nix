@@ -26,6 +26,7 @@
     git
     nix-tree
     typst
+    lemonade
   ];
 
   # Reverse map from binary names to Nix packages

@@ -40,6 +40,7 @@ inputs.mnw.lib.wrap pkgs {
       luasnip
       nvim-lspconfig
       yazi-nvim
+      otter-nvim
       base16-nvim
       lualine-nvim
       nvim-autopairs

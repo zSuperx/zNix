@@ -74,7 +74,7 @@
           Mod+7 { focus-workspace 7; }
           Mod+8 { focus-workspace 8; }
           Mod+9 { focus-workspace 9; }
-          Mod+B { spawn "zen"; }
+          Mod+B { spawn "zen-beta"; }
           Mod+BracketLeft { consume-or-expel-window-left; }
           Mod+BracketRight { consume-or-expel-window-right; }
           Mod+C { center-column; }

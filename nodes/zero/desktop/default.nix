@@ -29,6 +29,7 @@
   };
   fonts.packages = [
     pkgs.nerd-fonts.jetbrains-mono
+    pkgs.monocraft
     pkgs.noto-fonts-color-emoji
   ];
 }

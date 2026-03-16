@@ -42,23 +42,21 @@ vim.keymap.set("n", "<Esc>", ":if v:hlsearch | noh | endif<CR>", { desc = "Unhig
 vim.keymap.set("n", "<C-c>", ":%y+<CR>", { desc = "Copy entire file to clipboard" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape to Normal mode from Terminal Insert mode" })
 
-vim.keymap.set("n", "<C-[>", ":po<CR>", { desc = "Go back 1 reference" })
-
 vim.keymap.set("n", "<C-j>", ":m +1<CR>=j", { desc = "Move current line down" })
 vim.keymap.set("n", "<C-k>", ":m -2<CR>=j", { desc = "Move current line up" })
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR><Esc>gv=gv", { desc = "Move selected lines down" })
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR><Esc>gv=gv", { desc = "Move selected lines up" })
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR><Esc>gv", { desc = "Move selected lines down" })
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR><Esc>gv", { desc = "Move selected lines up" })
 
 vim.keymap.set("v", ">", ">gv", { desc = "Indent selected lines" })
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent selected lines" })
 
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "format file" })
-vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "suggest code action" })
-vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { desc = "suggest code action" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format file" })
+vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Suggest code action" })
+vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 
-vim.keymap.set({ "n", "v" }, "!", "gcl", { remap = true })
-vim.keymap.set("n", "<Tab>", "<C-^>", { remap = true })
+vim.keymap.set({ "n", "v" }, "!", "gcl", { desc = "Toggle comment", remap = true })
+vim.keymap.set("n", "<Tab>", "<C-^>", { desc = "View alternate buffer", remap = true })
 
 -- Plugins
 
@@ -79,6 +77,7 @@ require('config.plugins.fFtT-highlights-nvim')
 require('config.plugins.dashboard-nvim')
 require('config.plugins.nvim-web-devicons')
 require('config.plugins.gitsigns-nvim')
+require('config.plugins.otter-nvim')
 
 -- Lualine is sourced in the runtime module
 -- require('config.plugins.lualine-nvim')

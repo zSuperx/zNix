@@ -34,5 +34,6 @@
   };
   users.users.zsuper.extraGroups = [
     "wireshark"
+    "dialout"
   ];
 }
