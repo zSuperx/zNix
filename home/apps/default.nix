@@ -25,6 +25,7 @@
       thunderbird
       nmgui
       vscode-fhs
+      zellij
     ]
     ++ [
       # Third party binaries

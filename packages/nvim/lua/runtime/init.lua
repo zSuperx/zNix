@@ -9,7 +9,8 @@ local function source(path)
     -- Some placeholder theme, this will be overwritten once matugen kicks in
     vim.cmd('colorscheme base16-catppuccin-mocha')
     vim.print("WARNING:")
-    vim.print("A matugen style file was not found, but that's okay! The colorscheme will dynamically change if matugen runs!")
+    vim.print(
+      "A matugen style file was not found, but that's okay! The colorscheme will dynamically change if matugen runs!")
   else
     dofile(path)
     io.close(file)

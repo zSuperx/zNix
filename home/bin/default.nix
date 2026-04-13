@@ -19,7 +19,7 @@
     bat
     dust
     fd
-    gotop
+    btop
     kitty
     vim
     wget

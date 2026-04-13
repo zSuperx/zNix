@@ -6,7 +6,8 @@
 }:
 {
   programs.yazi = {
-    package = inputs.yazi.packages.${system}.yazi;
+    # Hopefully stable yazi has caught up to the features I use
+    # package = inputs.yazi.packages.${system}.yazi;
     enable = true;
     enableFishIntegration = true;
     keymap = {

@@ -1,15 +1,15 @@
 [config.wallpaper]
-command = 'swww'
+command = 'awww'
 set = false
 # config.wallpaper seems to run AFTER all templates, which is an issue if running from waybar
 # since waybar's template pkills itself and all child processes (including the calling matugen)
-# Solution is to treat swww as a template with an index of -1, which ensures it's run before 
+# Solution is to treat awww as a template with an index of -1, which ensures it's run before 
 # pkill waybar
 
 [templates.wallpaper]
 input_path = './templates/hellpaper/template.conf'
-pre_hook = "swww img --transition-type center --transition-duration 1 {{ image }}"
-index = -1 # Run swww first for reasons described above
+pre_hook = "awww img --transition-type center --transition-duration 1 {{ image }}"
+index = -1 # Run awww first for reasons described above
 
 [templates.waybar]
 input_path = './templates/waybar/template.css'
@@ -53,6 +53,10 @@ output_path = '~/.config/gtk-3.0/colors.css'
 input_path = './templates/gtk/template.css'
 output_path = '~/.config/gtk-4.0/colors.css'
 
+[templates.zellij]
+input_path = './templates/zellij/template.kdl'
+output_path = '~/.config/zellij/config.kdl'
+
 [templates.niri]
 input_path = './templates/niri/template.kdl'
 output_path = '~/.config/niri/matugen.kdl'
@@ -64,6 +68,10 @@ output_path = '~/.config/hellpaper/hellpaper.conf'
 [templates.hyprlock]
 input_path = './templates/hyprlock/template.conf'
 output_path = '~/.config/hypr/matugen.conf'
+
+[templates.yazi]
+input_path = './templates/yazi/template.toml'
+output_path = '~/.config/yazi/theme.toml'
 
 # Zen requires a restart for colors to change...
 # [templates.zen]

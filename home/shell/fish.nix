@@ -13,6 +13,8 @@
       ls = "eza";
       l = "eza -alh";
       t = "tmux";
+      y = "yazi";
+      z = "zellij";
 
       # Neovim redirects
       vim = "nvim";

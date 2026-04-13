@@ -109,7 +109,7 @@
           Mod+Ctrl+WheelScrollRight { move-column-right; }
           Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
           Mod+Down { focus-window-down; }
-          Mod+E { spawn "kitty" "yazi"; }
+          Mod+E { spawn "kitty" "-1" "yazi"; }
           Mod+End { focus-column-last; }
           Mod+Equal { set-column-width "+10%"; }
           Mod+Escape { spawn "hyprlock"; }
@@ -129,7 +129,7 @@
           Mod+Period { expel-window-from-column; }
           Mod+Q { close-window; }
           Mod+R { switch-preset-column-width; }
-          Mod+Return { spawn "kitty"; }
+          Mod+Return { spawn "kitty" "-1"; }
           Mod+Right { focus-column-right; }
           Mod+Shift+Ctrl+Down { move-column-to-monitor-down; }
           Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
@@ -168,7 +168,7 @@
           Mod+WheelScrollLeft { focus-column-left; }
           Mod+WheelScrollRight { focus-column-right; }
           Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
-          Print { screenshot; }
+          Print { spawn "sh" "-c" "grim -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png --early-exit --copy-command wl-copy --initial-tool crop"; }
           XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
           XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
           XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
@@ -177,9 +177,13 @@
           XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "-n4800" "--class=backlight" "set" "+5%"; }
       }
       spawn-at-startup "xwayland-satellite"
-      spawn-at-startup "swww-daemon"
+      spawn-at-startup "awww-daemon"
       spawn-at-startup "waybar"
       spawn-at-startup "swaync"
+      window-rule {
+          match app-id="com.gabm.satty"
+          open-fullscreen true
+      }
       window-rule {
           match app-id="com.network.manager"
           open-floating true
@@ -194,7 +198,7 @@
           clip-to-geometry true
       }
       layer-rule {
-          match namespace="swww"
+          match namespace="awww"
           place-within-backdrop true
       }
       gestures {

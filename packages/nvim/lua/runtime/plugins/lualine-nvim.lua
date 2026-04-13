@@ -160,3 +160,4 @@ require('lualine').setup({
 local lualine_hl = vim.api.nvim_get_hl(0, { name = "lualine_b_normal" })
 local lualine_hl_new = vim.tbl_extend('force', lualine_hl, { fg = "#6cbf43", bold = true, italic = true })
 vim.api.nvim_set_hl(0, "LualineModifiedFile", lualine_hl_new)
+

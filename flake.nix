@@ -60,20 +60,45 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    yazi.url = "github:sxyazi/yazi";
-    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
-    muxie.url = "github:zSuperx/muxie";
-    muffin.url = "github:zSuperx/muffin";
-    hellpaper.url = "github:zSuperx/hellpaper";
-    mnw.url = "github:Gerg-L/mnw";
-    niri.url = "github:sodiboo/niri-flake";
-    matugen.url = "github:InioX/matugen";
-
-    nix-bore.url = "github:zSuperx/nix-bore";
-
-    disko.url = "github:nix-community/disko";
-    colmena.url = "github:zhaofengli/colmena";
+    yazi = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:sxyazi/yazi";
+    };
+    minegrub-theme = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Lxtharia/minegrub-theme";
+    };
+    muxie = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:zSuperx/muxie";
+    };
+    muffin = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:zSuperx/muffin";
+    };
+    hellpaper = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:zSuperx/hellpaper";
+    };
+    mnw = {
+      url = "github:Gerg-L/mnw";
+    };
+    matugen = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:InioX/matugen";
+    };
+    nix-bore = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:zSuperx/nix-bore";
+    };
+    disko = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/disko";
+    };
+    colmena = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:zhaofengli/colmena";
+    };
     server-modules = {
       url = "/home/zsuper/server-modules";
       inputs.nixpkgs.follows = "nixpkgs";

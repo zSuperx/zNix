@@ -56,7 +56,8 @@ vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { desc = "Rename symbol" }
 
 
 vim.keymap.set({ "n", "v" }, "!", "gcl", { desc = "Toggle comment", remap = true })
-vim.keymap.set("n", "<Tab>", "<C-^>", { desc = "View alternate buffer", remap = true })
+vim.keymap.set("n", "<Tab>", "<C-^>", { desc = "View alternate buffer", noremap = true, silent = true })
+vim.keymap.set("n", "<C-i>", "<C-i>", { noremap = true })
 
 -- Plugins
 
@@ -67,6 +68,7 @@ require('config.plugins.tft-nvim')
 require('config.plugins.fzf-lua')
 require('config.plugins.transparent-nvim')
 require('config.plugins.yazi-nvim')
+require('config.plugins.term-edit-nvim')
 require('config.plugins.neogit')
 require('config.plugins.nvim-autopair')
 require('config.plugins.conform-nvim')
@@ -77,7 +79,22 @@ require('config.plugins.fFtT-highlights-nvim')
 require('config.plugins.dashboard-nvim')
 require('config.plugins.nvim-web-devicons')
 require('config.plugins.gitsigns-nvim')
-require('config.plugins.otter-nvim')
+require('config.plugins.baleia-nvim')
+require('noice').setup({
+  cmdline = {
+    view = "cmdline"
+  },
+  routes = {
+    {
+      filter = {
+        event = "msg_show",
+        -- If the message has more than 15 lines (like :highlight)
+        min_height = 15,
+      },
+      view = "popup", -- Force it into a scrollable pop-up window
+    },
+  },
+})
 
 -- Lualine is sourced in the runtime module
 -- require('config.plugins.lualine-nvim')
@@ -87,16 +104,15 @@ require('config.plugins.otter-nvim')
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('pyright')
-vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('rust-analyzer')
 vim.lsp.enable('nixd')
 vim.lsp.enable('gopls')
 vim.lsp.enable('nil_ls')
 vim.lsp.enable('marksman')
 vim.lsp.enable('tinymist')
-vim.lsp.enable('ccls')
+vim.lsp.enable('clangd')
 vim.lsp.enable('html')
 
 -- Extra Lua code to source
-
 
 require('config.extras.math-eval')

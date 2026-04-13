@@ -15,16 +15,7 @@
     ];
   };
 
-  nixpkgs.overlays = [
-    inputs.niri.overlays.niri
-  ];
-
-  imports = [
-    inputs.niri.nixosModules.niri
-  ];
-
   programs.niri.enable = true;
-  programs.niri.package = pkgs.niri-unstable;
 
   # Niri options will be configured through Home Manager
   home-manager.users.zsuper = import ./niri;

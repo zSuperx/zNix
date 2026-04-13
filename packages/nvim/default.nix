@@ -8,17 +8,14 @@ in
 inputs.mnw.lib.wrap pkgs {
   neovim = pkgs.neovim-unwrapped;
   initLua = ''
+    -- Source the main config
     require('config')
 
     -- Because I use matugen to dynamically style Neovim, and because such
     -- styling often requires full reloads of certain plugin files, some plugins
     -- will be located in the 'runtime' module, which is loaded once at startup
     -- and also every time Neovim receives `SIGUSR1`
-
     require('runtime')
-
-    -- This is kind of a useless keybind lol, but it's sometimes used in #devMode
-    vim.keymap.set("n", "<leader>r", ":source ${impure-path}/lua/config/init.lua<CR>")
   '';
 
   # This vim script is needed to hint :MarkdownPreview to open each preview in
@@ -37,24 +34,32 @@ inputs.mnw.lib.wrap pkgs {
       fzf-lua
       transparent-nvim
       blink-cmp
+      noice-nvim
       luasnip
       nvim-lspconfig
       yazi-nvim
-      otter-nvim
       base16-nvim
       lualine-nvim
       nvim-autopairs
-      bufferline-nvim
       conform-nvim
       markdown-preview-nvim
-      uv-nvim
-      term-edit-nvim
       typst-preview-nvim
+      uv-nvim
       scope-nvim
       colorizer
       dashboard-nvim
       nvim-web-devicons
       gitsigns-nvim
+      baleia-nvim
+      {
+        name = "term-edit.nvim";
+        src = pkgs.fetchFromGitHub {
+          owner = "zSuperx";
+          repo = "term-edit.nvim";
+          rev = "174d580359896c8a1d4c18b3017f390686ec1be3";
+          hash = "sha256-Pr8JgEbY2bBz0GcXPnm5ccGmMQ6ZGYJIVPcIPA6dQCE=";
+        };
+      }
       {
         name = "tft-nvim";
         src = pkgs.fetchFromGitHub {
@@ -62,15 +67,6 @@ inputs.mnw.lib.wrap pkgs {
           repo = "tft-nvim";
           rev = "433e2c2e50ec9c47ed67d540a30393aea7309f95";
           hash = "sha256-uvnp9G3AIP66OeuEKjYG6ArbL1te6oPQM9IjRUgS+ZE=";
-        };
-      }
-      {
-        name = "project-nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "DrKJeff16";
-          repo = "project.nvim";
-          rev = "61afe931e5e445a55b0845e18b261778dfbf08a3";
-          hash = "sha256-kWFAU6a1ERy9kP+s5bom7AM9xKWfmgqGbY0dvkcTBUM=";
         };
       }
       {
@@ -92,32 +88,32 @@ inputs.mnw.lib.wrap pkgs {
   # Mostly LSPs and formatters, along with a few helper binaries
   extraBinPath = with pkgs; [
     ################# LSPs #####################
-    lua-language-server     # Lua
+    lua-language-server # Lua
     stylua
 
-    rust-analyzer           # Rust
+    rust-analyzer # Rust
     rustfmt
 
-    gcc                     # C/C++
+    gcc # C/C++
     ccls
 
-    nil                     # Nix
+    nil # Nix
     nixd
     nixfmt
 
-    gopls                   # Go
+    gopls # Go
     go
 
-    pyright                 # Python
+    pyright # Python
     black
     uv
-    
-    marksman                # Markdown
 
-    tinymist                # Typst
+    marksman # Markdown
+
+    tinymist # Typst
 
     ############### Other Utilities ############
-    yazi                 # for yazi-nvim
-    fzf                  # for fzf-lua
+    yazi # for yazi-nvim
+    fzf # for fzf-lua
   ];
 }

@@ -9,6 +9,8 @@
     wl-clipboard
     wf-recorder
     slurp
+    grim
+    satty
     libnotify
     socat
     swaynotificationcenter
@@ -16,7 +18,7 @@
     networkmanagerapplet
     playerctl
     xwayland-satellite
-    swww
+    awww
     gnome.gvfs
   ];
 

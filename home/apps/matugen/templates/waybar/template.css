@@ -200,9 +200,12 @@ tooltip {
   color: {{colors.secondary.default.hex}};
 }
 
-#pulseaudio.muted,
 #pulseaudio.critical {
   color: {{colors.error.default.hex}};
+}
+
+#pulseaudio.muted {
+  color: {{colors.surface_variant.default.hex}};
 }
 
 #custom-power {
