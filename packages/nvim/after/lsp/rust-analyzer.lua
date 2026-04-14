@@ -1,4 +1,4 @@
-vim.lsp.config("rust_analyzer",
+vim.lsp.config("rust-analyzer",
   --- @type vim.lsp.ClientConfig
   {
     settings = {

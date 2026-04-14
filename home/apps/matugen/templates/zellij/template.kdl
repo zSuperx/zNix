@@ -1,19 +1,25 @@
 show_startup_tips false
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}
 
 keybinds clear-defaults=true {
-    normal {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "g" { WriteChars "\u{0007}"; SwitchToMode "Locked"; }
-        bind "d" { Detach; SwitchToMode "Locked"; }
-        bind "Shift T" { BreakPane; SwitchToMode "Locked"; }
-        bind "Shift H" { MovePane "Left"; SwitchToMode "Locked"; }
-        bind "Shift J" { MovePane "Down"; SwitchToMode "Locked"; }
-        bind "Shift K" { MovePane "Up"; SwitchToMode "Locked"; }
-        bind "Shift L" { MovePane "Right"; SwitchToMode "Locked"; }
-        bind "x" { CloseFocus; SwitchToMode "Locked"; }
-    }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Esc" { SwitchToMode "Normal"; }
+        bind "g" { WriteChars "\u{0007}"; SwitchToMode "Normal"; }
+        bind "d" { Detach; SwitchToMode "Normal"; }
+        bind "Shift T" { BreakPane; SwitchToMode "Normal"; }
+        bind "Shift H" { MovePane "Left"; SwitchToMode "Normal"; }
+        bind "Shift J" { MovePane "Down"; SwitchToMode "Normal"; }
+        bind "Shift K" { MovePane "Up"; SwitchToMode "Normal"; }
+        bind "Shift L" { MovePane "Right"; SwitchToMode "Normal"; }
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
+    }
+    normal {
+        bind "Ctrl g" { SwitchToMode "Locked"; }
 
         bind "Alt s" {
             LaunchOrFocusPlugin "session-manager" {
@@ -51,6 +57,7 @@ keybinds clear-defaults=true {
         bind "Alt ]" { NextSwapLayout; }
     }
 }
+
 // Plugin aliases - can be used to change the implementation of Zellij
 // changing these requires a restart to take effect
 plugins {

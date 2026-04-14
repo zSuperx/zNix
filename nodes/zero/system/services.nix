@@ -1,10 +1,4 @@
 {
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
-{
   fonts.fontDir.enable = true;
   programs.nix-ld.enable = true;
   security.rtkit.enable = true;
@@ -45,8 +39,5 @@
     };
   };
 
-  services.udev.packages = with pkgs; [
-    platformio-core
-  ];  
   virtualisation.podman.enable = true;
 }

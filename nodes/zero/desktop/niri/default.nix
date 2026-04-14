@@ -209,7 +209,7 @@
           }
       }
       // Attempt to source matugen theme for niri
-      include optional=true "matugen.kdl"
+      include "matugen.kdl"
     '';
   };
 }

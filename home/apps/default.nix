@@ -26,6 +26,7 @@
       nmgui
       vscode-fhs
       zellij
+      obs-studio
     ]
     ++ [
       # Third party binaries

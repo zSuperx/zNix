@@ -104,7 +104,7 @@ require('noice').setup({
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('pyright')
-vim.lsp.enable('rust-analyzer')
+vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('nixd')
 vim.lsp.enable('gopls')
 vim.lsp.enable('nil_ls')
