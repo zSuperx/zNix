@@ -94,6 +94,11 @@ require('noice').setup({
       view = "popup", -- Force it into a scrollable pop-up window
     },
   },
+  lsp = {
+    hover = {
+      enabled = false,
+    }
+  }
 })
 
 -- Lualine is sourced in the runtime module

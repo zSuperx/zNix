@@ -55,7 +55,8 @@ output_path = '~/.config/gtk-4.0/colors.css'
 
 [templates.zellij]
 input_path = './templates/zellij/template.kdl'
-output_path = '~/.config/zellij/config.kdl'
+output_path = '~/.config/zellij/themes/matugen.kdl'
+post_hook = 'touch ~/.config/zellij/config.kdl'
 
 [templates.niri]
 input_path = './templates/niri/template.kdl'

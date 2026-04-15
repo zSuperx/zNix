@@ -62,5 +62,9 @@
       source = ./hypr/hyprlock.conf;
       target = ".config/hypr/hyprlock.conf";
     };
+    "zellij" = {
+      source = ./zellij/config.kdl;
+      target = ".config/zellij/config.kdl";
+    };
   };
 }

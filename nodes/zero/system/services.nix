@@ -1,4 +1,9 @@
 {
+  lib,
+  ...
+}:
+{
+  services.power-profiles-daemon.enable = lib.mkForce true;
   fonts.fontDir.enable = true;
   programs.nix-ld.enable = true;
   security.rtkit.enable = true;
