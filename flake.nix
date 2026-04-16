@@ -36,11 +36,9 @@
   nixConfig = {
     extra-substituters = [
       "https://niri.cachix.org" # Niri Window Manager
-      "https://yazi.cachix.org" # Yazi File Manager
     ];
     extra-trusted-public-keys = [
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=" # Niri Window Manager
-      "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" # Yazi File Manager
     ];
   };
 
@@ -55,6 +53,8 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri-flake.url = "github:sodiboo/niri-flake";
 
     programsdb = {
       url = "github:wamserma/flake-programs-sqlite";

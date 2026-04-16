@@ -222,7 +222,7 @@ SOFTWARE. */
 #app-mount,
 .bg_d4b111,
 .layer_cd0de5 {
-  background: {{colors.surface.default.rgba | set_alpha: 0.92 }} !important;
+  background: {{colors.surface.default.rgba | lighten: 2 | set_alpha: 0.92 }} !important;
 }
 
 .sidebar_a4d4d1, 

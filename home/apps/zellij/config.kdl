@@ -86,6 +86,6 @@ load_plugins {
 }
 
 // This emulates +Man!, but also colorizes output
-scrollback_editor "nvim +BaleiaColorize +set\\ nonu\\ ch=0\\ scl=no +nmap\\ q\\ :q!<CR>"
+scrollback_editor "nvim +BaleiaColorize +set\\ nonu\\ ch=0\\ scl=no +nmap\\ q\\ :q!<CR> +w"
 
 theme "matugen"

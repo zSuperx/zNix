@@ -10,7 +10,6 @@ require('base16-colorscheme').setup({
   base06 = "{{colors.surface_bright.default.hex}}",
   base07 = "{{colors.on_primary_container.default.hex}}",
 
-
   base08 = "{{colors.tertiary.default.hex | lighten: -5}}",
   base09 = "{{colors.tertiary.default.hex | lighten: 10}}",
   base0A = "{{colors.secondary.default.hex | lighten: 10}}",
@@ -38,6 +37,11 @@ local function set_hl_mutliple(groups, value)
 end
 
 -- Make selected text stand out more
+set_hl_mutliple({ 'Normal', 'NormalNC' }, {
+  bg = 'none',
+})
+
+-- Make selected text stand out more
 set_hl_mutliple({ 'Visual' }, {
   bg = '{{colors.primary_container.default.hex}}',
   fg = '{{colors.on_primary_container.default.hex}}', -- normal text contrast
@@ -54,7 +58,7 @@ set_hl_mutliple({ 'TSMethod', 'Method' }, {
 
 -- Make string text contrast better
 set_hl_mutliple({ 'String', 'TSString' }, {
-  fg = '{{colors.tertiary.default.hex | lighten: -15.0 }}',
+  fg = '{{colors.tertiary.default.hex | lighten: -25.0 }}',
 })
 
 set_hl_mutliple({ 'TSFunction', 'Function' }, {

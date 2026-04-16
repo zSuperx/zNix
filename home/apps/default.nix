@@ -27,6 +27,7 @@
       vscode-fhs
       zellij
       obs-studio
+      tesseract # For OCR
     ]
     ++ [
       # Third party binaries

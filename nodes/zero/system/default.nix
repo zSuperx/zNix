@@ -10,7 +10,8 @@
     # Core
     vim
     git
-    inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
+    # inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
+    colmena
     coreutils
     usbutils
     qemu
