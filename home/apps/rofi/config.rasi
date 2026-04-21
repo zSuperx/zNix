@@ -1,0 +1,232 @@
+/* config - Launcher */
+
+@import "~/.config/rofi/colors/matugen.rasi"
+
+configuration {
+    show-icons:                  true;
+    hover-select:                true;
+    font:                        "JetBrains Mono Nerd Font 9";
+
+    display-calc:                " ";
+    display-drun:                " ";
+    display-window:              " ";
+
+    drun-display-format:         "{name}";
+    drun-display-format:         "{name}";
+
+    kb-mode-complete:            "";
+    kb-secondary-copy:           "";
+    kb-remove-char-forward:      "";
+
+    kb-remove-to-eol:            "";
+    kb-remove-to-sol:            "";
+    kb-remove-char-back:         "BackSpace";
+
+    kb-page-prev:                "Control+u";
+    kb-page-next:                "Control+d";
+
+    kb-accept-entry:             "Return";
+
+    kb-row-left:                 "Control+h";
+    kb-row-down:                 "Control+j";
+    kb-row-up:                   "Control+k";
+    kb-row-right:                "Control+l";
+
+    kb-cancel:                   "Escape,Control+c";
+}
+
+* {
+    background-alt:              @selected-active-background; // Buttons background
+    selected:                    @selected-normal-background; // Button selected
+    active:                      @selected-urgent-background; // Window activated
+    urgent:                      @selected-normal-background; // When hovering the activated window (maybe more?)
+
+    text-selected:               @background;
+    text:                        @foreground;
+
+    shade-shadow:                white / 6%;
+    shade-bg:                    white / 12%;
+    shade-border:                white / 24%;
+}
+
+/* Scrollbar ---------------------------------------------------- */
+scrollbar {
+    margin:                      0px 4px;
+    handle-width:                8px;
+    handle-color:                white;
+    background-color:            @shade-shadow;
+    border-radius:               4px;
+}
+
+/* Message ------------------------------------------------------ */
+message {
+    background-color:            @shade-bg;
+    border:                      1px solid;
+    border-color:                transparent;
+    border-radius:               12px;
+    padding:                     24px;
+}
+error-message {
+    padding:                     100px;
+    border:                      0px solid;
+    border-radius:               0px;
+    background-color:            black / 10%;
+    text-color:                  @text;
+}
+textbox {
+    background-color:            transparent;
+    text-color:                  @text;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    highlight:                   none;
+}
+
+
+/* Main Window ------------------------------------------------ */
+window {
+    width:                       80%;
+    height:                      80%;
+    margin:                      0px;
+    padding:                     0px;
+
+    background-color:            @background;
+    border-radius:               12px;
+    border:                      2px;
+    border-color:                @selected;
+}
+
+/* Main Box --------------------------------------------------- */
+mainbox {
+    children:                    [ "inputbar", "message", "listview", "mode-switcher" ];
+    background-color:            #00000044;
+    border-radius:               12px;
+
+    spacing:                     12px;
+    margin:                      0px;
+    padding:                     40px 80px;
+}
+
+/* Inputbar --------------------------------------------------- */
+inputbar {
+    children:                    [ "prompt", "entry" ];
+
+    background-color:            @shade-bg;
+
+    border-radius:               12px;
+    border:                      1px solid;
+    border-color:                @selected;
+
+    text-color:                  @text;
+
+    spacing:                     12px;
+    margin:                      0% 28%;
+    padding:                     14px;
+}
+
+prompt {
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+textbox-prompt-colon {
+    expand:                      false;
+    str:                          "::"; 
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+/* Entry input ------------------------------------------------ */
+entry {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    placeholder:                 " ";
+    placeholder-color:           inherit;
+}
+
+/* Listview --------------------------------------------------- */
+listview {
+    cursor:                      "default";
+    columns:                     5;
+    lines:                       7;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                false;
+    fixed-columns:               false;
+    
+    background-color:            transparent;
+    text-color:                  @text;
+    border:                      0px;
+
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+}
+
+/* ---- Mode Switcher ---- */
+mode-switcher{
+    background-color:            transparent;
+    border:                      0px;
+
+    margin:                      0px;
+    padding:                     2px;
+    spacing:                     12px;
+}
+button {
+    padding:                     12px 0px;
+    border-radius:               12px;
+    background-color:            @shade-shadow;
+    text-color:                  @text;
+    cursor:                      pointer;
+}
+button selected {
+    background-color:            @shade-bg;
+    border:                      1px solid;
+    border-color:                @selected;
+    text-color:                  white;
+}
+
+/* Elements --------------------------------------------------- */
+element {
+    cursor:                      pointer;
+    border-radius:               24px;
+    background-color:            transparent;
+    text-color:                  @text;
+    orientation:                 vertical;
+
+    spacing:                     16px;
+    margin:                      0px;
+    padding:                     16px 0px;
+}
+
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        40px;
+    cursor:                      inherit;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color:            transparent;
+    text-color:                  @text;
+}
+
+element selected.normal {
+    background-color:            @shade-bg;
+    text-color:                  white;
+    border:                      1px solid;
+    border-color:                @selected;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}

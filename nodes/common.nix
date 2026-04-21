@@ -84,7 +84,7 @@ in
 
   # Nix related options that likely won't change
   documentation.nixos.enable = false;
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
   nix.package = pkgs.lixPackageSets.stable.lix;
   nix.settings = {
     experimental-features = [

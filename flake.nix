@@ -49,6 +49,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # server-modules = {
+    #   url = "/home/zsuper/server-modules";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,18 +65,11 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    yazi = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:sxyazi/yazi";
-    };
     minegrub-theme = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Lxtharia/minegrub-theme";
     };
-    muxie = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:zSuperx/muxie";
-    };
+
     muffin = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:zSuperx/muffin";
@@ -80,17 +78,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:zSuperx/hellpaper";
     };
-    mnw = {
-      url = "github:Gerg-L/mnw";
-    };
-    matugen = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:InioX/matugen";
-    };
-    nix-bore = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:zSuperx/nix-bore";
-    };
+
+    mnw.url = "github:Gerg-L/mnw";
+    wlctl.url = "github:aashish-thapa/wlctl";
+
     disko = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/disko";
@@ -99,14 +90,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:zhaofengli/colmena";
     };
-    server-modules = {
-      url = "/home/zsuper/server-modules";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    spicetify = {
+      url = "github:Gerg-L/spicetify-nix";
     };
   };
 }

@@ -15,6 +15,24 @@ inputs.nixpkgs.lib.genAttrs systems (
   {
     nvim = pkgs.callPackage ./nvim { inherit inputs; };
     tmux = pkgs.callPackage ./tmux { inherit inputs; };
-    waybar = pkgs.callPackage ./waybar { inherit inputs; };
+
+    scripts = pkgs.stdenv.mkDerivation {
+      name = "custom-scripts";
+      src = ./custom-scripts;
+      buildInputs = with pkgs; [
+        python3Minimal
+        perl
+      ];
+
+      buildPhase = ''
+        mkdir -p $out/bin
+        cp $src/* $out/bin
+        for f in $out/*; do
+          if [ -f "$f" ]; then
+            patchShebangs --host "$f"
+          fi
+        done
+      '';
+    };
   }
 )

@@ -6,8 +6,6 @@
 }:
 {
   programs.yazi = {
-    # Hopefully stable yazi has caught up to the features I use
-    # package = inputs.yazi.packages.${system}.yazi;
     enable = true;
     enableFishIntegration = true;
     keymap = {
@@ -82,12 +80,12 @@
 
     plugins = {
       # https://github.com/zSuperx/yacd.yazi
-      # yacd = pkgs.fetchFromGitHub {
-      #   owner = "zSuperx";
-      #   repo = "yacd.yazi";
-      #   rev = "";
-      #   hash = "";
-      # };
+      yacd = pkgs.fetchFromGitHub {
+        owner = "zSuperx";
+        repo = "yacd.yazi";
+        rev = "ecba62e1c478e7daba434b7157cce344e99b25da";
+        hash = "sha256-CFzzhR2ODkODeO0OUks4N7LO/mgY4AogB864L4c92RA=";
+      };
     };
     initLua = ''
       require("yacd").setup()

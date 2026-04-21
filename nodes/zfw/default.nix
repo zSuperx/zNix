@@ -1,0 +1,29 @@
+{
+  self,
+  inputs,
+  lib,
+  system,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./system
+    # disable gaming for now, we'll add it later maybe?
+    # ./gaming
+    ./desktop
+    ./hardware-configuration.nix
+
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit self inputs system; };
+    users.zsuper = {
+      imports = [ self.homeModules.zsuper ];
+      nixpkgs.config = lib.mkForce null; # Force disable nixpkgs configuration if using as nixosModule
+    };
+  };
+}

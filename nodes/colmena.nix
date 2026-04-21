@@ -38,6 +38,12 @@ in
   };
 }
 // mkNodes {
+  zfw = {
+    deployment = {
+      targetHost = null;
+      allowLocalDeployment = true;
+    };
+  };
   zero = {
     deployment = {
       targetHost = null;

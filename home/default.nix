@@ -4,7 +4,7 @@
     ./shell
     ./bin
   ];
-
+  
   home = {
     username = "zsuper";
     homeDirectory = "/home/zsuper";

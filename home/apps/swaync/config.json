@@ -1,0 +1,123 @@
+{
+  "control-center-height": 1040,
+  "control-center-margin-bottom": 8,
+  "control-center-margin-left": 8,
+  "control-center-margin-right": 8,
+  "control-center-margin-top": 8,
+  "control-center-positionX": "right",
+  "control-center-positionY": "top",
+  "control-center-width": 400,
+  "cssPriority": "user",
+  "fit-to-screen": false,
+  "hide-on-action": true,
+  "hide-on-clear": false,
+  "image-visibility": "when-available",
+  "keyboard-shortcuts": true,
+  "layer": "overlay",
+  "notification-body-image-height": 64,
+  "notification-body-image-width": 64,
+  "notification-icon-size": 64,
+  "notification-window-width": 500,
+  "positionX": "right",
+  "positionY": "top",
+  "script-fail-notify": true,
+  "timeout": 3,
+  "timeout-critical": 0,
+  "timeout-low": 2,
+  "transition-time": 100,
+  "widget-config": {
+    "backlight": {
+      "device": "amdgpu_bl1",
+      "label": ""
+    },
+    "dnd": {
+      "text": "Do Not Disturb 󰤄"
+    },
+    "inhibitors": {
+      "button-text": "Clear All",
+      "clear-all-button": true,
+      "text": "Inhibitors"
+    },
+    "menubar#label": {
+      "buttons#topbar-buttons": {
+        "actions": [
+          {
+            "command": "swaync-client -t && niri msg action screenshot",
+            "label": ""
+          },
+          {
+            "command": "swaync-client -t && record.sh",
+            "label": "󰻃",
+            "type": "toggle",
+            "update-command": "sh -c 'pgrep -x wf-recorder && echo true || echo false'"
+          },
+          {
+            "command": "swaync-client -t && color-picker.sh",
+            "label": "󰈊"
+          }
+        ],
+        "position": "right"
+      },
+      "buttons-grid": {
+        "actions": [
+          {
+            "command": "swaync-client -t && kitty --class wlctl wlctl",
+            "label": "󱚾"
+          },
+          {
+            "command": "swaync-client -t && kitty --class bluetui bluetui",
+            "label": "󰂯"
+          }
+        ]
+      },
+      "menu#power-buttons": {
+        "actions": [
+          {
+            "command": "swaync-client -t -sw && hyprlock",
+            "label": "󰌾 Lock Screen"
+          },
+          {
+            "command": "swaync-client -t -sw && niri msg action quit",
+            "label": "󰈆 Log Out"
+          },
+          {
+            "command": "swaync-client -t -sw && systemctl suspend",
+            "label": "󰒲 Suspend"
+          },
+          {
+            "command": "swaync-client -t -sw && reboot",
+            "label": "󰜉 Reboot"
+          },
+          {
+            "command": "swaync-client -t -sw && shutdown now",
+            "label": "⏻ Shut down"
+          }
+        ],
+        "label": "󰐦",
+        "position": "right"
+      }
+    },
+    "mpris": {
+      "image-radius": 8,
+      "image-size": 96
+    },
+    "title": {
+      "button-text": "Clear All",
+      "clear-all-button": true,
+      "text": "Notifications"
+    },
+    "volume": {
+      "label": "󰕾"
+    }
+  },
+  "widgets": [
+    "menubar#label",
+    "inhibitors",
+    "volume",
+    "backlight",
+    "mpris",
+    "title",
+    "dnd",
+    "notifications"
+  ]
+}

@@ -17,10 +17,10 @@ output_path = '~/.config/waybar/style.css'
 post_hook = 'pkill -SIGUSR2 waybar || true'
 index = 1 # Reload waybar last for reasons described above
 
-[templates.tmux]
-input_path = './templates/tmux/template.conf'
-output_path = '~/.config/tmux/matugen.conf'
-post_hook = 'tmux source-file ~/.config/tmux/matugen.conf || true'
+# [templates.tmux]
+# input_path = './templates/tmux/template.conf'
+# output_path = '~/.config/tmux/matugen.conf'
+# post_hook = 'tmux source-file ~/.config/tmux/matugen.conf || true'
 
 [templates.nvim]
 input_path = './templates/nvim/template.lua'
@@ -34,7 +34,7 @@ post_hook = 'pkill -SIGUSR1 kitty || true'
 
 [templates.rofi]
 input_path = './templates/rofi/template.rasi'
-output_path = '~/.config/rofi/config.rasi'
+output_path = '~/.config/rofi/colors/matugen.rasi'
 
 [templates.vesktop]
 input_path = './templates/vesktop/template.css'

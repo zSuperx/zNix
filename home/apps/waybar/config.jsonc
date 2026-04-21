@@ -1,0 +1,216 @@
+{
+  "backlight": {
+    "format": "  {percent:3}%",
+    "scroll-step": 5
+  },
+  "battery": {
+    "format": "{icon} {capacity:3}%",
+    "format-alt": "{icon} {time}",
+    "format-charging": "{icon} {capacity:3}%",
+    "format-critical": " {capacity:3}%",
+    "format-full": "{icon} {capacity:3}%",
+    "format-icons": [
+      "",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-plugged": "{icon} {capacity:3}%",
+    "format-time": "{H}:{m} hrs",
+    "format-warning": "{icon} {capacity:3}%",
+    "states": {
+      "critical": 10,
+      "good": 80,
+      "warning": 20
+    }
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-connected": "󰂱",
+    "format-off": "󰂲",
+    "format-on": "󰂯",
+    "on-click": "kitty --class bluetui bluetui",
+    "on-click-right": "toggle-bluetooth.sh",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n{device_enumerate}"
+  },
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%m/%d/%Y}",
+    "on-click-right": "date +%m/%d/%Y | wl-copy",
+    "tooltip-format": "{:%A %d}\n{calendar}"
+  },
+  "cpu": {
+    "format": " {usage}%"
+  },
+  "custom/notifications": {
+    "escape": true,
+    "exec": "swaync-client -swb",
+    "exec-if": "which swaync-client",
+    "format": "{icon}",
+    "format-icons": {
+      "dnd-inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-none": "󰪓",
+      "dnd-notification": "󰂠",
+      "inhibited-none": "󰪑",
+      "inhibited-notification": "󰂛",
+      "none": "󰂜",
+      "notification": "󱅫"
+    },
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "return-type": "json",
+    "tooltip": true
+  },
+  "custom/spotify-next": {
+    "exec": "spotify-status.sh",
+    "format": "",
+    "on-click": "playerctl -p spotify next",
+    "return-type": "json",
+    "tail": true,
+    "tooltip": false
+  },
+  "custom/spotify-prev": {
+    "exec": "spotify-status.sh",
+    "format": "",
+    "on-click": "playerctl -p spotify previous",
+    "return-type": "json",
+    "tail": true,
+    "tooltip": false
+  },
+  "custom/wallpaper": {
+    "format": "",
+    "on-click": "pkill hellpaper || matugen -c ~/zNix/home/apps/matugen/config.toml image \"$(hellpaper --recursive ~/Pictures/Wallpapers/)\" --source-color-index 0\n",
+    "on-click-right": "pkill -SIGUSR2 waybar",
+    "tooltip": true,
+    "tooltip-format": "LMB = select wallpaper | RMB = reload wallpaper"
+  },
+  "custom/launcher": {
+    "format": "",
+    "on-click": "pkill rofi || rofi -show drun -modi drun,window",
+    "tooltip": true,
+    "tooltip-format": "App Launcher"
+  },
+  "disk": {
+    "format": " {percentage_used}%"
+  },
+  "group/hardware": {
+    "children-class": "hardware-child",
+    "drawer": {
+      "children-class": "not-power",
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "battery",
+      "disk",
+      "memory",
+      "cpu"
+    ],
+    "orientation": "inherit"
+  },
+  "height": 35,
+  "layer": "top",
+  "memory": {
+    "format": " {percentage}%"
+  },
+  "modules-left": [
+    "clock",
+    "custom/notifications",
+    "network",
+    "bluetooth",
+    "custom/wallpaper",
+    "custom/launcher"
+  ],
+  "modules-center": [
+    "custom/spotify-prev",
+    "mpris",
+    "custom/spotify-next"
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "backlight",
+    "group/hardware",
+    "power-profiles-daemon"
+  ],
+  "mpris": {
+    "artist-len": 13,
+    "dynamic-order": [
+      "title",
+      "artist"
+    ],
+    "format": "  {status_icon} {dynamic:^30}",
+    "on-click-right": "playerctl -p spotify metadata -f \"{{xesam:title}} - {{xesam:artist}}, {{xesam:url}}\" | wl-copy",
+    "player": "spotify",
+    "status-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "title-len": 14,
+    "tooltip-format": "{title} - {artist}"
+  },
+  "network": {
+    "format-disabled": "󰤭",
+    "format-disconnected": "󰤩",
+    "format-ethernet": "모",
+    "format-icons": [
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format-linked": "{ifname} (No IP) 모",
+    "format-wifi": "{icon}",
+    "on-click": "kitty --class wlctl wlctl",
+    "on-click-right": "toggle-wifi.sh",
+    "tooltip-format": "{icon} {essid}"
+  },
+  "position": "bottom",
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "format-icons": {
+      "balanced": "  Bal",
+      "performance": " Perf",
+      "power-saver": " Eco"
+    },
+    "tooltip": true,
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}"
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume:3}%",
+    "format-bluetooth": "{icon}  {volume:3}%",
+    "format-bluetooth-critical": "  {volume:3}%",
+    "format-bluetooth-muted": "  {volume:3}%",
+    "format-critical": "  {volume:3}%",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "format-muted": "  {volume:3}%",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "scroll-step": 5,
+    "states": {
+      "critical": 0,
+      "warning": 5
+    }
+  }
+}

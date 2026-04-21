@@ -9,8 +9,9 @@
 window#waybar {
   margin-top: 10px;
   color: transparent;
-  background-color: {{colors.surface.default.hex}};
+  background-color: {{colors.surface.default.rgba | set_alpha: 0.7 }};
 }
+
 
 #workspaces button {
   color: {{colors.primary.default.hex}};
@@ -30,8 +31,10 @@ window#waybar {
 #cpu,
 #disk,
 #tray,
+#tray > widget,
 #custom-notifications,
-#custom-visual-refresh,
+#custom-wallpaper,
+#custom-launcher,
 #custom-spotify-prev,
 #custom-spotify,
 #custom-spotify-next,
@@ -44,8 +47,33 @@ window#waybar {
   margin-bottom: 4px;
   margin-left: 2px;
   margin-right: 2px;
-  background-color: {{colors.surface_container.default.hex}};
+  background-color: {{colors.surface_container.default.rgba | set_alpha: 0.6 }};
 }
+
+#clock:hover,
+#battery:hover,
+#backlight:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#wireplumber:hover,
+#mpris:hover,
+#mode:hover,
+#memory:hover,
+#cpu:hover,
+#disk:hover,
+#custom-notifications:hover,
+#custom-wallpaper:hover,
+#custom-launcher:hover,
+#custom-spotify-prev:hover,
+#custom-spotify:hover,
+#custom-spotify-next:hover,
+#power-profiles-daemon:hover,
+#tray > widget:hover,
+#mpd:hover {
+  background-color: {{colors.surface_container.default.rgba | lighten: 7.5 | set_alpha: 0.7 }};
+}
+
 
 #power-profiles-daemon.performance {
   color: #ffa541;
@@ -78,7 +106,7 @@ window#waybar {
 }
 
 #hardware {
-  background-color: {{colors.surface.default.hex}};
+  background-color: {{colors.surface.default.rgba | set_alpha: 0.0 }};
   padding: 0;
   margin: 0;
 }
@@ -105,8 +133,8 @@ tooltip {
   border: 2px solid {{colors.tertiary.default.hex}};
 }
 
-#tray *:not(decoration) {
-  background-color: {{colors.surface_container.default.hex}};
+#tray > widget {
+  background-color: {{colors.surface_container.default.rgba | set_alpha: 0.0 }};
 }
 
 #tray menu separator,
@@ -118,7 +146,7 @@ tooltip {
   margin-top: 3px;
   margin-bottom: 3px;
   color: {{colors.on_surface_variant.default.hex}};
-  background-color: {{colors.surface_container.default.hex}};
+  background-color: {{colors.surface_container.default.rgba}};
 }
 
 #tray menu menuitem:hover > check,
@@ -127,7 +155,7 @@ tooltip {
 #tray menu menuitem:hover > arrow,
 #tray menu menuitem:hover > label,
 #tray menu menuitem:hover {
-  background-color: {{colors.shadow.default.hex}};
+  background-color: {{colors.shadow.default.rgba}};
   color: {{colors.primary.default.hex}};
 }
 
@@ -261,7 +289,12 @@ tooltip {
 
 /*========================================*/
 
-#custom-visual-refresh {
+#custom-wallpaper {
+  padding-left: 8px;
+  color: {{colors.secondary.default.hex}};
+}
+
+#custom-launcher {
   padding-left: 8px;
   color: {{colors.secondary.default.hex}};
 }

@@ -3,7 +3,7 @@
   home.file."niri/config.kdl" =
     let
       hellpaper-script = pkgs.writeShellScript "hellpaper-script.sh" ''
-        pkill hellpaper || matugen -c ~/zNix/home/apps/matugen/config.toml image $(hellpaper --recursive ~/Pictures/backgrounds/) --source-color-index 0
+        pkill hellpaper || matugen -c ~/zNix/home/apps/matugen/config.toml image $(hellpaper --recursive ~/Pictures/Wallpapers/) --source-color-index 0
         '';
       satty-script = pkgs.writeShellScript "satty-script.sh" ''grim -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png --early-exit --copy-command wl-copy --initial-tool crop'';
       ocr-script = pkgs.writeShellScript "ocr-script.sh" ''

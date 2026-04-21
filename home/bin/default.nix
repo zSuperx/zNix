@@ -1,6 +1,8 @@
 {
   inputs,
   pkgs,
+  system,
+  self,
   ...
 }:
 {
@@ -11,6 +13,9 @@
     ./zoxide.nix
   ];
   home.packages = with pkgs; [
+    # Add all custom shell scripts
+    self.packages.${system}.scripts
+
     jq
     fzf
     nitch
@@ -32,6 +37,6 @@
   # Reverse map from binary names to Nix packages
   programs.command-not-found = {
     enable = true;
-    dbPath = inputs.programsdb.packages.${pkgs.stdenv.hostPlatform.system}.programs-sqlite;
+    dbPath = inputs.programsdb.packages.${system}.programs-sqlite;
   };
 }

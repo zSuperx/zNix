@@ -5,9 +5,6 @@
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 
--- TODO: looks a bit ugly, but I've found it's got really useful telemtry
-vim.o.cmdheight = 1
-
 vim.o.expandtab = true
 vim.o.clipboard = "unnamedplus"
 vim.o.timeout = false
@@ -80,26 +77,7 @@ require('config.plugins.dashboard-nvim')
 require('config.plugins.nvim-web-devicons')
 require('config.plugins.gitsigns-nvim')
 require('config.plugins.baleia-nvim')
-require('noice').setup({
-  cmdline = {
-    view = "cmdline"
-  },
-  routes = {
-    {
-      filter = {
-        event = "msg_show",
-        -- If the message has more than 15 lines (like :highlight)
-        min_height = 15,
-      },
-      view = "popup", -- Force it into a scrollable pop-up window
-    },
-  },
-  lsp = {
-    hover = {
-      enabled = false,
-    }
-  }
-})
+require('config.plugins.noice-nvim')
 
 -- Lualine is sourced in the runtime module
 -- require('config.plugins.lualine-nvim')
