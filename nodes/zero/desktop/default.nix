@@ -1,37 +1,80 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
-  imports = [
-    ./gnome.nix
-    ./niri.nix
-  ];
-
+  # Wayland-related programs
   environment.systemPackages = with pkgs; [
+    # Clipboard
     wl-clipboard
-    wf-recorder
+
+    # Screenshots/Recording
     slurp
     grim
     satty
+    wf-recorder
+
+    # Notifications
     libnotify
-    socat
     swaynotificationcenter
+
+    # IPC
+    playerctl
     brightnessctl
     networkmanagerapplet
-    playerctl
     xwayland-satellite
+
+    # Wallpaper
     awww
-    gnome.gvfs
   ];
 
+  # Enable GDM greet menu
+  services.displayManager.gdm.enable = true;
+
+  # Niri window manager
+  xdg.portal = {
+    config.niri.default = [
+      # required for screenshare on Niri
+      "gnome"
+      "gtk"
+    ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+  };
+  nixpkgs.overlays = [
+    inputs.niri-flake.overlays.niri
+  ];
+  programs.niri = {
+    package = pkgs.niri-unstable;
+    enable = true;
+  };
+
+  # Hyprlock, Hypridle, and fingerprint
+  security.pam.services.hyprlock = { };
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
+  services.fprintd.enable = true;
 
-  services.gnome.glib-networking.enable = true;
-  environment.variables = {
-    GIO_MODULE_DIR = "${pkgs.glib-networking}/lib/gio/modules/";
-  };
+  # Fonts
+  fonts.fontDir.enable = true;
   fonts.packages = [
     pkgs.nerd-fonts.jetbrains-mono
-    pkgs.monocraft
     pkgs.noto-fonts-color-emoji
   ];
+
+  # Key remapping
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings = {
+        main = {
+          # Maps capslock to escape on tap, capslock on hold
+          capslock = "overload(caps, esc)";
+        };
+        caps = {
+          capslock = "caps";
+        };
+      };
+    };
+  };
 }

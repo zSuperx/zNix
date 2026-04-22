@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./boot.nix
@@ -10,11 +10,11 @@
     # Core
     vim
     git
-    # inputs.colmena.packages.${pkgs.stdenv.hostPlatform.system}.colmena
     colmena
     coreutils
     usbutils
     qemu
+    socat
 
     # Networking
     dig
@@ -23,6 +23,7 @@
     websocat
     traceroute
     termshark
+    speedtest-cli
   ];
 
   programs.wireshark = {
