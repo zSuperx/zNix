@@ -115,7 +115,7 @@ binds {
   Mod+Minus { set-column-width "-10%"; }
   Mod+N allow-when-locked=true { spawn "playerctl" "-p" "spotify" "next"; }
   Mod+O repeat=false { toggle-overview; }
-  Mod+M { spawn "sh" "-c" "hellpaper-script.sh"; }
+  Mod+M { spawn "sh" "-c" "select-wallpaper.sh"; }
   "Mod+Page_Down" { focus-workspace-down; }
   "Mod+Page_Up" { focus-workspace-up; }
   Mod+Period { expel-window-from-column; }

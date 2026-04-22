@@ -1,0 +1,99 @@
+@import "~/.config/rofi/colors/matugen.rasi"
+
+configuration {
+    show-icons:                  true;
+    hover-select:                true;
+    font:                        "JetBrains Mono Nerd Font 9";
+
+    kb-mode-complete:            "";
+    kb-secondary-copy:           "";
+    kb-remove-char-forward:      "";
+
+    kb-remove-to-eol:            "";
+    kb-remove-to-sol:            "";
+    kb-remove-char-back:         "BackSpace";
+
+    kb-page-prev:                "Control+u";
+    kb-page-next:                "Control+d";
+
+    kb-accept-entry:             "Return";
+
+    kb-row-left:                 "Control+h";
+    kb-row-down:                 "Control+j";
+    kb-row-up:                   "Control+k";
+    kb-row-right:                "Control+l";
+
+    kb-cancel:                   "Escape,Control+c";
+}
+
+window {
+    width:                       80%;
+    height:                      80%;
+    background-color:            @background;
+    border-radius:               12px;
+    border:                      2px;
+    border-color:                @selected;
+}
+
+mainbox {
+    children:                    [ "inputbar", "listview" ];
+    background-color:            #00000044;
+    border-radius:               12px;
+    spacing:                     20px;
+    padding:                     40px 80px;
+}
+
+inputbar {
+    enabled:                     true; /* Script will toggle this */
+    children:                    [ "prompt", "entry" ];
+    background-color:            white / 12%;
+    border-radius:               12px;
+    border:                      1px solid;
+    border-color:                @selected;
+    margin:                      0% 28%;
+    padding:                     12px;
+    text-color:                  @foreground;
+}
+
+prompt { background-color: transparent; text-color: inherit; }
+entry { background-color: transparent; text-color: inherit; placeholder: "Search..."; }
+
+listview {
+    columns:                     4;
+    lines:                       2;
+    spacing:                     25px;
+    cycle:                       true;
+    dynamic:                     true;
+    layout:                      vertical;
+    fixed-columns:               true;
+    fixed-height:                true;
+    background-color:            transparent;
+}
+
+element {
+    cursor:                      pointer;
+    border-radius:               12px;
+    orientation:                 vertical;
+    spacing:                     10px;
+    padding:                     15px;
+    background-color:            transparent;
+}
+
+element-icon {
+    size:                        180px;
+    horizontal-align:            0.5;
+    background-color:            transparent;
+}
+
+element-text {
+    horizontal-align:            0.5;
+    text-color:                  @text;
+    background-color:            transparent;
+}
+
+element selected.normal {
+    background-color:            white / 12%;
+    text-color:                  @foreground;
+    border:                      1px solid;
+    border-color:                @selected;
+}

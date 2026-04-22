@@ -1,7 +1,5 @@
 #!/bin/sh
 set -xe
-exec 9>/tmp/$(basename "$0").lock
-flock -n 9 || exit 1
 
 # Get the focused output name
 # We store it in a variable first to check if it's empty

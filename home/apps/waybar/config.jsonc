@@ -87,10 +87,10 @@
   },
   "custom/wallpaper": {
     "format": "",
-    "on-click": "pkill hellpaper || matugen -c ~/zNix/home/apps/matugen/config.toml image \"$(hellpaper --recursive ~/Pictures/Wallpapers/)\" --source-color-index 0\n",
+    "on-click": "pkill rofi || select-wallpaper.sh",
     "on-click-right": "pkill -SIGUSR2 waybar",
     "tooltip": true,
-    "tooltip-format": "LMB = select wallpaper | RMB = reload wallpaper"
+    "tooltip-format": "LMB = Select Wallpaper | RMB = Reload Wallpaper"
   },
   "custom/launcher": {
     "format": "",

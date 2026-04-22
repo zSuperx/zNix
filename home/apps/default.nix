@@ -45,6 +45,7 @@ in
       swaynotificationcenter
       waybar
       bluetui
+      blueman
     ]
     ++ [
       # Third party binaries
@@ -97,9 +98,14 @@ in
       target = ".config/swaync/config.json";
     };
 
-    rofi = {
+    rofi-default = {
       source = ./rofi/config.rasi;
       target = ".config/rofi/config.rasi";
+    };
+
+    rofi-wallpaper = {
+      source = ./rofi/wallpaper-grid.rasi;
+      target = ".config/rofi/wallpaper-grid.rasi";
     };
 
     # TODO: Nixifying this config file results in a store symlink, which makes

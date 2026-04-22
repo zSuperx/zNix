@@ -31,7 +31,7 @@
     git
     nix-tree
     typst
-    lemonade
+    fastfetch
   ];
 
   # Reverse map from binary names to Nix packages

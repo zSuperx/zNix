@@ -14,6 +14,7 @@
     coreutils
     usbutils
     qemu
+    socat
 
     # Networking
     dig
