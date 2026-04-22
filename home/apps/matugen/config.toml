@@ -14,7 +14,7 @@ index = -1 # Run awww first for reasons described above
 [templates.waybar]
 input_path = './templates/waybar/template.css'
 output_path = '~/.config/waybar/style.css'
-post_hook = 'pkill -SIGUSR2 waybar || true'
+post_hook = 'niri msg action do-screen-transition --delay-ms 20 & pkill waybar -SIGUSR2 || true'
 index = 1 # Reload waybar last for reasons described above
 
 # [templates.tmux]

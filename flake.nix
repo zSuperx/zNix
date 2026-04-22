@@ -49,10 +49,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # server-modules = {
-    #   url = "/home/zsuper/server-modules";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    fleet-services.url = "git+ssh://git@github.com/zSuperx/fleet-services";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";

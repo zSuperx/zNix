@@ -9,8 +9,8 @@
 {
   imports = [
     ./system
-    ./gaming
     ./desktop
+    ./gaming
     ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager

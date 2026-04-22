@@ -27,7 +27,7 @@
   "transition-time": 100,
   "widget-config": {
     "backlight": {
-      "device": "amdgpu_bl1",
+      "device": "intel_backlight",
       "label": ""
     },
     "dnd": {
