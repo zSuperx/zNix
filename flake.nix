@@ -71,6 +71,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:zSuperx/muffin";
     };
+
     hellpaper = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:zSuperx/hellpaper";

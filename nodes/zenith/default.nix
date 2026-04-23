@@ -8,8 +8,8 @@
 {
   imports = [
     ./disko.nix
-    inputs.server-modules.nixosModules.reverse-proxy
-    inputs.server-modules.nixosModules.minecraft-servers
+    inputs.fleet-services.nixosModules.reverse-proxy
+    inputs.fleet-services.nixosModules.minecraft-servers
   ];
 
   services.logind.settings.Login.HandleLidSwitch = "ignore";

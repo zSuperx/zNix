@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, system, ... }:
 {
   imports = [
     ./boot.nix
@@ -10,11 +10,12 @@
     # Core
     vim
     git
-    colmena
     coreutils
     usbutils
     qemu
     socat
+    
+    inputs.colmena.packages.${system}.colmena
 
     # Networking
     dig

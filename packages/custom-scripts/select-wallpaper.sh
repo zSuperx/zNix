@@ -14,5 +14,5 @@ done | rofi -dmenu -i -theme ~/.config/rofi/wallpaper-grid.rasi -p " ")
 
 # If a choice was made, apply it
 if [ -n "$choice" ]; then
-    matugen image "$WALLPAPER_DIR/$choice" --source-color-index 0
+    matugen image -c ~/zNix/home/apps/matugen/config.toml "$WALLPAPER_DIR/$choice" --source-color-index 0
 fi
