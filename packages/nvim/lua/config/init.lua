@@ -27,6 +27,14 @@ vim.o.smartcase = true
 vim.o.hlsearch = true
 vim.cmd("noh")
 
+-- Tweak the display of delimiters like (), [], {}
+vim.api.nvim_set_hl(0, "MatchParen", {
+  bg = "#2a2a2a",   -- very subtle
+  underline = true,
+  sp = "#ffffff",
+})
+
+
 -- Native Neovim Keymaps
 -- (plugin-specific keymaps can be found in their respective plugin setup files)
 

@@ -31,6 +31,7 @@ in
     [
       spotify
       mpv
+      glib
       obsidian
       nautilus
       zathura
@@ -46,17 +47,12 @@ in
       waybar
       bluetui
       blueman
-    ]
-    ++ [
+      netsurf-browser
+
       # Third party binaries
       inputs.zen-browser.packages.${system}.default
-      inputs.hellpaper.packages.${system}.default
       inputs.wlctl.packages.${system}.default
-    ]
-    ++ (with self.packages.${system}; [
-      # Custom-packaged programs
-      nvim
-    ]);
+    ];
 
 
   programs.vesktop = {

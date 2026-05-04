@@ -150,26 +150,6 @@
         "url": "ssh://git@github.com/zSuperx/fleet-services"
       }
     },
-    "hellpaper": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770164806,
-        "narHash": "sha256-GUlQxXUcf+Ac3PYQlomN+FmGqzi1/NZbgPq7JbQpVAI=",
-        "owner": "zSuperx",
-        "repo": "hellpaper",
-        "rev": "eea8985796f9cb1f8be8829cd33f44f64c5485dd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zSuperx",
-        "repo": "hellpaper",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -532,7 +512,6 @@
         "disko": "disko",
         "fenix": "fenix",
         "fleet-services": "fleet-services",
-        "hellpaper": "hellpaper",
         "home-manager": "home-manager",
         "minegrub-theme": "minegrub-theme",
         "mnw": "mnw",

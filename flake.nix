@@ -72,11 +72,6 @@
       url = "github:zSuperx/muffin";
     };
 
-    hellpaper = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:zSuperx/hellpaper";
-    };
-
     mnw.url = "github:Gerg-L/mnw";
     wlctl.url = "github:aashish-thapa/wlctl";
 

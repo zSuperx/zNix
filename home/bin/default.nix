@@ -15,6 +15,8 @@
   home.packages = with pkgs; [
     # Add all custom shell scripts
     self.packages.${system}.scripts
+    # Add my nvim
+    self.packages.${system}.nvim
 
     jq
     fzf

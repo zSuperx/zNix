@@ -12,7 +12,7 @@
     settings = {
       background_opacity = 0.92;
       shell = "fish";
-      cursor_trail = "1";
+      cursor_trail = "0";
       themeFile = "Catppuccin-Mocha";
     };
     extraConfig = ''
