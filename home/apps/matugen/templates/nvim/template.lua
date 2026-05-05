@@ -73,3 +73,10 @@ set_hl_mutliple({ "MsgArea" }, {
   bg = '{{colors.surface_container_lowest.default.hex}}',
   fg = '{{colors.primary.default.hex}}',
 })
+
+-- Tweak the display of matching pairs like (), [], {}
+set_hl_mutliple({ "MatchParen" }, {
+  bg = '#2a2a2a', -- very subtle
+  underline = true,
+  sp = '{{colors.primary.default.hex}}',
+})

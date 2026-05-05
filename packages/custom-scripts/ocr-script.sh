@@ -1,7 +1,7 @@
 #!/bin/sh
 set -xe
-exec 9>/tmp/$(basename "$0").lock
-flock -n 9 || exit 1
+# exec 9>/tmp/$(basename "$0").lock
+# flock -n 9 || exit 1
 
 IMG=$(mktemp --suffix=.png)
 
