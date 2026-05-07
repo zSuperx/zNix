@@ -43,8 +43,8 @@ set_hl_mutliple({ 'Normal', 'NormalNC' }, {
 
 -- Make selected text stand out more
 set_hl_mutliple({ 'Visual' }, {
-  bg = '{{colors.primary_container.default.hex}}',
-  fg = '{{colors.on_primary_container.default.hex}}', -- normal text contrast
+  bg = '{{colors.outline_variant.default.hex | lighten: -7.5 }}',
+  -- keep fg color unchanged
 })
 
 set_hl_mutliple({ 'TSComment', 'Comment' }, {

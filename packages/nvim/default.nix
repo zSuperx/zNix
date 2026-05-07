@@ -25,6 +25,7 @@ inputs.mnw.lib.wrap pkgs {
       execute "silent ! zen --new-window " . a:url
     endfunction
     let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+    let g:omni_sql_default_compl_type = 'syntax'
   '';
 
   plugins = {
