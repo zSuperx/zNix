@@ -11,7 +11,7 @@
     valgrind
     gdb
 
-    # RUST
+    # Rust
     (fenix.complete.withComponents [
       "cargo"
       "clippy"
@@ -20,7 +20,7 @@
       "rustfmt"
     ])
 
-    # Python (why does it have a ridiculous build time???)
+    # Python
     python313
     uv
   ];

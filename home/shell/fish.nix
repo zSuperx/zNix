@@ -20,6 +20,10 @@
       vim = "nvim";
       vi = "nvim";
 
+      # .. ... .... 
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+
       clera = "clear"; # Yes, I'm that bad at typing
     };
 

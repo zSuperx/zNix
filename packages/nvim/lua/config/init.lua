@@ -47,7 +47,6 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR><Esc>gv", { desc = "Move selected lines
 vim.keymap.set("v", ">", ">gv", { desc = "Indent selected lines" })
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent selected lines" })
 
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format file" })
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Suggest code action" })
 vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
@@ -65,7 +64,6 @@ require('config.plugins.tft-nvim')
 require('config.plugins.fzf-lua')
 require('config.plugins.transparent-nvim')
 require('config.plugins.yazi-nvim')
-require('config.plugins.term-edit-nvim')
 require('config.plugins.neogit')
 require('config.plugins.nvim-autopair')
 require('config.plugins.conform-nvim')
@@ -77,7 +75,7 @@ require('config.plugins.dashboard-nvim')
 require('config.plugins.nvim-web-devicons')
 require('config.plugins.gitsigns-nvim')
 require('config.plugins.baleia-nvim')
-require('config.plugins.noice-nvim')
+-- require('config.plugins.term-edit-nvim')
 
 -- Lualine is sourced in the runtime module
 -- require('config.plugins.lualine-nvim')
@@ -99,3 +97,4 @@ vim.lsp.enable('html')
 -- Extra Lua code to source
 
 require('config.extras.math-eval')
+require('config.extras.lsp-autosleep')
